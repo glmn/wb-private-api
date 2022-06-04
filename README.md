@@ -1,4 +1,4 @@
-# wb-private-api v0.0.2
+# wb-private-api v0.0.3
 NodeJS Модуль работает через приватное API Wildberries
 
 <a href="https://asciinema.org/a/O0mxkkU7PyfOpYRpJ5TD4EGwo" target="_blank"><img src="https://asciinema.org/a/O0mxkkU7PyfOpYRpJ5TD4EGwo.svg" /></a>

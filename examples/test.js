@@ -3,9 +3,19 @@ const WBPrivateAPI = require('../src/WBPrivateAPI');
 const wbapi = new WBPrivateAPI();
 
 (async () => {
-  const KEYWORD = 'платье';
-  const PAGES = 100;
-  const catalog = await wbapi.search(KEYWORD, PAGES);
+  const KEYWORD = 'менструальные чаши';
+  const catalog = await wbapi.search(KEYWORD);
   const ads = await wbapi.searchAds(KEYWORD);
-  console.log(ads.pages.length, catalog.length);
+
+  console.log(`
+  Ключевое слово: ${KEYWORD}
+  Найдено товаров: ${catalog.totalProducts}
+  Всего страниц: ${catalog.pages}
+
+  Всего рекламодателей: ${ads.adverts.length}
+  Самый высокий CPM: ${ads.adverts[0].cpm} Рублей
+  `);
+  
+  let product = catalog.page(2)[45]
+  console.log(product)
 })();

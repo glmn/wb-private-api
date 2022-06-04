@@ -5,6 +5,7 @@ const http = require('http');
 const qs = require('qs');
 const Constants = require('./Constants');
 const WBProduct = require('./WBProduct');
+const WBCatalog = require('./WBCatalog');
 
 format.extend(String.prototype, {});
 
@@ -18,17 +19,27 @@ class WBPrivateAPI {
     });
   }
 
-  async search(keyword, pageCount) {
+  async search(keyword, pageCount = 0) {
     const products = [];
 
-    const parseQueryParams = (async function (url) {
-      const res = await this.axios.get(url, { params: { query: keyword } });
+    const parseQueryParams = (async function () {
+      const res = await this.axios.get(Constants.URLS.SEARCH.EXACTMATCH, { params: { query: keyword } });
       return [res.data.shardKey, ...res.data.query.split('=')];
     }).bind(this);
 
-    // const parseTotalProducts = (async function () {
-
-    // });
+    const parseTotalProducts = (async function () {
+      const res = await this.axios.get(Constants.URLS.SEARCH.TOTALPRODUCTS, { params: {
+        appType: Constants.APPTYPES.DESKTOP,
+        couponsGeo: '2,7,3,6,19,21,8',
+        curr: 'rub',
+        query: keyword,
+        dest: Constants.DESTINATIONS.UFO,
+        locale: 'ru',
+        resultset: 'filters',
+        stores: Constants.STORES.UFO
+      }});
+      return res.data.filters.data.total;
+    }).bind(this);
 
     const parseCatalog = (async function (page = 1) {
       let foundProducts;
@@ -36,11 +47,13 @@ class WBPrivateAPI {
         const options = {
           params: {
             [_preset]: _val,
+            appType: Constants.APPTYPES.DESKTOP,
             locale: 'ru',
-            page,
+            page: page,
             dest: Constants.DESTINATIONS.UFO,
             sort: 'popular',
-            limit: 100,
+            limit: Constants.PRODUCTS_PER_PAGE,
+            stores: Constants.STORES.UFO
           },
         };
 
@@ -55,12 +68,28 @@ class WBPrivateAPI {
       });
     }).bind(this);
 
-    const [shardKey, _preset, _val] = await parseQueryParams(Constants.URLS.SEARCH.EXACTMATCH);
-    const threads = Array(pageCount).fill(1).map((x, y) => x + y);
+    const totalProducts = await parseTotalProducts()
+    if(totalProducts == 0) return [];
+
+    const [shardKey, _preset, _val] = await parseQueryParams();
+
+    let totalPages = Math.round((totalProducts/100) + 0.5)
+    if(totalPages > Constants.PAGES_PER_CATALOG)
+      totalPages = Constants.PAGES_PER_CATALOG;
+
+    const threads = Array(totalPages).fill(1).map((x, y) => x + y);
     const parsedPages = await Promise.all(threads.map(parseCatalog));
     parsedPages.every((val) => products.push(...val.map((v) => new WBProduct(v))));
 
-    return products;
+    const catalog = new WBCatalog({
+      shardKey: shardKey,
+      preset: _preset,
+      preset_value: _val,
+      pages: totalPages,
+      products: products
+    });
+
+    return catalog;
   }
 
   searchAds = async function (keyword) {

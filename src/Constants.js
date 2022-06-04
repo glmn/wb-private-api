@@ -1,4 +1,6 @@
 module.exports = {
+  PRODUCTS_PER_PAGE: 100,
+  PAGES_PER_CATALOG: 100,
   URLS: {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
@@ -10,6 +12,7 @@ module.exports = {
     },
     SEARCH: {
       EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
+      TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v3/search',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog', // shardKey, queryParams, query
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
     },
@@ -44,4 +47,7 @@ module.exports = {
   DESTINATIONS: {
     UFO: [-1059500, -108082, -269701, 12358048],
   },
+  STORES: {
+    UFO: [117673,122258,122259,130744,117501,507,3158,124731,121709,120762,204939,117986,159402,2737,686,1733]
+  }
 };

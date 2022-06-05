@@ -22,74 +22,77 @@ class WBPrivateAPI {
   async search(keyword, pageCount = 0) {
     const products = [];
 
-    const parseQueryParams = (async function () {
-      const res = await this.axios.get(Constants.URLS.SEARCH.EXACTMATCH, { params: { query: keyword } });
-      return [res.data.shardKey, ...res.data.query.split('=')];
-    }).bind(this);
-
-    const parseTotalProducts = (async function () {
-      const res = await this.axios.get(Constants.URLS.SEARCH.TOTALPRODUCTS, { params: {
-        appType: Constants.APPTYPES.DESKTOP,
-        couponsGeo: '2,7,3,6,19,21,8',
-        curr: 'rub',
-        query: keyword,
-        dest: Constants.DESTINATIONS.UFO,
-        locale: 'ru',
-        resultset: 'filters',
-        stores: Constants.STORES.UFO
-      }});
-      return res.data.filters.data.total;
-    }).bind(this);
-
-    const parseCatalog = (async function (page = 1) {
-      let foundProducts;
-      return new Promise(async (resolve) => {
-        const options = {
-          params: {
-            [_preset]: _val,
-            appType: Constants.APPTYPES.DESKTOP,
-            locale: 'ru',
-            page: page,
-            dest: Constants.DESTINATIONS.UFO,
-            sort: 'popular',
-            limit: Constants.PRODUCTS_PER_PAGE,
-            stores: Constants.STORES.UFO
-          },
-        };
-
-        try {
-          const res = await this.axios.get(Constants.URLS.SEARCH.CATALOG.format(shardKey), options);
-          foundProducts = res.data.data.products;
-        } catch (err) {
-          await parseCatalog(page);
-        }
-
-        resolve(foundProducts);
-      });
-    }).bind(this);
-
-    const totalProducts = await parseTotalProducts()
+    const totalProducts = await this.searchTotalProducts(keyword)
     if(totalProducts == 0) return [];
 
-    const [shardKey, _preset, _val] = await parseQueryParams();
+    const [shardKey, preset, preset_value] = await this._getQueryParams(keyword);
+    const catalogConfig = {
+      shardKey: shardKey,
+      preset: preset,
+      preset_value: preset_value
+    };
 
     let totalPages = Math.round((totalProducts/100) + 0.5)
     if(totalPages > Constants.PAGES_PER_CATALOG)
       totalPages = Constants.PAGES_PER_CATALOG;
 
     const threads = Array(totalPages).fill(1).map((x, y) => x + y);
-    const parsedPages = await Promise.all(threads.map(parseCatalog));
+    const parsedPages = await Promise.all(threads.map(thr => this.getCatalog(catalogConfig, thr)));
+
     parsedPages.every((val) => products.push(...val.map((v) => new WBProduct(v))));
 
-    const catalog = new WBCatalog({
-      shardKey: shardKey,
-      preset: _preset,
-      preset_value: _val,
+    Object.assign(catalogConfig, {
       pages: totalPages,
       products: products
     });
 
-    return catalog;
+    return new WBCatalog(catalogConfig);
+  }
+
+  async _getQueryParams(keyword) {
+    const res = await this.axios.get(Constants.URLS.SEARCH.EXACTMATCH, { params: { query: keyword } });
+    return [res.data.shardKey, ...res.data.query.split('=')];
+  }
+
+  async searchTotalProducts(keyword) {
+    const res = await this.axios.get(Constants.URLS.SEARCH.TOTALPRODUCTS, { params: {
+      appType: Constants.APPTYPES.DESKTOP,
+      query: keyword,
+      couponsGeo: [2,7,3,6,19,21,8],
+      curr: Constants.CURRENCIES.RUB,
+      dest: Constants.DESTINATIONS.UFO,
+      locale: Constants.LOCALES.RU,
+      resultset: 'filters',
+      stores: Constants.STORES.UFO
+    }});
+    return res.data.filters.data.total;
+  }
+
+  async getCatalog(catalogConfig, page = 1) {
+    return new Promise(async (resolve) => {
+      let foundProducts;
+      const options = {
+        params: {
+          [catalogConfig.preset]: catalogConfig.preset_value,
+          appType: Constants.APPTYPES.DESKTOP,
+          locale: Constants.LOCALES.RU,
+          page: page,
+          dest: Constants.DESTINATIONS.UFO,
+          sort: 'popular',
+          limit: Constants.PRODUCTS_PER_PAGE,
+          stores: Constants.STORES.UFO
+        }
+      };
+
+      try {
+        const res = await this.axios.get(Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey), options);
+        foundProducts = res.data.data.products;
+      } catch (err) {
+        await this.getCatalog(catalogConfig, page);
+      }
+
+      resolve(foundProducts);
+    });
   }
 
   searchAds = async function (keyword) {
@@ -97,6 +100,7 @@ class WBPrivateAPI {
     const res = await this.axios.get(Constants.URLS.SEARCH.ADS, options);
     return res.data;
   };
+
 }
 
 module.exports = WBPrivateAPI;

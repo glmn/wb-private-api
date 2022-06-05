@@ -11,9 +11,10 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    'no-console': false,
-    'func-names': false,
-    'no-async-promise-executor': false,
-    'no-use-before-define': false
+    'no-console': 0,
+    'func-names': 0,
+    'no-async-promise-executor': 0,
+    'no-use-before-define': 0,
+    'no-underscore-dangle': 0,
   },
 };

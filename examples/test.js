@@ -1,4 +1,5 @@
 const WBPrivateAPI = require('../src/WBPrivateAPI');
+
 const wbapi = new WBPrivateAPI();
 
 (async () => {
@@ -15,6 +16,6 @@ const wbapi = new WBPrivateAPI();
   Самый высокий CPM: ${ads.adverts[0].cpm} Рублей
   `);
 
-  let product = catalog.page(2)[45]
-  console.log(product)
+  const product = catalog.page(2)[45];
+  console.log(product);
 })();

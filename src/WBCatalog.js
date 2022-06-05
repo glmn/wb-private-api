@@ -1,27 +1,34 @@
-const Constants = require("./Constants");
+const Constants = require('./Constants');
 
 class WBCatalog {
-  constructor(data){
+  /* Creating a new instance of the class WBCatalog. */
+  constructor(data) {
     this.shardKey = data.shardKey;
     this.preset = data.preset;
     this.preset_value = data.preset_value;
-    this.pages = data.pages
+    this.pages = data.pages;
     this.products = data.products;
-    this.totalProducts = data.products.length
+    this.totalProducts = data.products.length;
   }
 
-  page = function(page){
-    let startIndex = (page - 1) * 100;
-    let endIndex = startIndex + Constants.PRODUCTS_PER_PAGE - 1
-    if(startIndex > this.totalProducts) return [];
-    if(endIndex >= this.totalProducts) endIndex = this.totalProducts-1
+  /**
+   * It takes a page number and returns an array of products that should be
+   * displayed on that page.
+   * @param number - the page number
+   * @returns An array of WBProduct's.
+   */
+  page(number) {
+    const startIndex = (number - 1) * 100;
+    let endIndex = startIndex + Constants.PRODUCTS_PER_PAGE - 1;
+    if (startIndex > this.totalProducts) return [];
+    if (endIndex >= this.totalProducts) endIndex = this.totalProducts - 1;
 
-    let outputProducts = []
-    for(let idx = startIndex; idx <= endIndex; idx++){
-      outputProducts.push(this.products[idx])
+    const outputProducts = [];
+    for (let idx = startIndex; idx <= endIndex; idx += 1) {
+      outputProducts.push(this.products[idx]);
     }
-    return outputProducts
+    return outputProducts;
   }
 }
 
-module.exports = WBCatalog
+module.exports = WBCatalog;

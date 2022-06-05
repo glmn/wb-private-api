@@ -1,4 +1,5 @@
 class WBProduct {
+  /* Creating a new instance of the class WBProduct. */
   constructor(product) {
     this.id = product.id;
     this.name = product.name;
@@ -10,18 +11,18 @@ class WBProduct {
     this.feedbacks = product.feedbacks;
     this.subject = {
       id: product.subjectId,
-      parentId: product.subjectParentId
+      parentId: product.subjectParentId,
     };
     this.brand = {
       id: product.brandId,
       siteId: product.siteBrandId,
-      name: product.brand
+      name: product.brand,
     };
     this.price = {
-      sale: product.sale/100,
+      sale: product.sale / 100,
       retail: product.priceU,
-      afterSale: product.salePriceU/100
-    }
+      afterSale: product.salePriceU / 100,
+    };
   }
 }
 

@@ -36,7 +36,7 @@ const wbapi = new WBPrivateAPI();
 ## `WBPrivateAPI` методы
 `.search(keyword)` - Поиск всех товаров по Ключевому слову  (Возвращает объект `WBCatalog`)
 
-`.searchAds(keyword)` - Поиск рекламодателей (в разделе Поиск) по Ключевому слову 
+`.searchAds(keyword)` - Поиск рекламодателей (в разделе Поиск) по Ключевому слову
 
 
 ## `WBCatalog` методы

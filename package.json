@@ -4,14 +4,18 @@
   "description": "Wildberries Private API",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "postinstall" : "npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/glmn/wb-private-api.git"
   },
   "keywords": [
-    "wildberries"
+    "wildberries",
+    "marketplace",
+    "api",
+    "nodejs"
   ],
   "author": "Stanislav @glmn Gelman",
   "license": "ISC",

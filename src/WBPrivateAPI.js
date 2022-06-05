@@ -85,7 +85,7 @@ class WBPrivateAPI {
 
   /**
    * It gets all products from specified page
-   * @param catalogConfig
+   * @param catalogConfig - { shradKey, preset, presetValue }
    * @param [page=1] - page number
    * @returns An array of products
    */
@@ -105,8 +105,8 @@ class WBPrivateAPI {
         },
       };
       try {
-        // eslint-disable-next-line max-len
-        const res = await this.axios.get(Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey), options);
+        const  url = Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey);
+        const res = await this.axios.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
         await this.getCatalogPage(catalogConfig, page);

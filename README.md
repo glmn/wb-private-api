@@ -1,10 +1,10 @@
-# wb-private-api v0.0.4
-NodeJS Модуль работает через приватное API Wildberries
+![Untitled-1](https://user-images.githubusercontent.com/1326151/172097632-57660c49-60b8-473f-9423-21f4610c4651.jpg)
 
-<a href="https://asciinema.org/a/O0mxkkU7PyfOpYRpJ5TD4EGwo" target="_blank"><img src="https://asciinema.org/a/O0mxkkU7PyfOpYRpJ5TD4EGwo.svg" /></a>
+<p align="center"><h3>wb-private-api</h3></p>
 
-## Установка
-Необходим NodeJS v14 или выше
+![GitHub package.json version](https://img.shields.io/github/package-json/v/glmn/wb-private-api) ![GitHub last commit](https://img.shields.io/github/last-commit/glmn/wb-private-api)
+
+NodeJS модуль. Работает через приватное API Wildberries
 ```bash
 npm i wb-private-api
 ```

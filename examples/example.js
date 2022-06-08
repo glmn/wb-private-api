@@ -4,7 +4,7 @@ const wbapi = new WBPrivateAPI();
 
 (async () => {
   const KEYWORD = 'менструальные чаши';
-  const catalog = await wbapi.search(KEYWORD);
+  const catalog = await wbapi.search(KEYWORD, 2);
   const ads = await wbapi.searchAds(KEYWORD);
 
   console.log(`

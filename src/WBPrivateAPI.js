@@ -23,9 +23,10 @@ class WBPrivateAPI {
   /**
    * It searches for products on the website.
    * @param {string} keyword - The keyword to search for
+   * @param {number} pageCount - Number of pages to retrieve
    * @returns {WBCatalog} WBCatalog objects with WBProducts inside it
    */
-  async search(keyword) {
+  async search(keyword, pageCount = 0) {
     const products = [];
 
     const totalProducts = await this.searchTotalProducts(keyword);
@@ -36,6 +37,12 @@ class WBPrivateAPI {
 
     let totalPages = Math.round((totalProducts / 100) + 0.5);
     if (totalPages > Constants.PAGES_PER_CATALOG) { totalPages = Constants.PAGES_PER_CATALOG; }
+
+    if (pageCount > 0) {
+      if (pageCount < totalPages) {
+        totalPages = pageCount;
+      }
+    }
 
     const threads = Array(totalPages).fill(1).map((x, y) => x + y);
     const parsedPages = await Promise.all(
@@ -53,7 +60,7 @@ class WBPrivateAPI {
    * It takes a keyword and returns an array of three elements,
    * shardKey, preset and preset value
    * @param {string} keyword - The keyword you want to search for.
-   * @returns {array} An array of shardKey, preset and preset value
+   * @returns {array} - An array of shardKey, preset and preset value
    */
   async _getQueryParams(keyword) {
     const res = await this.axios.get(Constants.URLS.SEARCH.EXACTMATCH, {
@@ -64,7 +71,7 @@ class WBPrivateAPI {
 
   /**
    * It returns the total number of products for a given keyword
-   * @param keyword - the search query
+   * @param {string} keyword - the search query
    * @returns Total number of products
    */
   async searchTotalProducts(keyword) {
@@ -87,7 +94,7 @@ class WBPrivateAPI {
    * It gets all products from specified page
    * @param {object} catalogConfig - { shradKey, preset, presetValue }
    * @param {number} page - page number
-   * @returns An array of products
+   * @returns {array} - An array of products
    */
   async getCatalogPage(catalogConfig, page = 1) {
     return new Promise(async (resolve) => {
@@ -105,7 +112,7 @@ class WBPrivateAPI {
         },
       };
       try {
-        const  url = Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey);
+        const url = Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey);
         const res = await this.axios.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
@@ -118,7 +125,7 @@ class WBPrivateAPI {
   /**
    * Search for adverts and their ads form specified keyword
    * @param {string} keyword - the search query
-   * @returns {object} An object with adverts and their ads
+   * @returns {object} - An object with adverts and their ads
    */
   async searchAds(keyword) {
     const options = { params: { keyword } };

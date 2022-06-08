@@ -5,7 +5,6 @@ module.exports = {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
-      IMAGE: 'http://img1.wbstatic.net/small/new/{}0000/{}.jpg{?}r={}',
       STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog{}',
       DETAILS: 'https://card.wb.ru/cards/detail{}',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}',
@@ -18,6 +17,12 @@ module.exports = {
     },
     RECOMMENDATIONS: {
       SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{?}',
+    },
+    IMAGES: {
+      TINY: 'http://img1.wbstatic.net/small/new/{0}0000/{1}.jpg?r={2}', // 180x240
+      SMALL: 'https://images.wbstatic.net/c246x328/new/{0}0000/{1}-{3}.jpg?r={2}', // 246x328
+      MEDIUM: 'https://images.wbstatic.net/c516x688/new/{0}0000/{1}-{3}.jpg?r={2}', // 516x688
+      BIG: 'https://images.wbstatic.net/big/new/{0}0000/{1}-{3}.jpg?r={2}', // 900x1200
     },
   },
   APPTYPES: {

@@ -4,7 +4,8 @@
   "description": "Wildberries Private API",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "docs": "esdoc"
   },
   "repository": {
     "type": "git",
@@ -23,13 +24,16 @@
   },
   "homepage": "https://github.com/glmn/wb-private-api#readme",
   "dependencies": {
+    "@itsjamie/esdoc-standard-plugin": "^0.5.0",
     "axios": "^0.27.2",
+    "esdoc-standard-plugin": "^1.0.0",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "qs": "^6.10.3",
     "string-format": "^2.0.0"
   },
   "devDependencies": {
+    "esdoc": "^1.1.0",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",

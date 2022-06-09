@@ -30,6 +30,12 @@ class WBCatalog {
     return outputProducts;
   }
 
+  /**
+    * It returns the position of the product in the products array, or -1 if the
+    * product is not in the array
+    * @param {number} productId - The SKU of the product.
+    * @returns {number} - The position of the product in the array.
+    */
   getPosition(productId) {
     const position = this.products.findIndex((item) => item.id === productId) || -1;
     return position;

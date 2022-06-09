@@ -14,6 +14,4 @@ const Utils = {
   },
 };
 
-console.log(Utils.Card.imageURL(60059650, 'SMALL', 4));
-
 module.exports = Utils;

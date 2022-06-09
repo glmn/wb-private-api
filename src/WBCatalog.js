@@ -14,8 +14,8 @@ class WBCatalog {
   /**
    * It takes a page number and returns an array of products that should be
    * displayed on that page.
-   * @param number - the page number
-   * @returns An array of WBProduct's.
+   * @param {number} number - the page number
+   * @returns {array} - An array of WBProduct's.
    */
   page(number) {
     const startIndex = (number - 1) * 100;
@@ -28,6 +28,11 @@ class WBCatalog {
       outputProducts.push(this.products[idx]);
     }
     return outputProducts;
+  }
+
+  getPosition(productId) {
+    const position = this.products.findIndex((item) => item.id === productId) || -1;
+    return position;
   }
 }
 

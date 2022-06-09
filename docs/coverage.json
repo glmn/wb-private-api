@@ -1,8 +1,17 @@
 {
-  "coverage": "15%",
-  "expectCount": 40,
+  "coverage": "13.95%",
+  "expectCount": 43,
   "actualCount": 6,
   "files": {
+    "src/Utils.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        6
+      ]
+    },
     "src/WBCatalog.js": {
       "expectCount": 10,
       "actualCount": 1,

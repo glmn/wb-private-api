@@ -44,3 +44,5 @@ const wbapi = new WBPrivateAPI();
 
 ## `WBCatalog` методы
 `.page(number)` - Возвращает массив товаров с заданной страницы (массив состоит из объектов `WBProduct`)
+
+`.getPosition(productId)` - Возвращает номер позиции по заданному SKU. Если такого SKU в выдаче нет, то вернёт `-1`

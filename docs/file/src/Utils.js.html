@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/WBCatalog.js | wb-private-api</title>
+  <title data-ice="title">src/Utils.js | wb-private-api</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -33,41 +33,24 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/WBCatalog.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const Constants = require(&apos;./Constants&apos;);
+<div class="content" data-ice="content"><h1 data-ice="title">src/Utils.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const format = require(&apos;string-format&apos;);
+const Constants = require(&apos;./Constants&apos;);
 
-class WBCatalog {
-  /* Creating a new instance of the class WBCatalog. */
-  constructor(data) {
-    this.shardKey = data.shardKey;
-    this.preset = data.preset;
-    this.preset_value = data.preset_value;
-    this.pages = data.pages;
-    this.products = data.products;
-    this.totalProducts = data.products.length;
-  }
+format.extend(String.prototype, {});
 
-  /**
-   * It takes a page number and returns an array of products that should be
-   * displayed on that page.
-   * @param {number} number - the page number
-   * @returns {array} - An array of WBProduct&apos;s.
-   */
-  page(number) {
-    const startIndex = (number - 1) * 100;
-    let endIndex = startIndex + Constants.PRODUCTS_PER_PAGE - 1;
-    if (startIndex &gt; this.totalProducts) return [];
-    if (endIndex &gt;= this.totalProducts) endIndex = this.totalProducts - 1;
+const Utils = {
+  Card: {
+    imageURL(productId, imageType = &apos;SMALL&apos;, order = 1) {
+      const archive = parseInt(productId / 10000, 10);
+      const random = Date.now();
+      const URL = Constants.URLS.IMAGES[imageType];
+      return URL.format(archive, productId, random, order);
+    },
+  },
+};
 
-    const outputProducts = [];
-    for (let idx = startIndex; idx &lt;= endIndex; idx += 1) {
-      outputProducts.push(this.products[idx]);
-    }
-    return outputProducts;
-  }
-}
-
-module.exports = WBCatalog;
+module.exports = Utils;
 </code></pre>
 
 </div>

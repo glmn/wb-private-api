@@ -8,15 +8,13 @@ module.exports = {
       STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog{}',
       DETAILS: 'https://card.wb.ru/cards/detail{}',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}',
+      SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',
     },
     SEARCH: {
       EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
       TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v3/search',
-      CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog', // shardKey, queryParams, query
+      CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
-    },
-    RECOMMENDATIONS: {
-      SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{?}',
     },
     IMAGES: {
       TINY: 'http://img1.wbstatic.net/small/new/{0}0000/{1}.jpg?r={2}', // 180x240

@@ -288,6 +288,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utils.js",
+    "file/src/Utils.js.html",
+    "src/Utils.js",
+    "file"
+  ],
+  [
     "src/wbcatalog.js",
     "file/src/WBCatalog.js.html",
     "src/WBCatalog.js",

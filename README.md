@@ -58,7 +58,7 @@ const wbapi = new WBPrivateAPI();
 `.getPosition(productId)` - Возвращает номер позиции по заданному SKU. Если такого SKU в выдаче нет, то вернёт `-1`
 
 ## `WBCatalog` методы
-`.totalStocks` - Вернёт сумму остатков товара со всех складов (!)предварительно - `WBPrivateAPI.getStocks(WBProduct)`)
+`.totalStocks` - Вернёт сумму остатков товара со всех складов (!) предварительно вызвать `.getStocks()`)
 
 `.getStocks()` - Присвоет (и вернет) свойству `stocks`  массив с данными об остатках на складе
 

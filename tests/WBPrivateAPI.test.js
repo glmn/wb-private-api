@@ -39,7 +39,7 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(pageCount).toBeGreaterThan(catalog.pages);
   });
 
-  test('Проверка метода .keyHint(query) на понижение кол-ва страниц, если их меньше чем запрошено', async () => {
+  test('Проверка метода .keyHint(query) на вывод предположений по фразу "Платье"', async () => {
     const hints = await wbapi.keyHint('Платье');
     expect(hints[0].type).toBe('suggest');
   });

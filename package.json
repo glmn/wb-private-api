@@ -4,7 +4,7 @@
   "description": "Wildberries Private API",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "docs": "esdoc"
   },
   "repository": {

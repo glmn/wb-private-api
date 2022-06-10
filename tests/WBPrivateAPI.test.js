@@ -28,14 +28,19 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(presetValue).toBe('69;70;2613;2905;4000;4855;4857');
   });
 
-  test('Сбор 100 страниц товаров по ключевому слову "Платье"', async () => {
+  test('Сбор 3 страниц товаров по ключевому слову "Платье"', async () => {
     const catalog = await wbapi.search('Платье', 3);
     expect(catalog.products.length).toBe(300);
-  }, 30 * 1000);
+  });
 
   test('Проверка аргумента pageCount на понижение кол-ва страниц, если их меньше чем запрошено', async () => {
     const pageCount = 100;
     const catalog = await wbapi.search('Менструальные чаши', pageCount);
     expect(pageCount).toBeGreaterThan(catalog.pages);
-  }, 30 * 1000);
+  });
+
+  test('Проверка метода .keyHint(query) на понижение кол-ва страниц, если их меньше чем запрошено', async () => {
+    const hints = await wbapi.keyHint('Платье');
+    expect(hints[0].type).toBe('suggest');
+  });
 });

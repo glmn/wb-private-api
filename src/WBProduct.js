@@ -33,6 +33,19 @@ class WBProduct {
     };
   }
 
+  /**
+   * The function returns the value of the afterSale property of the price
+   * @returns The afterSale price.
+   */
+  get currentPrice() {
+    return this.price.afterSale;
+  }
+
+  /**
+   * It takes the array of stocks, and for each stock, it adds the quantity of
+   * that stock to the sum
+   * @returns The total number of stocks.
+   */
   get totalStocks() {
     return this.stocks.reduce((sum, x) => sum + x.qty, 0);
   }

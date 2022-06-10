@@ -15,6 +15,7 @@ module.exports = {
       TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v3/search',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
+      HINT: 'https://search.wb.ru/suggests/api/v2/hint',
     },
     IMAGES: {
       TINY: 'http://img1.wbstatic.net/small/new/{0}0000/{1}.jpg?r={2}', // 180x240
@@ -68,5 +69,9 @@ module.exports = {
   },
   CURRENCIES: {
     RUB: 'rub',
+  },
+  SEX: {
+    FEMALE: 'female',
+    MALE: 'male',
   },
 };

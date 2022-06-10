@@ -124,6 +124,23 @@ class WBPrivateAPI {
     const res = await this.session.get(Constants.URLS.SEARCH.ADS, options);
     return res.data;
   }
+
+  /**
+   * It takes a query string and returns a list of suggestions that match the query
+   * @param query - the search query
+   * @returns An array of objects.
+   */
+  async keyHint(query) {
+    const options = {
+      params: {
+        query,
+        gender: Constants.SEX.FEMALE,
+        locale: Constants.LOCALES.RU,
+      },
+    };
+    const res = await this.session.get(Constants.URLS.SEARCH.HINT, options);
+    return res.data;
+  }
 }
 
 module.exports = WBPrivateAPI;

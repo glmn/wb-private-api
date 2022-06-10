@@ -52,10 +52,6 @@ const wbapi = new WBPrivateAPI();
 
 `.searchAds(keyword)` - Поиск рекламодателей (в разделе Поиск) по Ключевому слову
 
-`.getStocks(WBProduct)` - Присвоет (и вернет) свойству `stocks` объекта `WBProduct` массив с данными об остатках на складе
-
-`.getPromo(WBProduct)` - Присвоет (и вернет) свойству `promo` объекта `WBProduct` объект с данными об участии в промо-акции
-
 ## `WBCatalog` методы
 `.page(number)` - Возвращает массив товаров с заданной страницы (массив состоит из объектов `WBProduct`)
 
@@ -63,3 +59,7 @@ const wbapi = new WBPrivateAPI();
 
 ## `WBCatalog` методы
 `.totalStocks` - Вернёт сумму остатков товара со всех складов (!)предварительно - `WBPrivateAPI.getStocks(WBProduct)`)
+
+`.getStocks()` - Присвоет (и вернет) свойству `stocks`  массив с данными об остатках на складе
+
+`.getPromo()` - Присвоет (и вернет) свойству `promo` объект с данными об участии в промо-акции

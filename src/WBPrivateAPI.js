@@ -1,23 +1,15 @@
 const format = require('string-format');
-const Axios = require('axios').default;
-const https = require('https');
-const http = require('http');
-const qs = require('qs');
 const Constants = require('./Constants');
 const WBProduct = require('./WBProduct');
 const WBCatalog = require('./WBCatalog');
+const SessionBuilder = require('./SessionBuilder');
 
 format.extend(String.prototype, {});
 
 class WBPrivateAPI {
   /* Creating a new instance of the class WBPrivateAPI. */
-  constructor(config) {
-    this.config = config;
-    this.axios = Axios.create({
-      httpAgent: new http.Agent({ keepAlive: true }),
-      httpsAgent: new https.Agent({ keepAlive: true }),
-      paramsSerializer: (p) => qs.stringify(p, { arrayFormat: 'repeat' }),
-    });
+  constructor() {
+    this.session = SessionBuilder.create();
   }
 
   /**
@@ -63,7 +55,7 @@ class WBPrivateAPI {
    * @returns {array} - An array of shardKey, preset and preset value
    */
   async _getQueryParams(keyword) {
-    const res = await this.axios.get(Constants.URLS.SEARCH.EXACTMATCH, {
+    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
       params: { query: keyword },
     });
     return [res.data.shardKey, ...res.data.query.split('=')];
@@ -75,7 +67,7 @@ class WBPrivateAPI {
    * @returns Total number of products
    */
   async searchTotalProducts(keyword) {
-    const res = await this.axios.get(Constants.URLS.SEARCH.TOTALPRODUCTS, {
+    const res = await this.session.get(Constants.URLS.SEARCH.TOTALPRODUCTS, {
       params: {
         appType: Constants.APPTYPES.DESKTOP,
         query: keyword,
@@ -113,7 +105,7 @@ class WBPrivateAPI {
       };
       try {
         const url = Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey);
-        const res = await this.axios.get(url, options);
+        const res = await this.session.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
         await this.getCatalogPage(catalogConfig, page);
@@ -129,82 +121,8 @@ class WBPrivateAPI {
    */
   async searchAds(keyword) {
     const options = { params: { keyword } };
-    const res = await this.axios.get(Constants.URLS.SEARCH.ADS, options);
+    const res = await this.session.get(Constants.URLS.SEARCH.ADS, options);
     return res.data;
-  }
-
-  /**
-   * It makes a request to the server and gets the product data
-   * @param {WBProduct} product - the product object that we're getting data for
-   */
-  async getProductData(product) {
-    const options = {
-      params: {
-        appType: Constants.APPTYPES.DESKTOP,
-        dest: Constants.DESTINATIONS.UFO,
-        stores: Constants.STORES.UFO,
-        locale: Constants.LOCALES.RU,
-        nm: product.id,
-      },
-    };
-
-    const res = await this.axios.get(Constants.URLS.PRODUCT.STOCKS, options);
-    const rawData = res.data.data.products[0];
-    product._rawResponse = rawData;
-  }
-
-  /**
-   * If the product has stocks, return the stocks. If the product has sizes,
-   * return the stocks of the first size. If the product doesn't have sizes, get
-   * the product data and return the stocks
-   * @param {WBProduct} product - The product object that you want to get the stocks of.
-   * @returns {object} - The stocks of the product.
-   */
-  async getStocks(product) {
-    if (product.stocks.length !== 0) {
-      return product.stocks;
-    }
-
-    if ('sizes' in product._rawResponse) {
-      product.stocks = product._rawResponse.sizes[0].stocks;
-      return product.stocks;
-    }
-
-    await this.getProductData(product);
-    return this.getStocks(product);
-  }
-
-  /**
-   * It returns the promo object for a product, but if it doesn't exist, it calls
-   * the getProductData function to get the product data, and then calls itself
-   * again to get the promo object
-   * @param {WBProduct} product - The product object
-   * @returns {object} - the product.promo object.
-   */
-  async getPromo(product) {
-    if ('id' in product._rawResponse === false) {
-      await this.getProductData(product);
-    }
-
-    if ('panelPromoId' in product.promo) {
-      return product.promo;
-    }
-
-    if ('panelPromoId' in product._rawResponse) {
-      product.promo = {
-        active: true,
-        panelPromoId: product._rawResponse.panelPromoId,
-        promoTextCard: product._rawResponse.promoTextCard,
-        promoTextCat: product._rawResponse.promoTextCat,
-      };
-      return product.promo;
-    }
-
-    product.promo = {
-      active: false,
-    };
-
-    return product.promo;
   }
 }
 

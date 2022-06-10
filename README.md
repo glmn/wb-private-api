@@ -15,7 +15,7 @@ npm i wb-private-api
 
 После установки рекомендую протестировать работоспособность
 ```bash
-npm test
+npm run test
 ```
 
 ![Screenshot_13](https://user-images.githubusercontent.com/1326151/173159882-beda437f-62f7-4e30-89d4-c2386ad5cd78.png)

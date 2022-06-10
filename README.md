@@ -39,9 +39,9 @@ const wbapi = new WBPrivateAPI();
   Самый высокий CPM: ${ads.adverts[0].cpm} Рублей
   `);
 
-  const product = catalog.page(1)[77];
-  const stocks = await wbapi.getStocks(product);
-  const promo = await wbapi.getPromo(product);
+  const product = catalog.page(1)[0];
+  const stocks = await product.getStocks();
+  const promo = await product.getPromo();
   console.log(stocks, product.totalStocks, promo);
 })();
 

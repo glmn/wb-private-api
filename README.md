@@ -1,4 +1,5 @@
-![Untitled-1](https://user-images.githubusercontent.com/1326151/172098759-d7b2a089-4899-4b3e-9ce5-2804575e7b49.jpg)
+![Untitled-1](https://user-images.githubusercontent.com/1326151/173079853-c0ddf68d-5cfc-44ac-bdf9-2d5c6016a90c.jpg)
+
 
 
 <p align="center"><h3>wb-private-api</h3></p>

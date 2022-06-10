@@ -127,8 +127,8 @@ class WBPrivateAPI {
 
   /**
    * It takes a query string and returns a list of suggestions that match the query
-   * @param query - the search query
-   * @returns An array of objects.
+   * @param {string} query - the search query
+   * @returns {array} - An array of objects.
    */
   async keyHint(query) {
     const options = {
@@ -139,6 +139,18 @@ class WBPrivateAPI {
       },
     };
     const res = await this.session.get(Constants.URLS.SEARCH.HINT, options);
+    return res.data;
+  }
+
+  /**
+   * It takes a productId, makes a request to the server, and returns the similar Ids
+   * @param productId - The product ID of the product you want to search for similar
+   * @returns {object} with similar product Ids
+   */
+  async searchSimilarByNm(productId) {
+    const options = { headers: { 'x-requested-with': 'XMLHttpRequest' } };
+    const url = Constants.URLS.SEARCH.SIMILAR_BY_NM.format(productId);
+    const res = await this.session.get(url, options);
     return res.data;
   }
 }

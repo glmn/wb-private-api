@@ -4,15 +4,15 @@ module.exports = {
   URLS: {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
-      CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
       STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog',
-      DETAILS: 'https://card.wb.ru/cards/detail{}',
+      CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}',
-      SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',
+      DETAILS: 'https://card.wb.ru/cards/detail{}',
     },
     SEARCH: {
-      EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
+      SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',
       TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v3/search',
+      EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
       HINT: 'https://search.wb.ru/suggests/api/v2/hint',

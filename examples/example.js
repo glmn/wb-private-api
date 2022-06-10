@@ -3,7 +3,7 @@ const WBPrivateAPI = require('../src/WBPrivateAPI');
 const wbapi = new WBPrivateAPI();
 
 (async () => {
-  const KEYWORD = 'платье';
+  // const KEYWORD = 'платье';
   // const catalog = await wbapi.search(KEYWORD, 2);
   // const ads = await wbapi.searchAds(KEYWORD);
 
@@ -21,5 +21,5 @@ const wbapi = new WBPrivateAPI();
   // const promo = await product.getPromo();
   // console.log(stocks, product.totalStocks, promo);
 
-  console.log(await wbapi.keyHint(KEYWORD));
+  console.log(await wbapi.searchSimilarByNm(60059650));
 })();

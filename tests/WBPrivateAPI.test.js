@@ -43,4 +43,9 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     const hints = await wbapi.keyHint('Платье');
     expect(hints[0].type).toBe('suggest');
   });
+
+  test('Проверка метода .searchSimilarByNm(productId) на возврат идентификаторов похожиш товаров', async () => {
+    const similar = await wbapi.searchSimilarByNm(60059650);
+    expect(similar.value.nmIds.length).toBeGreaterThan(0);
+  });
 });

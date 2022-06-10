@@ -16,5 +16,6 @@ module.exports = {
     'no-async-promise-executor': 0,
     'no-use-before-define': 0,
     'no-underscore-dangle': 0,
+    'no-param-reassign': 0,
   },
 };

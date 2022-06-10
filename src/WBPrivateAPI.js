@@ -132,6 +132,31 @@ class WBPrivateAPI {
     const res = await this.axios.get(Constants.URLS.SEARCH.ADS, options);
     return res.data;
   }
+
+  /**
+   * It gets the stock information for a product
+   * @param {WBProduct} product - the product object
+   * @returns {array} - The stocks of the product.
+   */
+  async getStocks(product) {
+    if (product.stocks.length !== 0) {
+      return product.stocks;
+    }
+
+    const options = {
+      params: {
+        appType: Constants.APPTYPES.DESKTOP,
+        dest: Constants.DESTINATIONS.UFO,
+        stores: Constants.STORES.UFO,
+        locale: Constants.LOCALES.RU,
+        nm: product.id,
+      },
+    };
+
+    const res = await this.axios.get(Constants.URLS.PRODUCT.STOCKS, options);
+    product.stocks = res.data.data.products[0].sizes[0].stocks;
+    return product.stocks;
+  }
 }
 
 module.exports = WBPrivateAPI;

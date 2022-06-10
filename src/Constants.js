@@ -5,7 +5,7 @@ module.exports = {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
-      STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog{}',
+      STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog',
       DETAILS: 'https://card.wb.ru/cards/detail{}',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}',
       SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',
@@ -43,9 +43,9 @@ module.exports = {
     120762: 'Электросталь',
     121709: 'Электросталь КБТ',
     124731: 'Крёкшино КБТ',
-    130744: 'Склад Краснодар',
+    130744: 'Краснодар',
     159402: 'Санкт-Петербург 2',
-    161812: 'Склад Санкт-Петербург КБТ',
+    161812: 'Санкт-Петербург КБТ',
   },
   DESTINATIONS: {
     UFO: [-1059500, -108082, -269701, 12358048],

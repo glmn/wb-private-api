@@ -1,4 +1,6 @@
 class WBProduct {
+  stocks = [];
+
   /* Creating a new instance of the class WBProduct. */
   constructor(product) {
     this.id = product.id;
@@ -23,6 +25,10 @@ class WBProduct {
       retail: product.priceU,
       afterSale: product.salePriceU / 100,
     };
+  }
+
+  get totalStocks() {
+    return this.stocks.reduce((sum, x) => sum + x.qty, 0);
   }
 }
 

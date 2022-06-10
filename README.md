@@ -12,14 +12,21 @@ NodeJS модуль. Работает через приватное API Wildberr
 npm i wb-private-api
 ```
 
+После установки рекомендую протестировать работоспособность
+```bash
+npm test
+```
+Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues . Данный модуль развивается мною в одиночку (надеюсь, что пока что), буду обрабатывать обращения и вносить правки по возможности.
+
 ## Пример работы
 ```js
 const WBPrivateAPI = require('WBPrivateAPI');
+
 const wbapi = new WBPrivateAPI();
 
 (async () => {
   const KEYWORD = 'менструальные чаши';
-  const catalog = await wbapi.search(KEYWORD);
+  const catalog = await wbapi.search(KEYWORD, 2);
   const ads = await wbapi.searchAds(KEYWORD);
 
   console.log(`
@@ -31,9 +38,11 @@ const wbapi = new WBPrivateAPI();
   Самый высокий CPM: ${ads.adverts[0].cpm} Рублей
   `);
 
-  let product = catalog.page(2)[45]
-  console.log(product)
+  const product = catalog.page(1)[77];
+  await wbapi.getStocks(product);
+  console.log(product.totalStocks);
 })();
+
 ```
 
 ## `WBPrivateAPI` методы

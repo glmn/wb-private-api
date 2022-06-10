@@ -182,12 +182,17 @@ class WBPrivateAPI {
    * @returns {object} - the product.promo object.
    */
   async getPromo(product) {
+    if ('id' in product._rawResponse === false) {
+      await this.getProductData(product);
+    }
+
     if ('panelPromoId' in product.promo) {
       return product.promo;
     }
 
     if ('panelPromoId' in product._rawResponse) {
       product.promo = {
+        active: true,
         panelPromoId: product._rawResponse.panelPromoId,
         promoTextCard: product._rawResponse.promoTextCard,
         promoTextCat: product._rawResponse.promoTextCat,
@@ -195,8 +200,11 @@ class WBPrivateAPI {
       return product.promo;
     }
 
-    await this.getProductData(product);
-    return this.getPromo(product);
+    product.promo = {
+      active: false,
+    };
+
+    return product.promo;
   }
 }
 

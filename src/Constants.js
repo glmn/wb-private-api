@@ -6,7 +6,7 @@ module.exports = {
     PRODUCT: {
       STOCKS: 'https://wbxcatalog-ru.wildberries.ru/nm-2-card/catalog',
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
-      EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}',
+      EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}/data',
       DETAILS: 'https://card.wb.ru/cards/detail{}',
     },
     SEARCH: {

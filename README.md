@@ -39,8 +39,9 @@ const wbapi = new WBPrivateAPI();
   `);
 
   const product = catalog.page(1)[77];
-  await wbapi.getStocks(product);
-  console.log(product.totalStocks);
+  const stocks = await wbapi.getStocks(product);
+  const promo = await wbapi.getPromo(product);
+  console.log(stocks, product.totalStocks, promo);
 })();
 
 ```
@@ -50,7 +51,9 @@ const wbapi = new WBPrivateAPI();
 
 `.searchAds(keyword)` - Поиск рекламодателей (в разделе Поиск) по Ключевому слову
 
-`.getStocks(WBProduct)` - Присвоет свойству `stocks` объекта `WBProduct` массив с данными об остатках на складе 
+`.getStocks(WBProduct)` - Присвоет (и вернет) свойству `stocks` объекта `WBProduct` массив с данными об остатках на складе
+
+`.getPromo(WBProduct)` - Присвоет (и вернет) свойству `promo` объекта `WBProduct` объект с данными об участии в промо-акции
 
 ## `WBCatalog` методы
 `.page(number)` - Возвращает массив товаров с заданной страницы (массив состоит из объектов `WBProduct`)
@@ -58,4 +61,4 @@ const wbapi = new WBPrivateAPI();
 `.getPosition(productId)` - Возвращает номер позиции по заданному SKU. Если такого SKU в выдаче нет, то вернёт `-1`
 
 ## `WBCatalog` методы
-`.totalStocks` - Вернёт сумму остатков товара со всех складов (!Выполнять строго после `WBPrivateAPI.getStocks(WBProduct)`)
+`.totalStocks` - Вернёт сумму остатков товара со всех складов (!)предварительно - `WBPrivateAPI.getStocks(WBProduct)`)

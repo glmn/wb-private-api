@@ -134,15 +134,10 @@ class WBPrivateAPI {
   }
 
   /**
-   * It gets the stock information for a product
-   * @param {WBProduct} product - the product object
-   * @returns {array} - The stocks of the product.
+   * It makes a request to the server and gets the product data
+   * @param {WBProduct} product - the product object that we're getting data for
    */
-  async getStocks(product) {
-    if (product.stocks.length !== 0) {
-      return product.stocks;
-    }
-
+  async getProductData(product) {
     const options = {
       params: {
         appType: Constants.APPTYPES.DESKTOP,
@@ -154,8 +149,54 @@ class WBPrivateAPI {
     };
 
     const res = await this.axios.get(Constants.URLS.PRODUCT.STOCKS, options);
-    product.stocks = res.data.data.products[0].sizes[0].stocks;
-    return product.stocks;
+    const rawData = res.data.data.products[0];
+    product._rawResponse = rawData;
+  }
+
+  /**
+   * If the product has stocks, return the stocks. If the product has sizes,
+   * return the stocks of the first size. If the product doesn't have sizes, get
+   * the product data and return the stocks
+   * @param {WBProduct} product - The product object that you want to get the stocks of.
+   * @returns {object} - The stocks of the product.
+   */
+  async getStocks(product) {
+    if (product.stocks.length !== 0) {
+      return product.stocks;
+    }
+
+    if ('sizes' in product._rawResponse) {
+      product.stocks = product._rawResponse.sizes[0].stocks;
+      return product.stocks;
+    }
+
+    await this.getProductData(product);
+    return this.getStocks(product);
+  }
+
+  /**
+   * It returns the promo object for a product, but if it doesn't exist, it calls
+   * the getProductData function to get the product data, and then calls itself
+   * again to get the promo object
+   * @param {WBProduct} product - The product object
+   * @returns {object} - the product.promo object.
+   */
+  async getPromo(product) {
+    if ('panelPromoId' in product.promo) {
+      return product.promo;
+    }
+
+    if ('panelPromoId' in product._rawResponse) {
+      product.promo = {
+        panelPromoId: product._rawResponse.panelPromoId,
+        promoTextCard: product._rawResponse.promoTextCard,
+        promoTextCat: product._rawResponse.promoTextCat,
+      };
+      return product.promo;
+    }
+
+    await this.getProductData(product);
+    return this.getPromo(product);
   }
 }
 

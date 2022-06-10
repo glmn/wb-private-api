@@ -1,5 +1,7 @@
 class WBProduct {
   stocks = [];
+  promo = {};
+  _rawResponse = {};
 
   /* Creating a new instance of the class WBProduct. */
   constructor(product) {

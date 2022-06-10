@@ -17,6 +17,7 @@ const wbapi = new WBPrivateAPI();
   `);
 
   const product = catalog.page(1)[77];
-  await wbapi.getStocks(product);
-  console.log(product.totalStocks);
+  const stocks = await wbapi.getStocks(product);
+  const promo = await wbapi.getPromo(product);
+  console.log(stocks, product.totalStocks, promo);
 })();

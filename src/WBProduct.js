@@ -1,22 +1,19 @@
 const Constants = require('./Constants');
 const SessionBuilder = require('./SessionBuilder');
 
+/* An array of properties that are required for the product. */
+const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating', 'feedbacks'];
+
 class WBProduct {
   stocks = [];
   promo = {};
   _rawResponse = {};
 
-  /* Creating a new instance of the class WBProduct. */
   constructor(product) {
     this.session = SessionBuilder.create();
-    this.id = product.id;
-    this.name = product.name;
-    this.root = product.root;
-    this.pics = product.pics;
-    this.sizes = product.sizes;
-    this.colors = product.colors;
-    this.rating = product.rating;
-    this.feedbacks = product.feedbacks;
+    requiredProps.forEach((prop) => {
+      this[prop] = product[prop];
+    });
     this.subject = {
       id: product.subjectId,
       parentId: product.subjectParentId,

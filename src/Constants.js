@@ -74,4 +74,5 @@ module.exports = {
     FEMALE: 'female',
     MALE: 'male',
   },
+  USERAGENT: 'Mozilla/5.0 (compatible; wb-private-api; +https://github.com/glmn/wb-private-api)',
 };

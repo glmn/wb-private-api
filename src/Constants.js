@@ -1,6 +1,7 @@
 module.exports = {
   PRODUCTS_PER_PAGE: 100,
   PAGES_PER_CATALOG: 100,
+  FEEDBACKS_PER_PAGE: 30,
   URLS: {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
@@ -22,6 +23,7 @@ module.exports = {
       SMALL: 'https://images.wbstatic.net/c246x328/new/{0}0000/{1}-{3}.jpg?r={2}', // 246x328
       MEDIUM: 'https://images.wbstatic.net/c516x688/new/{0}0000/{1}-{3}.jpg?r={2}', // 516x688
       BIG: 'https://images.wbstatic.net/big/new/{0}0000/{1}-{3}.jpg?r={2}', // 900x1200
+      FEEDBACK_BASE: 'https://feedbackphotos.wbstatic.net/',
     },
   },
   APPTYPES: {

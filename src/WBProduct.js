@@ -1,33 +1,47 @@
 const Constants = require('./Constants');
 const SessionBuilder = require('./SessionBuilder');
+const WBFeedback = require('./WBFeedback');
 
 /* An array of properties that are required for the product. */
-const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating', 'feedbacks'];
+const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating'];
 
 class WBProduct {
   stocks = [];
   promo = {};
+  feedbacks = [];
   _rawResponse = {};
 
   constructor(product) {
     this.session = SessionBuilder.create();
-    requiredProps.forEach((prop) => {
-      this[prop] = product[prop];
-    });
-    this.subject = {
-      id: product.subjectId,
-      parentId: product.subjectParentId,
-    };
-    this.brand = {
-      id: product.brandId,
-      siteId: product.siteBrandId,
-      name: product.brand,
-    };
-    this.price = {
-      sale: product.sale / 100,
-      retail: product.priceU,
-      afterSale: product.salePriceU / 100,
-    };
+    if (typeof product !== 'number') {
+      this.imt_id = product.root;
+      this.totalFeedbacks = product.feedbacks;
+      requiredProps.forEach((prop) => {
+        this[prop] = product[prop];
+      });
+      this.subject = {
+        id: product.subjectId,
+        parentId: product.subjectParentId,
+      };
+      this.brand = {
+        id: product.brandId,
+        siteId: product.siteBrandId,
+        name: product.brand,
+      };
+      this.price = {
+        sale: product.sale / 100,
+        retail: product.priceU,
+        afterSale: product.salePriceU / 100,
+      };
+    } else {
+      this.id = product;
+    }
+  }
+
+  static async create(productId) {
+    const instance = new WBProduct(productId);
+    await instance.getProductData();
+    return new WBProduct(instance._rawResponse);
   }
 
   /**
@@ -92,7 +106,7 @@ class WBProduct {
    * again to get the promo object
    * @returns {object} - the product.promo object.
    */
-  async getPromo(product) {
+  async getPromo() {
     if ('id' in this._rawResponse === false) {
       await this.getProductData(this);
     }
@@ -104,9 +118,9 @@ class WBProduct {
     if ('panelPromoId' in this._rawResponse) {
       this.promo = {
         active: true,
-        panelPromoId: product._rawResponse.panelPromoId,
-        promoTextCard: product._rawResponse.promoTextCard,
-        promoTextCat: product._rawResponse.promoTextCat,
+        panelPromoId: this._rawResponse.panelPromoId,
+        promoTextCard: this._rawResponse.promoTextCard,
+        promoTextCat: this._rawResponse.promoTextCat,
       };
       return this.promo;
     }
@@ -116,6 +130,39 @@ class WBProduct {
     };
 
     return this.promo;
+  }
+
+  /**
+   * It gets feedbacks.
+   * @param [page=0] - page number
+   * @returns An array of WBFeedback objects
+   */
+  async getFeedbacks(page = 0) {
+    let newFeedbacks = [];
+    if (page === 0) {
+      const totalPages = Math.round(
+        this.totalFeedbacks / Constants.FEEDBACKS_PER_PAGE + 0.5,
+      );
+      const threads = Array(totalPages).fill(1).map((x, y) => x + y);
+      const parsedPages = await Promise.all(
+        threads.map((thr) => this.getFeedbacks(thr)),
+      );
+      parsedPages.every((val) => newFeedbacks.push(...val));
+    } else {
+      const skip = (page - 1) * Constants.FEEDBACKS_PER_PAGE;
+      const body = {
+        imtId: this.imt_id,
+        skip,
+        take: Constants.FEEDBACKS_PER_PAGE,
+        order: 'dateDesc',
+      };
+
+      const url = 'https://public-feedbacks.wildberries.ru/api/v1/feedbacks/site';
+      const res = await this.session.post(url, body);
+      newFeedbacks = res.data.feedbacks.map((fb) => new WBFeedback(fb));
+    }
+    this.feedbacks = newFeedbacks;
+    return newFeedbacks;
   }
 }
 

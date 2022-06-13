@@ -170,7 +170,7 @@ class WBProduct {
    * It returns the total number of questions for a given imt_id
    * @returns The total number of questions for the product.
    */
-  async #getQuestionsCount() {
+  async getQuestionsCount() {
     const options = {
       params: {
         imtId: this.imt_id,
@@ -195,7 +195,7 @@ class WBProduct {
       if ('totalQuestions' in this) {
         totalQuestions = this.totalQuestions;
       } else {
-        totalQuestions = await this.#getQuestionsCount();
+        totalQuestions = await this.getQuestionsCount();
       }
       const totalPages = Math.round(
         totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,

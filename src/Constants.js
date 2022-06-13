@@ -2,6 +2,7 @@ module.exports = {
   PRODUCTS_PER_PAGE: 100,
   PAGES_PER_CATALOG: 100,
   FEEDBACKS_PER_PAGE: 30,
+  QUESTIONS_PER_PAGE: 30,
   URLS: {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
@@ -9,6 +10,8 @@ module.exports = {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}/data',
       DETAILS: 'https://card.wb.ru/cards/detail{}',
+      FEEDBACKS: 'https://public-feedbacks.wildberries.ru/api/v1/feedbacks/site',
+      QUESTIONS: 'https://questions.wildberries.ru/api/v1/questions',
     },
     SEARCH: {
       SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',

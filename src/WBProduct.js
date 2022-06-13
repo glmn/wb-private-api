@@ -1,6 +1,7 @@
 const Constants = require('./Constants');
 const SessionBuilder = require('./SessionBuilder');
 const WBFeedback = require('./WBFeedback');
+const WBQuestion = require('./WBQuestion');
 
 /* An array of properties that are required for the product. */
 const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating'];
@@ -133,7 +134,7 @@ class WBProduct {
   }
 
   /**
-   * It gets feedbacks.
+   * It gets all feedbacks.
    * @param [page=0] - page number
    * @returns An array of WBFeedback objects
    */
@@ -157,12 +158,69 @@ class WBProduct {
         order: 'dateDesc',
       };
 
-      const url = 'https://public-feedbacks.wildberries.ru/api/v1/feedbacks/site';
+      const url = Constants.URLS.PRODUCT.FEEDBACKS;
       const res = await this.session.post(url, body);
       newFeedbacks = res.data.feedbacks.map((fb) => new WBFeedback(fb));
     }
     this.feedbacks = newFeedbacks;
     return newFeedbacks;
+  }
+
+  /**
+   * It returns the total number of questions for a given imt_id
+   * @returns The total number of questions for the product.
+   */
+  async getQuestionsCount() {
+    const options = {
+      params: {
+        imtId: this.imt_id,
+        onlyCount: true,
+      },
+    };
+    const url = Constants.URLS.PRODUCT.QUESTIONS;
+    const res = await this.session.get(url, options);
+    this.totalQuestions = res.data.count;
+    return this.totalQuestions;
+  }
+
+  /**
+   * It gets all questions
+   * @param [page=0] - The page number of the questions to get.
+   * @returns An array of WBQuestion objects
+   */
+  async getQuestions(page = 0) {
+    let newQuestions = [];
+    let totalQuestions = 0;
+    if (page === 0) {
+      if ('totalQuestions' in this) {
+        totalQuestions = this.totalQuestions;
+      } else {
+        totalQuestions = await this.getQuestionsCount();
+      }
+      const totalPages = Math.round(
+        totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,
+      );
+      const threads = Array(totalPages).fill(1).map((x, y) => x + y);
+      const parsedPages = await Promise.all(
+        threads.map((thr) => this.getQuestions(thr)),
+      );
+      parsedPages.every((val) => newQuestions.push(...val));
+    } else {
+      const skip = (page - 1) * Constants.FEEDBACKS_PER_PAGE;
+      const options = {
+        params: {
+          imtId: this.imt_id,
+          skip,
+          take: Constants.QUESTIONS_PER_PAGE,
+        },
+      };
+
+      const url = Constants.URLS.PRODUCT.QUESTIONS;
+      const res = await this.session.get(url, options);
+      newQuestions = res.data.questions.map((fb) => new WBQuestion(fb));
+    }
+    this.questions = newQuestions;
+    return newQuestions;
   }
 }
 

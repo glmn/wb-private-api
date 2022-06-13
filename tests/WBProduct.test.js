@@ -19,10 +19,17 @@ describe('Проверка класса WBProduct', () => {
     expect(typeof product.promo.active === 'boolean').toBeTruthy();
   });
 
-  test('Проверка метода .getFeedbacks() на возврат данных об отзывах', async () => {
+  test('Проверка метода .getFeedbacks() на возврат всех отзывов', async () => {
     const product = await WBProduct.create(60460901);
     await product.getFeedbacks();
     expect(typeof product.feedbacks === 'object').toBeTruthy();
     expect(product.feedbacks.length).toBe(product.totalFeedbacks);
+  }, 30 * 1000);
+
+  test('Проверка метода .getQuestions() на возврат всех вопросов', async () => {
+    const product = await WBProduct.create(60460901);
+    await product.getQuestions();
+    expect(typeof product.questions === 'object').toBeTruthy();
+    expect(product.questions.length).toBe(product.totalQuestions);
   }, 30 * 1000);
 });

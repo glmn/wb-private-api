@@ -171,10 +171,12 @@ class WBProduct {
    * @returns The total number of questions for the product.
    */
   async #getQuestionsCount() {
-    const options = { params: {
-      imtId: this.imt_id,
-      onlyCount: true,
-    }}
+    const options = {
+      params: {
+        imtId: this.imt_id,
+        onlyCount: true,
+      },
+    };
     const url = Constants.URLS.PRODUCT.QUESTIONS;
     const res = await this.session.get(url, options);
     this.totalQuestions = res.data.count;
@@ -205,11 +207,13 @@ class WBProduct {
       parsedPages.every((val) => newQuestions.push(...val));
     } else {
       const skip = (page - 1) * Constants.FEEDBACKS_PER_PAGE;
-      const options = { params: {
-        imtId: this.imt_id,
-        skip,
-        take: Constants.QUESTIONS_PER_PAGE,
-      }};
+      const options = {
+        params: {
+          imtId: this.imt_id,
+          skip,
+          take: Constants.QUESTIONS_PER_PAGE,
+        },
+      };
 
       const url = Constants.URLS.PRODUCT.QUESTIONS;
       const res = await this.session.get(url, options);

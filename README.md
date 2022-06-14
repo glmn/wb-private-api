@@ -1,7 +1,3 @@
-![Untitled-1](https://user-images.githubusercontent.com/1326151/173079853-c0ddf68d-5cfc-44ac-bdf9-2d5c6016a90c.jpg)
-
-
-
 <p align="center"><h3>wb-private-api</h3></p>
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/glmn/wb-private-api) ![GitHub last commit](https://img.shields.io/github/last-commit/glmn/wb-private-api) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/glmn/wb-private-api) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/glmn/wb-private-api/Node.js%20CI)

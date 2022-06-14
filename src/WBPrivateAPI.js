@@ -13,7 +13,7 @@ class WBPrivateAPI {
   }
 
   /**
-   * It searches for products on the website.
+   * It searches for products by keyword.
    * @param {string} keyword - The keyword to search for
    * @param {number} pageCount - Number of pages to retrieve
    * @returns {WBCatalog} WBCatalog objects with WBProducts inside it
@@ -119,9 +119,24 @@ class WBPrivateAPI {
    * @param {string} keyword - the search query
    * @returns {object} - An object with adverts and their ads
    */
-  async searchAds(keyword) {
+  async getSearchAds(keyword) {
     const options = { params: { keyword } };
     const res = await this.session.get(Constants.URLS.SEARCH.ADS, options);
+    return res.data;
+  }
+
+  /**
+   * Search for carousel ads inside product card
+   * @param {number} productId - product id
+   * @returns {array} - An array with ads
+   */
+  async getCarouselAds(productId) {
+    const options = {
+      params: {
+        nm: productId,
+      },
+    };
+    const res = await this.session.get(Constants.URLS.SEARCH.CAROUSEL_ADS, options);
     return res.data;
   }
 

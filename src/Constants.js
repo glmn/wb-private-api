@@ -19,6 +19,7 @@ module.exports = {
       EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
+      CAROUSEL_ADS: 'https://carousel-ads.wildberries.ru/api/v4/carousel',
       HINT: 'https://search.wb.ru/suggests/api/v2/hint',
     },
     IMAGES: {

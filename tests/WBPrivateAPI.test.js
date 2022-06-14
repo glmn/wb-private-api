@@ -3,13 +3,19 @@ const WBPrivateAPI = require('../src/WBPrivateAPI');
 
 const wbapi = new WBPrivateAPI();
 
-describe('Проверка поиска рекламодателей WBPrivateAPI.searchAds()', () => {
-  test('Присутствие не пустого свойства adverts', async () => {
-    const ads = await wbapi.searchAds('Платье');
+describe('Проверка поиска рекламодателей', () => {
+  test('Проверка рекламы по Поиску .getSearchAds()', async () => {
+    const ads = await wbapi.getSearchAds('Платье');
     expect(ads.adverts.length).toBeGreaterThan(0);
     expect(ads.prioritySubjects.length).toBeGreaterThan(0);
     expect(ads.adverts[0].cpm).toBeGreaterThan(0);
     expect(ads.pages.length).toBeGreaterThan(0);
+  });
+
+  test('Проверка карусели внутри карточки .getCarouselAds()', async () => {
+    const ads = await wbapi.getCarouselAds(60059650);
+    expect(ads.length).toBeGreaterThan(0);
+    expect(ads[0].cpm).toBeGreaterThan(0);
   });
 });
 

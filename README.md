@@ -28,7 +28,7 @@ const wbapi = new WBPrivateAPI();
 (async () => {
   const KEYWORD = 'менструальные чаши';
   const catalog = await wbapi.search(KEYWORD, 2);
-  const ads = await wbapi.searchAds(KEYWORD);
+  const ads = await wbapi.getSearchAds(KEYWORD);
 
   console.log(`
   Ключевое слово: ${KEYWORD}

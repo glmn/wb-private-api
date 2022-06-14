@@ -1,4 +1,4 @@
-<p align="center"><h3>wb-private-api</h3></p>
+<p align="center"><h3>🍒 wb-private-api</h3></p>
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/glmn/wb-private-api) ![GitHub last commit](https://img.shields.io/github/last-commit/glmn/wb-private-api) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/glmn/wb-private-api) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/glmn/wb-private-api/Node.js%20CI)
 

@@ -5,7 +5,7 @@ class WBCatalog {
   constructor(data) {
     this.shardKey = data.shardKey;
     this.preset = data.preset;
-    this.preset_value = data.preset_value;
+    this.preset_value = data.presetValue;
     this.pages = data.pages;
     this.products = data.products;
     this.totalProducts = data.products.length;

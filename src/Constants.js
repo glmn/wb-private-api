@@ -32,8 +32,8 @@ module.exports = {
   },
   APPTYPES: {
     DESKTOP: 1,
-    ANDROID: 64,
-    IOS: 74,
+    ANDROID: 32,
+    IOS: 64,
   },
   WAREHOUSES: {
     507: 'Подольск',

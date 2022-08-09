@@ -56,7 +56,10 @@ class WBPrivateAPI {
    */
   async _getQueryParams(keyword) {
     const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
-      params: { query: keyword },
+      params: {
+        query: keyword,
+        resultset: 'catalog',
+      },
     });
     return [res.data.shardKey, ...res.data.query.split('=')];
   }

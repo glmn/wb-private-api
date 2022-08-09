@@ -16,7 +16,7 @@ module.exports = {
     SEARCH: {
       SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',
       TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v3/search',
-      EXACTMATCH: 'https://wbxsearch.wildberries.ru/exactmatch/v2/female',
+      EXACTMATCH: 'https://search.wb.ru/exactmatch/ru/female/v4/search',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
       CAROUSEL_ADS: 'https://carousel-ads.wildberries.ru/api/v4/carousel',

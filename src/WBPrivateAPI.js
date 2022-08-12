@@ -171,6 +171,35 @@ class WBPrivateAPI {
     const res = await this.session.get(url, options);
     return res.data;
   }
+
+  /**
+   * It takes an array of productIds and a destination, and returns an array of
+   * products with delivery time data
+   * @param config - { productIds, dest }
+   * @returns {object} of products with delivety times
+   */
+  async getDeliveryDataByNms(config) {
+    const { productIds, dest } = config;
+    return new Promise(async (resolve) => {
+      const options = {
+        params: {
+          appType: Constants.APPTYPES.DESKTOP,
+          locale: Constants.LOCALES.RU,
+          dest,
+          nm: productIds.join(';'),
+        },
+      };
+      try {
+        const url = Constants.URLS.PRODUCT.DELIVERYDATA;
+        const res = await this.session.get(url, options);
+        const foundProducts = res.data.data.products;
+        resolve(foundProducts);
+      } catch (err) {
+        console.log(err);
+        await this.getDeliveryDataByNms(config);
+      }
+    });
+  }
 }
 
 module.exports = WBPrivateAPI;

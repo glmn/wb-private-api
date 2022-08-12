@@ -12,6 +12,7 @@ module.exports = {
       DETAILS: 'https://card.wb.ru/cards/detail{}',
       FEEDBACKS: 'https://public-feedbacks.wildberries.ru/api/v1/feedbacks/site',
       QUESTIONS: 'https://questions.wildberries.ru/api/v1/questions',
+      DELIVERYDATA: 'https://card.wb.ru/cards/list',
     },
     SEARCH: {
       SIMILAR_BY_NM: 'https://www.wildberries.ru/webapi/recommendations/similar-by-nm/{}',

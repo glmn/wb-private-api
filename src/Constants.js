@@ -91,7 +91,7 @@ module.exports = {
   },
   DESTINATIONS: {
     UFO: [-1059500, -108082, -269701, 12358048],
-    MSK: [-1029256, -102269, -2162196, -1257786],
+    MSK: [-1029256, -102269, -1278703, -1255563],
   },
   STORES: {
     // Краснодарский Край
@@ -117,4 +117,3 @@ module.exports = {
   },
   USERAGENT: 'Mozilla/5.0 (compatible; wb-private-api; +https://github.com/glmn/wb-private-api)',
 };
-

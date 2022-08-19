@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
+const Constants = require('../src/Constants');
 const WBPrivateAPI = require('../src/WBPrivateAPI');
 const WBProduct = require('../src/WBProduct');
 
-const wbapi = new WBPrivateAPI();
+const wbapi = new WBPrivateAPI({
+  destination: Constants.DESTINATIONS.MOSCOW
+});
 
 describe('Проверка класса WBProduct', () => {
   test('Проверка метода .getStocks() на возврат данных об остатках товара на складах', async () => {

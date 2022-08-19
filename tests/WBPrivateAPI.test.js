@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
+const Constants = require('../src/Constants');
 const WBPrivateAPI = require('../src/WBPrivateAPI');
 
-const wbapi = new WBPrivateAPI();
+const wbapi = new WBPrivateAPI({
+  destination: Constants.DESTINATIONS.MOSCOW
+});
 
 describe('Проверка поиска рекламодателей', () => {
   test('Проверка рекламы по Поиску .getSearchAds()', async () => {

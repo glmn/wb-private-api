@@ -10,7 +10,7 @@ class WBPrivateAPI {
   /* Creating a new instance of the class WBPrivateAPI. */
   constructor({ destination }) {
     this.session = SessionBuilder.create();
-    this.destination = destination
+    this.destination = destination;
   }
 
   /**
@@ -100,10 +100,10 @@ class WBPrivateAPI {
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
           page,
-          dest: this.destination,
+          dest: this.destination.ids,
           sort: 'popular',
           limit: Constants.PRODUCTS_PER_PAGE,
-          stores: Constants.STORES.UFO,
+          regions: this.destination.regions,
           resultset: 'catalog',
         },
       };

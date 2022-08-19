@@ -1,11 +1,10 @@
 {
   "name": "wb-private-api",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Wildberries Private API",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
-    "docs": "esdoc"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,6 @@
   },
   "homepage": "https://github.com/glmn/wb-private-api#readme",
   "dependencies": {
-    "@itsjamie/esdoc-standard-plugin": "^0.5.0",
     "axios": "^0.27.2",
     "http": "^0.0.1-security",
     "https": "^1.0.0",

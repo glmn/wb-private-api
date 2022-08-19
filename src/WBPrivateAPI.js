@@ -8,8 +8,9 @@ format.extend(String.prototype, {});
 
 class WBPrivateAPI {
   /* Creating a new instance of the class WBPrivateAPI. */
-  constructor() {
+  constructor({ destination }) {
     this.session = SessionBuilder.create();
+    this.destination = destination
   }
 
   /**
@@ -75,7 +76,7 @@ class WBPrivateAPI {
         query: keyword,
         couponsGeo: [2, 7, 3, 6, 19, 21, 8],
         curr: Constants.CURRENCIES.RUB,
-        dest: Constants.DESTINATIONS.UFO,
+        dest: this.destination,
         locale: Constants.LOCALES.RU,
         resultset: 'filters',
         stores: Constants.STORES.UFO,
@@ -99,7 +100,7 @@ class WBPrivateAPI {
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
           page,
-          dest: Constants.DESTINATIONS.UFO,
+          dest: this.destination,
           sort: 'popular',
           limit: Constants.PRODUCTS_PER_PAGE,
           stores: Constants.STORES.UFO,

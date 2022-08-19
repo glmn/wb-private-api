@@ -25,7 +25,7 @@ class WBPrivateAPI {
     if (totalProducts === 0) return [];
 
     const [shardKey, preset, presetValue] = await this._getQueryParams(keyword);
-    const catalogConfig = { shardKey, preset, presetValue };
+    const catalogConfig = { keyword, shardKey, preset, presetValue };
 
     let totalPages = Math.round((totalProducts / 100) + 0.5);
     if (totalPages > Constants.PAGES_PER_CATALOG) { totalPages = Constants.PAGES_PER_CATALOG; }
@@ -35,7 +35,6 @@ class WBPrivateAPI {
         totalPages = pageCount;
       }
     }
-
     const threads = Array(totalPages).fill(1).map((x, y) => x + y);
     const parsedPages = await Promise.all(
       threads.map((thr) => this.getCatalogPage(catalogConfig, thr)),
@@ -96,7 +95,7 @@ class WBPrivateAPI {
       let foundProducts;
       const options = {
         params: {
-          [catalogConfig.preset]: catalogConfig.presetValue,
+          query: catalogConfig.keyword,
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
           page,
@@ -104,10 +103,11 @@ class WBPrivateAPI {
           sort: 'popular',
           limit: Constants.PRODUCTS_PER_PAGE,
           stores: Constants.STORES.UFO,
+          resultset: 'catalog',
         },
       };
       try {
-        const url = Constants.URLS.SEARCH.CATALOG.format(catalogConfig.shardKey);
+        const url = Constants.URLS.SEARCH.EXACTMATCH;
         const res = await this.session.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
@@ -195,7 +195,6 @@ class WBPrivateAPI {
         const foundProducts = res.data.data.products;
         resolve(foundProducts);
       } catch (err) {
-        console.log(err);
         await this.getDeliveryDataByNms(config);
       }
     });

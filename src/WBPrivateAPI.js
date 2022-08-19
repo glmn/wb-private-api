@@ -179,14 +179,13 @@ class WBPrivateAPI {
    * @param config - { productIds, dest }
    * @returns {object} of products with delivety times
    */
-  async getDeliveryDataByNms(config) {
-    const { productIds, dest } = config;
+  async getDeliveryDataByNms(productIds) {
     return new Promise(async (resolve) => {
       const options = {
         params: {
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
-          dest,
+          dest: this.destination.ids,
           nm: productIds.join(';'),
         },
       };
@@ -196,7 +195,7 @@ class WBPrivateAPI {
         const foundProducts = res.data.data.products;
         resolve(foundProducts);
       } catch (err) {
-        await this.getDeliveryDataByNms(config);
+        await this.getDeliveryDataByNms(productIds);
       }
     });
   }

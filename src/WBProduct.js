@@ -4,7 +4,7 @@ const WBFeedback = require('./WBFeedback');
 const WBQuestion = require('./WBQuestion');
 
 /* An array of properties that are required for the product. */
-const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating'];
+const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating', 'time1', 'time2'];
 
 class WBProduct {
   stocks = [];

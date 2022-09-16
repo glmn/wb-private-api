@@ -76,7 +76,7 @@ class WBProduct {
       },
     };
 
-    const res = await this.session.get(Constants.URLS.PRODUCT.STOCKS, options);
+    const res = await this.session.get(Constants.URLS.PRODUCT.DETAILS, options);
     const rawData = res.data.data.products[0];
     this._rawResponse = rawData;
   }

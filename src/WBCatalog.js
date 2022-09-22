@@ -4,8 +4,7 @@ class WBCatalog {
   /* Creating a new instance of the class WBCatalog. */
   constructor(data) {
     this.shardKey = data.shardKey;
-    this.preset = data.preset;
-    this.preset_value = data.presetValue;
+    this.query = data.query;
     this.pages = data.pages;
     this.products = data.products;
     this.totalProducts = data.products.length;

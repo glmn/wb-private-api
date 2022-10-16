@@ -200,7 +200,6 @@ class WBProduct {
       const totalPages = Math.round(
         totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,
       );
-      console.log("TOTAL PAGES => ", totalPages)
       const threads = Array(totalPages).fill(1).map((x, y) => x + y);
       const parsedPages = await Promise.all(
         threads.map((thr) => this.getQuestions(thr)),
@@ -221,7 +220,6 @@ class WBProduct {
       newQuestions = res.data.questions.map((fb) => new WBQuestion(fb));
     }
     this.questions = newQuestions;
-    console.log(this.questions.length)
     return newQuestions;
   }
 }

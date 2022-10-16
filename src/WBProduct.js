@@ -200,13 +200,14 @@ class WBProduct {
       const totalPages = Math.round(
         totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,
       );
+      console.log("TOTAL PAGES => ", totalPages)
       const threads = Array(totalPages).fill(1).map((x, y) => x + y);
       const parsedPages = await Promise.all(
         threads.map((thr) => this.getQuestions(thr)),
       );
       parsedPages.every((val) => newQuestions.push(...val));
     } else {
-      const skip = (page - 1) * Constants.FEEDBACKS_PER_PAGE;
+      const skip = (page - 1) * Constants.QUESTIONS_PER_PAGE;
       const options = {
         params: {
           imtId: this.imt_id,
@@ -220,6 +221,7 @@ class WBProduct {
       newQuestions = res.data.questions.map((fb) => new WBQuestion(fb));
     }
     this.questions = newQuestions;
+    console.log(this.questions.length)
     return newQuestions;
   }
 }

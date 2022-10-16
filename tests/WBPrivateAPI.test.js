@@ -29,11 +29,11 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
   });
 
   test('Проверка получения Query Params по ключевому слову "Платье"', async () => {
-    const queryParams = await wbapi.getQueryParams('Платье');
-    const [shardKey, query] = queryParams;
-    expect(Array.isArray(queryParams)).toBeTruthy();
-    expect(shardKey).toBe('dresses');
-    expect(query).toBe('subject=69;70;2613;2905;4000;4855;4857');
+    const metadata = await wbapi.getQueryMetadata('Платье');
+    const {catalog_type, catalog_value} = metadata;
+    expect(typeof metadata === 'object').toBeTruthy();
+    expect(catalog_type).toBe('subject');
+    expect(catalog_value).toBe('subject=69;70;2613;2905;4000;4855;4857');
   });
 
   test('Сбор 3 страниц товаров по ключевому слову "Платье"', async () => {

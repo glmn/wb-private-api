@@ -25,8 +25,8 @@ class WBPrivateAPI {
     const totalProducts = await this.searchTotalProducts(keyword);
     if (totalProducts === 0) return [];
 
-    const [shardKey, query] = await this.getQueryParams(keyword);
-    const catalogConfig = { keyword, shardKey, query };
+    const {catalog_type, catalog_value} = await this.getQueryMetadata(keyword);
+    const catalogConfig = { keyword, catalog_type, catalog_value };
 
     let totalPages = Math.round((totalProducts / 100) + 0.5);
     if (totalPages > Constants.PAGES_PER_CATALOG) { totalPages = Constants.PAGES_PER_CATALOG; }
@@ -54,14 +54,14 @@ class WBPrivateAPI {
    * @param {string} keyword - The keyword you want to search for.
    * @returns {array} - An array of shardKey, preset and preset value
    */
-  async getQueryParams(keyword) {
+  async getQueryMetadata(keyword) {
     const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
       params: {
         query: keyword,
         resultset: 'catalog',
       },
     });
-    return [res.data.shardKey, res.data.query];
+    return res.data.metadata;
   }
 
   /**

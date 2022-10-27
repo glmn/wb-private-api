@@ -5,40 +5,50 @@
 ![npm](https://nodei.co/npm/wb-private-api.png)
 
 NodeJS модуль. Работает через приватное API Wildberries
-```bash
-npm i wb-private-api
-```
+
+Установка: `npm i wb-private-api`
 
 После установки рекомендую протестировать работоспособность
-```bash
-npm run test
-```
 
-![Screenshot_13](https://user-images.githubusercontent.com/1326151/173159882-beda437f-62f7-4e30-89d4-c2386ad5cd78.png)
+![image](https://user-images.githubusercontent.com/1326151/198322503-f16c2051-5bf0-4887-bc9f-2bd28c368282.png)
 
 
-Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues . Данный модуль развивается мною в одиночку (надеюсь, что пока что), буду обрабатывать обращения и вносить правки по возможности.
+Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues
 
 ## Пример работы
 ```js
 import { WBPrivateAPI, Constants } from 'wb-private-api'
 
-const wbapi = new WBPrivateAPI(Constants.DESTINATIONS.MOSCOW)
+const keyword = 'HotWheels'
 
-(async () => {
-  const KEYWORD = 'Менструальные чаши';
-  const catalog = await wbapi.search(KEYWORD, 2);
-  const ads = await wbapi.getSearchAds(KEYWORD);
+/*
+* Select destination and init WBPrivateAPI with it
+* You can find more destionations in Constants.DESTINATIONS
+*/
+const destination = Constants.DESTINATIONS.MOSCOW
+const wbapi = new WBPrivateAPI({destination})
 
-  console.log(`
-    Ключевое слово: ${KEYWORD}
-    Найдено товаров: ${catalog.totalProducts}
-    Всего страниц: ${catalog.pages}
+const initiate = async () => {
+    /*
+    * Search and Grab first 2 pages
+    * with specified keyword
+    */
+    const catalog = await wbapi.search(keyword, 2)
+    const product = catalog.products[0]
 
-    Всего рекламодателей: ${ads.adverts.length}
-    Самый высокий CPM: ${ads.adverts[0].cpm} Рублей
-  `)
-})()
+    /*
+    * Returning all Stocks with Warehouses Ids
+    * Then you can compare these Ids
+    * using Constants.WAREHOUSES
+    */
+    const stocks = await product.getStocks()
+
+    /* No comments here :P */
+    const feedbacks = await product.getFeedbacks()
+    const questions = await product.getQuestions()
+}
+
+initiate()
 ```
 
 ## `WBPrivateAPI` методы

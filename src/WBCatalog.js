@@ -3,11 +3,11 @@ const Constants = require('./Constants');
 class WBCatalog {
   /* Creating a new instance of the class WBCatalog. */
   constructor(data) {
-    this.shardKey = data.shardKey;
-    this.query = data.query;
+    this.catalog_type = data.catalog_type;
+    this.catalog_value = data.catalog_value;
     this.pages = data.pages;
     this.products = data.products;
-    this.totalProducts = data.products.length;
+    this.totalProducts = data.totalProducts;
   }
 
   /**

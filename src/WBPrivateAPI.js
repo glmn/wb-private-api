@@ -25,7 +25,7 @@ class WBPrivateAPI {
     const totalProducts = await this.searchTotalProducts(keyword);
     if (totalProducts === 0) return [];
 
-    const {catalog_type, catalog_value} = await this.getQueryMetadata(keyword);
+    const {catalog_type, catalog_value} = await this.getQueryMetadata(keyword, 0 , false);
     const catalogConfig = { keyword, catalog_type, catalog_value };
 
     let totalPages = Math.round((totalProducts / 100) + 0.5);
@@ -41,9 +41,13 @@ class WBPrivateAPI {
       threads.map((thr) => this.getCatalogPage(catalogConfig, thr)),
     );
 
-    parsedPages.every((val) => products.push(...val.map((v) => new WBProduct(v))));
+    parsedPages.map((val, idx) => {
+      if(Array.isArray(val)){
+        val.map((v) => products.push(new WBProduct(v)))
+      }
+    });
 
-    Object.assign(catalogConfig, { pages: totalPages, products });
+    Object.assign(catalogConfig, { pages: totalPages, products, totalProducts });
 
     return new WBCatalog(catalogConfig);
   }
@@ -54,14 +58,29 @@ class WBPrivateAPI {
    * @param {string} keyword - The keyword you want to search for.
    * @returns {array} - An array of shardKey, preset and preset value
    */
-  async getQueryMetadata(keyword) {
-    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
-      params: {
-        query: keyword,
-        resultset: 'catalog',
-      },
-    });
-    return res.data.metadata;
+  async getQueryMetadata(keyword, limit = 0, withProducts = false) {
+    let params = {
+      query: keyword,
+      locale: "ru",
+      resultset: 'catalog',
+      limit,
+    }
+
+    if(withProducts) {
+      params = {
+        ...params,
+        appType: Constants.APPTYPES.DESKTOP,
+        dest: this.destination.ids,
+        sort: 'popular',
+        regions: this.destination.regions,
+      }
+    }
+
+    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, { params });
+    if(res.data?.metadata?.hasOwnProperty('catalog_type') && res.data?.metadata?.hasOwnProperty('catalog_value')){
+      return {...res.data.metadata, products: res.data.data?.products};
+    }
+    return {catalog_type: null, catalog_value: null, products: []}
   }
 
   /**
@@ -76,13 +95,13 @@ class WBPrivateAPI {
         query: keyword,
         couponsGeo: [2, 7, 3, 6, 19, 21, 8],
         curr: Constants.CURRENCIES.RUB,
-        dest: this.destination,
+        dest: this.destination.ids,
         locale: Constants.LOCALES.RU,
         resultset: 'filters',
         stores: Constants.STORES.UFO,
       },
     });
-    return res.data.filters.data.total;
+    return res.data?.filters?.data?.total || 0;
   }
 
   /**
@@ -112,6 +131,7 @@ class WBPrivateAPI {
         const res = await this.session.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
+        console.log(err)
         await this.getCatalogPage(catalogConfig, page);
       }
       resolve(foundProducts);

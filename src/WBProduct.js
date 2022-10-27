@@ -1,10 +1,10 @@
+const format = require('string-format');
 const Constants = require('./Constants');
 const SessionBuilder = require('./SessionBuilder');
 const WBFeedback = require('./WBFeedback');
 const WBQuestion = require('./WBQuestion');
 
-/* An array of properties that are required for the product. */
-const requiredProps = ['id', 'name', 'root', 'pics', 'sizes', 'colors', 'rating', 'time1', 'time2'];
+format.extend(String.prototype, {});
 
 class WBProduct {
   stocks = [];
@@ -15,25 +15,7 @@ class WBProduct {
   constructor(product) {
     this.session = SessionBuilder.create();
     if (typeof product !== 'number') {
-      this.imt_id = product.root;
-      this.totalFeedbacks = product.feedbacks;
-      requiredProps.forEach((prop) => {
-        this[prop] = product[prop];
-      });
-      this.subject = {
-        id: product.subjectId,
-        parentId: product.subjectParentId,
-      };
-      this.brand = {
-        id: product.brandId,
-        siteId: product.siteBrandId,
-        name: product.brand,
-      };
-      this.price = {
-        sale: product.sale / 100,
-        retail: product.priceU,
-        afterSale: product.salePriceU / 100,
-      };
+      Object.assign(this, product)
     } else {
       this.id = product;
     }
@@ -41,7 +23,13 @@ class WBProduct {
 
   static async create(productId) {
     const instance = new WBProduct(productId);
-    await instance.getProductData();
+    await Promise.all([
+      instance.getProductData(),
+      instance.getDetailsData(),
+      instance.getSellerData(),
+    ])
+    await instance.getQuestionsCount()
+    
     return new WBProduct(instance._rawResponse);
   }
 
@@ -59,27 +47,76 @@ class WBProduct {
    * @returns The total number of stocks.
    */
   get totalStocks() {
-    return this.stocks.reduce((sum, x) => sum + x.qty, 0);
+    return this._rawResponse.details.sizes[0].stocks.reduce((sum, x) => sum + x.qty, 0);
   }
 
   /**
    * It makes a request to the server and gets the product data
    */
-  async getProductData() {
+  async getProductData() {    
+    const limits = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+    const sku = String(this.id)
+    const basket = function(t) {
+      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : "10"
+    }
+    const vol = sku.length > 5 ? sku.substring(0, limits[sku.length]) : 0
+    const part = sku.substring(0, limits[sku.length + 2])
+    const URL = Constants.URLS.PRODUCT.CARD
+    const res = await this.session.get(
+      URL.format(
+        basket(sku / 1e5),
+        vol,
+        part,
+        sku
+      )
+    )
+    const rawData = res.data
+    Object.assign(this._rawResponse, rawData)
+  }
+
+  /**
+   * It makes a request to the server and gets the seller data
+   */
+  async getSellerData() {
+    const limits = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+    const sku = String(this.id)
+    const basket = function(t) {
+      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : "10"
+    }
+    const vol = sku.length > 5 ? sku.substring(0, limits[sku.length]) : 0
+    const part = sku.substring(0, limits[sku.length + 2])
+    const URL = Constants.URLS.PRODUCT.SELLERS
+    const res = await this.session.get(
+      URL.format(
+        basket(sku / 1e5),
+        vol,
+        part,
+        sku
+      )
+    )
+    const rawData = res.data
+    Object.assign(this._rawResponse, {seller: rawData, supplier_id: rawData.supplierId})
+  }
+
+  async getDetailsData() {
     const options = {
       params: {
         appType: Constants.APPTYPES.DESKTOP,
-        dest: Constants.DESTINATIONS.UFO,
+        dest: Constants.DESTINATIONS.MOSCOW.ids,
+        regions: Constants.DESTINATIONS.MOSCOW.regions,
         stores: Constants.STORES.UFO,
         locale: Constants.LOCALES.RU,
-        nm: this.id,
+        nm: `${this.id};`,
       },
     };
 
     const res = await this.session.get(Constants.URLS.PRODUCT.DETAILS, options);
     const rawData = res.data.data.products[0];
-    this._rawResponse = rawData;
+    Object.assign(this._rawResponse, {details: rawData})
   }
+
 
   /**
    * If the product has stocks, return the stocks. If the product has sizes,
@@ -88,16 +125,11 @@ class WBProduct {
    * @returns {object} - The stocks of the product.
    */
   async getStocks() {
-    if (this.stocks.length !== 0) {
-      return this.stocks;
+    if (this._rawResponse?.details?.sizes) {
+      return this._rawResponse.details.sizes[0].stocks;
     }
 
-    if ('sizes' in this._rawResponse) {
-      this.stocks = this._rawResponse.sizes[0].stocks;
-      return this.stocks;
-    }
-
-    await this.getProductData();
+    await this.getDetailsData();
     return this.getStocks();
   }
 
@@ -142,7 +174,7 @@ class WBProduct {
     let newFeedbacks = [];
     if (page === 0) {
       const totalPages = Math.round(
-        this.totalFeedbacks / Constants.FEEDBACKS_PER_PAGE + 0.5,
+        this.details.feedbacks / Constants.FEEDBACKS_PER_PAGE + 0.5,
       );
       const threads = Array(totalPages).fill(1).map((x, y) => x + y);
       const parsedPages = await Promise.all(
@@ -173,13 +205,14 @@ class WBProduct {
   async getQuestionsCount() {
     const options = {
       params: {
-        imtId: this.imt_id,
+        imtId: this._rawResponse.imt_id,
         onlyCount: true,
       },
     };
     const url = Constants.URLS.PRODUCT.QUESTIONS;
     const res = await this.session.get(url, options);
     this.totalQuestions = res.data.count;
+    Object.assign(this._rawResponse, {totalQuestions: res.data.count})
     return this.totalQuestions;
   }
 
@@ -196,15 +229,17 @@ class WBProduct {
         totalQuestions = this.totalQuestions;
       } else {
         totalQuestions = await this.getQuestionsCount();
+        this.totalQuestions = totalQuestions
       }
       const totalPages = Math.round(
         totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,
       );
+
       const threads = Array(totalPages).fill(1).map((x, y) => x + y);
       const parsedPages = await Promise.all(
         threads.map((thr) => this.getQuestions(thr)),
       );
-      parsedPages.every((val) => newQuestions.push(...val));
+      parsedPages.map((val) => newQuestions.push(...val));
     } else {
       const skip = (page - 1) * Constants.QUESTIONS_PER_PAGE;
       const options = {
@@ -217,7 +252,7 @@ class WBProduct {
 
       const url = Constants.URLS.PRODUCT.QUESTIONS;
       const res = await this.session.get(url, options);
-      newQuestions = res.data.questions.map((fb) => new WBQuestion(fb));
+      newQuestions = res.data.questions.map((question) => new WBQuestion(question));
     }
     this.questions = newQuestions;
     return newQuestions;

@@ -13,8 +13,11 @@ class SessionBuilder {
     return Axios.create({
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
-      paramsSerializer: (p) => qs.stringify(p, { arrayFormat: 'repeat' }),
-      headers: { 'User-Agent': Constants.USERAGENT },
+      paramsSerializer: (p) => qs.stringify(p, { arrayFormat: 'comma' }),
+      headers: { 
+        'User-Agent': Constants.USERAGENT,
+        'Content-Encoding': 'Accept-Encoding: gzip, deflate, br',
+      },
     });
   }
 }

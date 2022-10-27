@@ -7,6 +7,8 @@ module.exports = {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
     PRODUCT: {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
+      CARD: 'https://basket-0{0}.wb.ru/vol{1}/part{2}/{3}/info/ru/card.json',
+      SELLERS: 'https://basket-0{0}.wb.ru/vol{1}/part{2}/{3}/info/sellers.json',
       EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}/data',
       DETAILS: 'https://card.wb.ru/cards/detail',
       FEEDBACKS: 'https://public-feedbacks.wildberries.ru/api/v1/feedbacks/site',

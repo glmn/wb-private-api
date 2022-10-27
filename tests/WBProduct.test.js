@@ -26,7 +26,7 @@ describe('Проверка класса WBProduct', () => {
     const product = await WBProduct.create(60059650);
     await product.getFeedbacks();
     expect(typeof product.feedbacks === 'object').toBeTruthy();
-    expect(product.feedbacks.length).toBe(product.totalFeedbacks);
+    expect(product.feedbacks.length).toBe(product.details.feedbacks);
   }, 30 * 1000);
 
   test('Проверка метода .getQuestions() на возврат всех вопросов', async () => {

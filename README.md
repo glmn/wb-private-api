@@ -16,6 +16,8 @@ NodeJS модуль. Работает через приватное API Wildberr
 Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues
 
 ## Пример работы
+
+### Вывод данных о первом товаре из поисковой выдачи по ключевому слову
 ```js
 import { WBPrivateAPI, Constants } from 'wb-private-api'
 
@@ -46,6 +48,39 @@ const initiate = async () => {
     /* No comments here :P */
     const feedbacks = await product.getFeedbacks()
     const questions = await product.getQuestions()
+}
+
+initiate()
+```
+
+### Вывод рекламодателей из поисковой выдачи по ключевому слову
+```js
+import { WBPrivateAPI, Constants } from 'wb-private-api'
+
+const keyword = 'Менструальные чаши'
+
+/*
+* Select destination and init WBPrivateAPI with it
+* You can find more destionations in Constants.DESTINATIONS
+*/
+const destination = Constants.DESTINATIONS.MOSCOW
+const wbapi = new WBPrivateAPI({destination})
+
+const initiate = async () => {
+    /*
+    * Search ads in search results
+    * with specified keyword
+    */
+    const {pages, prioritySubjects, adverts} = await wbapi.getSearchAds(keyword)
+
+    // Ads positions on each page
+    console.log(pages)
+
+    // Subjects ordered by priority
+    console.log(prioritySubjects)
+
+    // Adverts including CPM
+    console.log(adverts)
 }
 
 initiate()

@@ -43,7 +43,7 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
 
   test('Проверка аргумента pageCount на понижение кол-ва страниц, если их меньше чем запрошено', async () => {
     const pageCount = 100;
-    const catalog = await wbapi.search('Менструальные чаши', pageCount);
+    const catalog = await wbapi.search('nokia 3310', pageCount);
     expect(pageCount).toBeGreaterThan(catalog.pages);
   });
 
@@ -53,7 +53,7 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
   });
 
   test('Проверка метода .searchSimilarByNm(productId) на возврат идентификаторов похожиш товаров', async () => {
-    const similar = await wbapi.searchSimilarByNm(60059650);
-    expect(similar.value.nmIds.length).toBeGreaterThan(0);
+    const similarIds = await wbapi.searchSimilarByNm(60059650);
+    expect(similarIds.length).toBeGreaterThan(0);
   });
 });

@@ -13,9 +13,10 @@ describe('Проверка класса WBCatalog', () => {
   }, 30 * 1000);
 
   test('Проверка метода .getPosition() по ключевому запросу "Менструальные чаши"', async () => {
-    const catalog = await wbapi.search('Менструальные чаши', 3);
-    const position = catalog.getPosition(60059650);
-    expect(position).toBeGreaterThan(0);
+    const catalog = await wbapi.search('Менструальные чаши', 2);
+    const sku = catalog.products[130].id
+    const position = catalog.getPosition(sku);
+    expect(position).toBe(130);
   });
 
   test('Проверка метода .getPosition() на ответ при ложном поиске', async () => {

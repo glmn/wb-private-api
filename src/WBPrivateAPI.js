@@ -1,8 +1,8 @@
-const format = require('string-format');
-const Constants = require('./Constants');
-const WBProduct = require('./WBProduct');
-const WBCatalog = require('./WBCatalog');
-const SessionBuilder = require('./SessionBuilder');
+const format = require("string-format");
+const Constants = require("./Constants");
+const WBProduct = require("./WBProduct");
+const WBCatalog = require("./WBCatalog");
+const SessionBuilder = require("./SessionBuilder");
 
 format.extend(String.prototype, {});
 
@@ -25,29 +25,41 @@ class WBPrivateAPI {
     const totalProducts = await this.searchTotalProducts(keyword);
     if (totalProducts === 0) return [];
 
-    const {catalog_type, catalog_value} = await this.getQueryMetadata(keyword, 0 , false);
+    const { catalog_type, catalog_value } = await this.getQueryMetadata(
+      keyword,
+      0,
+      false
+    );
     const catalogConfig = { keyword, catalog_type, catalog_value };
 
-    let totalPages = Math.round((totalProducts / 100) + 0.5);
-    if (totalPages > Constants.PAGES_PER_CATALOG) { totalPages = Constants.PAGES_PER_CATALOG; }
+    let totalPages = Math.round(totalProducts / 100 + 0.5);
+    if (totalPages > Constants.PAGES_PER_CATALOG) {
+      totalPages = Constants.PAGES_PER_CATALOG;
+    }
 
     if (pageCount > 0) {
       if (pageCount < totalPages) {
         totalPages = pageCount;
       }
     }
-    const threads = Array(totalPages).fill(1).map((x, y) => x + y);
+    const threads = Array(totalPages)
+      .fill(1)
+      .map((x, y) => x + y);
     const parsedPages = await Promise.all(
-      threads.map((thr) => this.getCatalogPage(catalogConfig, thr)),
+      threads.map((thr) => this.getCatalogPage(catalogConfig, thr))
     );
 
     parsedPages.map((val, idx) => {
-      if(Array.isArray(val)){
-        val.map((v) => products.push(new WBProduct(v)))
+      if (Array.isArray(val)) {
+        val.map((v) => products.push(new WBProduct(v)));
       }
     });
 
-    Object.assign(catalogConfig, { pages: totalPages, products, totalProducts });
+    Object.assign(catalogConfig, {
+      pages: totalPages,
+      products,
+      totalProducts,
+    });
 
     return new WBCatalog(catalogConfig);
   }
@@ -62,25 +74,30 @@ class WBPrivateAPI {
     let params = {
       query: keyword,
       locale: "ru",
-      resultset: 'catalog',
+      resultset: "catalog",
       limit,
-    }
+    };
 
-    if(withProducts) {
+    if (withProducts) {
       params = {
         ...params,
         appType: Constants.APPTYPES.DESKTOP,
         dest: this.destination.ids,
-        sort: 'popular',
+        sort: "popular",
         regions: this.destination.regions,
-      }
+      };
     }
 
-    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, { params });
-    if(res.data?.metadata?.hasOwnProperty('catalog_type') && res.data?.metadata?.hasOwnProperty('catalog_value')){
-      return {...res.data.metadata, products: res.data.data?.products};
+    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
+      params,
+    });
+    if (
+      res.data?.metadata?.hasOwnProperty("catalog_type") &&
+      res.data?.metadata?.hasOwnProperty("catalog_value")
+    ) {
+      return { ...res.data.metadata, products: res.data.data?.products };
     }
-    return {catalog_type: null, catalog_value: null, products: []}
+    return { catalog_type: null, catalog_value: null, products: [] };
   }
 
   /**
@@ -97,11 +114,11 @@ class WBPrivateAPI {
         curr: Constants.CURRENCIES.RUB,
         dest: this.destination.ids,
         locale: Constants.LOCALES.RU,
-        resultset: 'filters',
+        resultset: "filters",
         stores: Constants.STORES.UFO,
       },
     });
-    return res.data?.filters?.data?.total || 0;
+    return res.data.data?.total || 0;
   }
 
   /**
@@ -120,10 +137,10 @@ class WBPrivateAPI {
           locale: Constants.LOCALES.RU,
           page,
           dest: this.destination.ids,
-          sort: 'popular',
+          sort: "popular",
           limit: Constants.PRODUCTS_PER_PAGE,
           regions: this.destination.regions,
-          resultset: 'catalog',
+          resultset: "catalog",
         },
       };
       try {
@@ -131,7 +148,7 @@ class WBPrivateAPI {
         const res = await this.session.get(url, options);
         foundProducts = res.data.data.products;
       } catch (err) {
-        console.log(err)
+        console.log(err);
         await this.getCatalogPage(catalogConfig, page);
       }
       resolve(foundProducts);
@@ -160,7 +177,10 @@ class WBPrivateAPI {
         nm: productId,
       },
     };
-    const res = await this.session.get(Constants.URLS.SEARCH.CAROUSEL_ADS, options);
+    const res = await this.session.get(
+      Constants.URLS.SEARCH.CAROUSEL_ADS,
+      options
+    );
     return res.data;
   }
 
@@ -187,8 +207,10 @@ class WBPrivateAPI {
    * @returns {object} with similar product Ids
    */
   async searchSimilarByNm(productId) {
-    const options = { headers: { 'x-requested-with': 'XMLHttpRequest' } };
-    const url = Constants.URLS.SEARCH.SIMILAR_BY_NM.format(productId);
+    const options = {
+      params: { nm: productId },
+    };
+    const url = Constants.URLS.SEARCH.SIMILAR_BY_NM;
     const res = await this.session.get(url, options);
     return res.data;
   }
@@ -206,7 +228,7 @@ class WBPrivateAPI {
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
           dest: this.destination.ids,
-          nm: productIds.join(';'),
+          nm: productIds.join(";"),
         },
       };
       try {

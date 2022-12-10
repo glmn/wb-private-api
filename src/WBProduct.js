@@ -58,14 +58,16 @@ class WBProduct {
 
     const sku = String(this.id)
     const basket = function(t) {
-      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : "10"
+      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : t >= 1314 && t <= 1601 ? "10" : "11"
     }
+
+    const basketNumber = basket(sku / 1e5)
     const vol = sku.length > 5 ? sku.substring(0, limits[sku.length]) : 0
     const part = sku.substring(0, limits[sku.length + 2])
     const URL = Constants.URLS.PRODUCT.CARD
     const res = await this.session.get(
       URL.format(
-        basket(sku / 1e5),
+        basketNumber < 10 ? "0" + basketNumber : basketNumber,
         vol,
         part,
         sku
@@ -83,14 +85,15 @@ class WBProduct {
 
     const sku = String(this.id)
     const basket = function(t) {
-      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : "10"
+      return t >= 0 && t <= 143 ? "1" : t >= 144 && t <= 287 ? "2" : t >= 288 && t <= 431 ? "3" : t >= 432 && t <= 719 ? "4" : t >= 720 && t <= 1007 ? "5" : t >= 1008 && t <= 1061 ? "6" : t >= 1062 && t <= 1115 ? "7" : t >= 1116 && t <= 1169 ? "8" : t >= 1170 && t <= 1313 ? "9" : t >= 1314 && t <= 1601 ? "10" : "11"
     }
+    const basketNumber = basket(sku / 1e5)
     const vol = sku.length > 5 ? sku.substring(0, limits[sku.length]) : 0
     const part = sku.substring(0, limits[sku.length + 2])
     const URL = Constants.URLS.PRODUCT.SELLERS
     const res = await this.session.get(
       URL.format(
-        basket(sku / 1e5),
+        basketNumber < 10 ? "0" + basketNumber : basketNumber,
         vol,
         part,
         sku

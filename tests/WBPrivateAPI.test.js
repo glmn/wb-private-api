@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-undef */
 const Constants = require('../src/Constants');
 const WBPrivateAPI = require('../src/WBPrivateAPI');
 
 const wbapi = new WBPrivateAPI({
-  destination: Constants.DESTINATIONS.MOSCOW
+  destination: Constants.DESTINATIONS.MOSCOW,
 });
 
 describe('Проверка поиска рекламодателей', () => {
@@ -30,10 +31,10 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
 
   test('Проверка получения Query Params по ключевому слову "Платье"', async () => {
     const metadata = await wbapi.getQueryMetadata('Платье');
-    const {catalog_type, catalog_value} = metadata;
+    const { catalog_type, catalog_value } = metadata;
     expect(typeof metadata === 'object').toBeTruthy();
     expect(catalog_type).toBe('subject');
-    expect(catalog_value).toBe('subject=69;70;2905;4000;4855;4857');
+    expect(catalog_value).toBe('subject=69;70;2613;2905;4000;4855;4857');
   });
 
   test('Сбор 3 страниц товаров по ключевому слову "Платье"', async () => {

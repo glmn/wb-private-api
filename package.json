@@ -1,6 +1,6 @@
 {
   "name": "wb-private-api",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Wildberries Private API",
   "main": "index.js",
   "scripts": {

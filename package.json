@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/glmn/wb-private-api#readme",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.2.2",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
-    "qs": "^6.10.3",
+    "qs": "^6.11.0",
     "string-format": "^2.0.0"
   },
   "devDependencies": {

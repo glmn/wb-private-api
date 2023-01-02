@@ -4,7 +4,7 @@ const WBPrivateAPI = require('../src/WBPrivateAPI');
 const WBProduct = require('../src/WBProduct');
 
 const wbapi = new WBPrivateAPI({
-  destination: Constants.DESTINATIONS.MOSCOW
+  destination: Constants.DESTINATIONS.MOSCOW,
 });
 
 describe('Проверка класса WBProduct', () => {

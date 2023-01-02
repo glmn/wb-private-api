@@ -244,6 +244,18 @@ class WBPrivateAPI {
       }
     });
   }
+
+  /**
+   * @returns Array of promos
+   */
+  async getPromos() {
+    try {
+      const result = await this.session.get(Constants.URLS.PROMOS);
+      return result.data;
+    } catch (e) {
+      return console.log(e);
+    }
+  }
 }
 
 module.exports = WBPrivateAPI;

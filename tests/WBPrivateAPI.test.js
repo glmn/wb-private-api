@@ -57,4 +57,9 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     const similarIds = await wbapi.searchSimilarByNm(60059650);
     expect(similarIds.length).toBeGreaterThan(0);
   });
+
+  test('Проверка метода .getPromos() на возврат текущих промо-акций', async () => {
+    const promos = await wbapi.getPromos();
+    expect(promos.length).toBeGreaterThan(0);
+  });
 });

@@ -5,6 +5,7 @@ module.exports = {
   QUESTIONS_PER_PAGE: 30,
   URLS: {
     MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
+    PROMOS: 'https://www.wildberries.ru/webapi/settings/promo/get',
     PRODUCT: {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
       CARD: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/ru/card.json',

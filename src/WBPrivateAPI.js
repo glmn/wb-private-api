@@ -256,6 +256,15 @@ class WBPrivateAPI {
       return console.log(e);
     }
   }
+
+  /**
+   * @returns Array of found products
+   */
+  async getListOfProducts(productIds) {
+    const options = { params: { nm: productIds.join(';') } };
+    const res = await this.session.get(Constants.URLS.SEARCH.LIST, options);
+    return res.data.data.products || [];
+  }
 }
 
 module.exports = WBPrivateAPI;

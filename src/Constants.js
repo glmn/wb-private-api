@@ -25,6 +25,7 @@ module.exports = {
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
       CAROUSEL_ADS: 'https://carousel-ads.wildberries.ru/api/v4/carousel',
       HINT: 'https://search.wb.ru/suggests/api/v2/hint',
+      LIST: 'https://card.wb.ru/cards/list',
     },
     IMAGES: {
       TINY: 'http://img1.wbstatic.net/small/new/{0}0000/{1}.jpg?r={2}', // 180x240

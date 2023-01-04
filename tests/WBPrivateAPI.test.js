@@ -62,4 +62,12 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     const promos = await wbapi.getPromos();
     expect(promos.length).toBeGreaterThan(0);
   });
+
+  test('Проверка метода .getListOfProducts() на возврат найденных товаров', async () => {
+    const products = Array(10)
+      .fill(60059650)
+      .map((v, idx) => v + idx);
+    const list = await wbapi.getListOfProducts(products);
+    expect(list.length).toBeGreaterThan(0);
+  });
 });

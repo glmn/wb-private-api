@@ -73,7 +73,7 @@ class WBPrivateAPI {
    * @param {string} keyword - The keyword you want to search for.
    * @returns {array} - An array of shardKey, preset and preset value
    */
-  async getQueryMetadata(keyword, limit = 0, withProducts = false) {
+  async getQueryMetadata(keyword, limit = 0, withProducts = false, page = 1) {
     let params = {
       query: keyword,
       locale: 'ru',
@@ -88,6 +88,7 @@ class WBPrivateAPI {
         dest: this.destination.ids,
         sort: 'popular',
         regions: this.destination.regions,
+        page,
       };
     }
 

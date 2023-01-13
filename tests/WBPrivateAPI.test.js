@@ -37,6 +37,13 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(catalog_value).toBe('subject=69;70;2613;2905;4000;4855;4857');
   });
 
+  test('Проверка метода getQueryMetadata на запросых разных страниц', async () => {
+    const pageOne = await wbapi.getQueryMetadata('Платье', 3, true, 1);
+    const pageTwo = await wbapi.getQueryMetadata('Платье', 3, true, 2);
+    console.log(pageOne.products[0].id, pageTwo.products[0].id);
+    expect(pageOne.products[0].id !== pageTwo.products[0].id).toBeTruthy();
+  });
+
   test('Сбор 3 страниц товаров по ключевому слову "Платье"', async () => {
     const catalog = await wbapi.search('Платье', 3);
     expect(catalog.products.length).toBe(300);

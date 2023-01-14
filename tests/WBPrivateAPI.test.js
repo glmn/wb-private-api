@@ -40,7 +40,6 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
   test('Проверка метода getQueryMetadata на запросых разных страниц', async () => {
     const pageOne = await wbapi.getQueryMetadata('Платье', 3, true, 1);
     const pageTwo = await wbapi.getQueryMetadata('Платье', 3, true, 2);
-    console.log(pageOne.products[0].id, pageTwo.products[0].id);
     expect(pageOne.products[0].id !== pageTwo.products[0].id).toBeTruthy();
   });
 

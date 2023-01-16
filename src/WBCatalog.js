@@ -36,7 +36,7 @@ class WBCatalog {
     * @returns {number} - The position of the product in the array.
     */
   getPosition(productId) {
-    const position = this.products.findIndex((item) => item.id === productId) || -1;
+    const position = this.products.findIndex((item) => item.id === productId);
     return position;
   }
 }

@@ -3,7 +3,7 @@ const Constants = require('../src/Constants');
 const WBPrivateAPI = require('../src/WBPrivateAPI');
 
 const wbapi = new WBPrivateAPI({
-  destination: Constants.DESTINATIONS.MOSCOW
+  destination: Constants.DESTINATIONS.MOSCOW,
 });
 
 describe('Проверка класса WBCatalog', () => {
@@ -14,9 +14,17 @@ describe('Проверка класса WBCatalog', () => {
 
   test('Проверка метода .getPosition() по ключевому запросу "Менструальные чаши"', async () => {
     const catalog = await wbapi.search('Менструальные чаши', 2);
-    const sku = catalog.products[130].id
-    const position = catalog.getPosition(sku);
-    expect(position).toBe(130);
+    {
+      const sku = catalog.products[130].id;
+      const position = catalog.getPosition(sku);
+      expect(position).toBe(130);
+    }
+
+    {
+      const sku = catalog.products[0].id;
+      const position = catalog.getPosition(sku);
+      expect(position).toBe(0);
+    }
   });
 
   test('Проверка метода .getPosition() на ответ при ложном поиске', async () => {

@@ -129,12 +129,11 @@ class WBProduct {
    * @returns {object} - The stocks of the product.
    */
   async getStocks() {
-    if (this._rawResponse?.details?.sizes) {
-      return this._rawResponse.details.sizes[0].stocks;
+    if (!this._rawResponse?.details?.sizes) {
+      await this.getDetailsData();
     }
 
-    await this.getDetailsData();
-    return this.getStocks();
+    return this._rawResponse?.details?.sizes?.[0]?.stocks || [];
   }
 
   /**

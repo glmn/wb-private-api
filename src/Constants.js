@@ -19,8 +19,8 @@ module.exports = {
     },
     SEARCH: {
       SIMILAR_BY_NM: 'https://in-similar.wildberries.ru/',
-      TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/female/v4/search',
-      EXACTMATCH: 'https://search.wb.ru/exactmatch/ru/female/v4/search',
+      TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/common/v4/search',
+      EXACTMATCH: 'https://search.wb.ru/exactmatch/ru/common/v4/search',
       CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
       ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
       CAROUSEL_ADS: 'https://carousel-ads.wildberries.ru/api/v4/carousel',

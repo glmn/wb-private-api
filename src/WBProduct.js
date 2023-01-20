@@ -32,7 +32,7 @@ class WBProduct {
     ]);
     await instance.getQuestionsCount();
 
-    return new WBProduct(instance._rawResponse);
+    return new WBProduct(Object.assign(instance._rawResponse, { id: productId }));
   }
 
   /**

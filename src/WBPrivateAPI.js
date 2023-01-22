@@ -117,11 +117,13 @@ class WBPrivateAPI {
         couponsGeo: [2, 7, 3, 6, 19, 21, 8],
         curr: Constants.CURRENCIES.RUB,
         dest: this.destination.ids,
+        regions: this.destination.regions,
         locale: Constants.LOCALES.RU,
         resultset: 'filters',
-        stores: Constants.STORES.UFO,
+        filters: 'fdlvr',
       },
     });
+
     return res.data.data?.total || 0;
   }
 

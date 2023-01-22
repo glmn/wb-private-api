@@ -11,10 +11,9 @@ format.extend(String.prototype, {});
 
 class WBPrivateAPI {
   /* Creating a new instance of the class WBPrivateAPI. */
-  constructor({ destination, stores }) {
+  constructor({ destination }) {
     this.session = SessionBuilder.create();
     this.destination = destination;
-    this.stores = stores;
   }
 
   /**
@@ -111,23 +110,18 @@ class WBPrivateAPI {
    * @returns Total number of products
    */
   async searchTotalProducts(keyword) {
-    const params = {
-      appType: Constants.APPTYPES.DESKTOP,
-      query: keyword,
-      couponsGeo: [2, 7, 3, 6, 19, 21, 8],
-      curr: Constants.CURRENCIES.RUB,
-      dest: this.destination.ids,
-      regions: this.destination.regions,
-      locale: Constants.LOCALES.RU,
-      resultset: 'filters',
-    };
-
-    if (this.stores && this.stores.length > 0) {
-      params.stores = this.stores;
-    }
-
     const res = await this.session.get(Constants.URLS.SEARCH.TOTALPRODUCTS, {
-      params,
+      params: {
+        appType: Constants.APPTYPES.DESKTOP,
+        query: keyword,
+        couponsGeo: [2, 7, 3, 6, 19, 21, 8],
+        curr: Constants.CURRENCIES.RUB,
+        dest: this.destination.ids,
+        regions: this.destination.regions,
+        locale: Constants.LOCALES.RU,
+        resultset: 'filters',
+        filters: 'fdlvr',
+      },
     });
 
     return res.data.data?.total || 0;

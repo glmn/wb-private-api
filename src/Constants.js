@@ -28,12 +28,10 @@ module.exports = {
       LIST: 'https://card.wb.ru/cards/list',
     },
     IMAGES: {
-      TINY: 'http://img1.wbstatic.net/small/new/{0}0000/{1}.jpg?r={2}', // 180x240
-      SMALL:
-        'https://images.wbstatic.net/c246x328/new/{0}0000/{1}-{3}.jpg?r={2}', // 246x328
-      MEDIUM:
-        'https://images.wbstatic.net/c516x688/new/{0}0000/{1}-{3}.jpg?r={2}', // 516x688
-      BIG: 'https://images.wbstatic.net/big/new/{0}0000/{1}-{3}.jpg?r={2}', // 900x1200
+      TINY: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/tm/{4}.jpg', // 900x1200
+      BIG: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/big/{4}.jpg', // 900x1200
+      SMALL: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c246x328/{4}.jpg', // 900x1200
+      MEDIUM: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c516x688/{4}.jpg', // 900x1200
       FEEDBACK_BASE: 'https://feedbackphotos.wbstatic.net/',
     },
   },

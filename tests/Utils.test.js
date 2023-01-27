@@ -4,8 +4,8 @@ const Utils = require('../src/Utils');
 
 describe('Проверка утилит Card', () => {
   test('Проверка генерации URL на фотографии карточек .imageURL()', () => {
-    const testurl = 'https://images.wbstatic.net/big/new/123450000/123456789-4.jpg?r=';
-    const url = Utils.Card.imageURL(123456789, 'BIG', 4);
+    const testurl = 'https://basket-04.wb.ru/vol600/part60059/60059650/images/big/3.jpg';
+    const url = Utils.Card.imageURL(60059650, 'BIG', 3);
     expect(url).toContain(testurl);
   });
   test('Проверка метода getBasketNumber() генерации Basket номера по Артикулу товара', () => {

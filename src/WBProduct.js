@@ -197,7 +197,7 @@ class WBProduct {
 
       const url = Constants.URLS.PRODUCT.FEEDBACKS;
       const res = await this.session.post(url, body);
-      newFeedbacks = res.data.feedbacks.map((fb) => new WBFeedback(fb));
+      newFeedbacks = (res.data.feedbacks || []).map((fb) => new WBFeedback(fb));
     }
     this.feedbacks = newFeedbacks;
     return newFeedbacks;

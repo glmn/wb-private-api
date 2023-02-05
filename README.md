@@ -122,3 +122,5 @@ initiate()
 ## `WBFeedback` методы
 
 `.getPhotos(size='min')` - Вернет ссылки на все фотографии в текущем отзыве. `size` по умолчанию = `min`. Заменить на `full` если необходим большой размер
+
+[![Verified on Openbase](https://badges.openbase.com/js/verified/wb-private-api.svg?token=yS0bpJQgFYOsdNzGVKyXsudiHKfqZve3FHuweIWRjnM=)](https://openbase.com/js/wb-private-api?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)

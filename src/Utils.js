@@ -33,11 +33,16 @@ const getBasketNumber = (productId) => {
   return basket(parseInt(productId / 1e5, 10));
 };
 
+const delay = (delayMs) => new Promise((resolve) => {
+  setTimeout(resolve, delayMs);
+});
+
 const Utils = {
   Card: {
     imageURL,
     getBasketNumber,
   },
+  delay,
 };
 
 module.exports = Utils;

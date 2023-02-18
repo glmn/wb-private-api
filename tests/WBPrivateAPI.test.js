@@ -29,8 +29,8 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(totalProducts).toBeGreaterThan(0);
   });
 
-  test('Поиск количества товаров (редких) по ключевому слову "тату чебурашка"', async () => {
-    const totalProducts = await wbapi.searchTotalProducts('тату чебурашка');
+  test('Поиск количества товаров (редких) по ключевому слову "тату майнкрафт"', async () => {
+    const totalProducts = await wbapi.searchTotalProducts('тату майнкрафт');
     expect(totalProducts).toBeGreaterThan(0);
   });
 

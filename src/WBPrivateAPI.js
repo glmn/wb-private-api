@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-prototype-builtins */
 const format = require('string-format');
+const { delay } = require('./Utils');
 const Constants = require('./Constants');
 const WBProduct = require('./WBProduct');
 const WBCatalog = require('./WBCatalog');
@@ -133,7 +134,7 @@ class WBPrivateAPI {
    * @param {number} page - page number
    * @returns {array} - An array of products
    */
-  async getCatalogPage(catalogConfig, page = 1) {
+  async getCatalogPage(catalogConfig, page = 1, retryCount = 0) {
     return new Promise(async (resolve) => {
       let foundProducts;
       const options = {
@@ -149,14 +150,38 @@ class WBPrivateAPI {
           resultset: 'catalog',
         },
       };
+
+      let errorCause = null;
+
       try {
         const url = Constants.URLS.SEARCH.EXACTMATCH;
         const res = await this.session.get(url, options);
-        foundProducts = res.data.data.products;
+        const statusCode = res.headers.statuscode;
+
+        if (statusCode !== '200') {
+          errorCause = Error(`Request query=${catalogConfig.keyword} page=${page} return status=${statusCode}`);
+        } else {
+          foundProducts = res.data.data.products;
+        }
       } catch (err) {
-        console.log(err);
-        await this.getCatalogPage(catalogConfig, page);
+        errorCause = err;
       }
+
+      if (errorCause) {
+        if (retryCount > 5) {
+          throw new Error(
+            `Retry count exceeded for query '${catalogConfig.keyword}'.`,
+            { cause: errorCause },
+          );
+        }
+
+        await delay(500 * (retryCount + 1));
+
+        this.session = SessionBuilder.create();
+
+        foundProducts = await this.getCatalogPage(catalogConfig, page, retryCount + 1);
+      }
+
       resolve(foundProducts);
     });
   }

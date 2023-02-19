@@ -120,7 +120,6 @@ class WBPrivateAPI {
         regions: this.destination.regions,
         locale: Constants.LOCALES.RU,
         resultset: 'filters',
-        filters: 'fdlvr',
       },
     });
 

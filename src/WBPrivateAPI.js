@@ -126,6 +126,28 @@ class WBPrivateAPI {
     return res.data.data?.total || 0;
   }
 
+
+  /**
+   * It returns the data based on filters array
+   * @param {string} keyword - the search query
+   * @param {array} filters - array of filters elements like [`fbrand','fsupplier']
+   * @returns Total number of products
+   */
+  async searchCustomFilters(keyword, filters) {
+    const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
+      params: {
+        appType: Constants.APPTYPES.DESKTOP,
+        query: keyword,
+        curr: Constants.CURRENCIES.RUB,
+        dest: this.destination.ids,
+        regions: this.destination.regions,
+        resultset: 'filters',
+        filters: filters.join(';')
+      },
+    });
+    return res.data?.data || {};
+  }
+
   /**
    * It gets all products from specified page
    * @param {object} catalogConfig - { shradKey, query }

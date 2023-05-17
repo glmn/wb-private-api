@@ -173,32 +173,39 @@ class WBProduct {
    * @param [page=0] - page number
    * @returns An array of WBFeedback objects
    */
-  async getFeedbacks(page = 0) {
-    let newFeedbacks = [];
-    if (page === 0) {
-      const totalPages = Math.round(
-        this.details.feedbacks / Constants.FEEDBACKS_PER_PAGE + 0.5,
-      );
-      const threads = Array(totalPages)
-        .fill(1)
-        .map((x, y) => x + y);
-      const parsedPages = await Promise.all(
-        threads.map((thr) => this.getFeedbacks(thr)),
-      );
-      parsedPages.every((val) => newFeedbacks.push(...val));
-    } else {
-      const skip = (page - 1) * Constants.FEEDBACKS_PER_PAGE;
-      const body = {
-        imtId: this.imt_id,
-        skip,
-        take: Constants.FEEDBACKS_PER_PAGE,
-        order: 'dateDesc',
-      };
+  async getFeedbacks() {
 
-      const url = Constants.URLS.PRODUCT.FEEDBACKS;
-      const res = await this.session.post(url, body);
-      newFeedbacks = (res.data.feedbacks || []).map((fb) => new WBFeedback(fb));
+    const numToUint8Array = function (r) {
+      const t = new Uint8Array(8);
+      for (let n = 0; n < 8; n++)
+        t[n] = r % 256,
+          r = Math.floor(r / 256);
+      return t
     }
+
+    const crc16Arc = function (r) {
+      const t = numToUint8Array(r);
+      let n = 0;
+      for (let r = 0; r < t.length; r++) {
+        n ^= t[r];
+        for (let r = 0; r < 8; r++)
+          (1 & n) > 0 ? n = n >> 1 ^ 40961 : n >>= 1
+      }
+      return n
+    }
+
+    let newFeedbacks = [];
+
+    const partition_id = crc16Arc(this.imt_id) % 100 >= 50 ? "2" : "1"
+    const url = Constants.URLS.PRODUCT.FEEDBACKS.format(
+      partition_id,
+      this.imt_id
+    );
+
+    const res = await this.session.get(url);
+    console.log(res)
+
+    newFeedbacks = (res.data.feedbacks || []).map((fb) => new WBFeedback(fb));
     this.feedbacks = newFeedbacks;
     return newFeedbacks;
   }

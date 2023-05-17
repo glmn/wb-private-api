@@ -203,7 +203,6 @@ class WBProduct {
     );
 
     const res = await this.session.get(url);
-    console.log(res)
 
     newFeedbacks = (res.data.feedbacks || []).map((fb) => new WBFeedback(fb));
     this.feedbacks = newFeedbacks;

@@ -141,7 +141,7 @@ class WBPrivateAPI {
         dest: this.destination.ids,
         regions: this.destination.regions,
         resultset: 'filters',
-        filters: encodeURI(filters.join(';')),
+        filters: filters.join(';'),
       },
     });
     return res.data?.data || {};

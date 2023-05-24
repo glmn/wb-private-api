@@ -24,17 +24,27 @@ describe('Проверка поиска рекламодателей', () => {
 });
 
 describe('Проверка поиска товаров WBPrivateAPI.search()', () => {
-  test('Поиск количества товаров по ключевому слову "Платье"', async () => {
+  test('Поиск количества товаров по ключевому запросу "Платье"', async () => {
     const totalProducts = await wbapi.searchTotalProducts('Платье');
     expect(totalProducts).toBeGreaterThan(0);
   });
 
-  test('Поиск количества товаров (редких) по ключевому слову "тату чебурашка"', async () => {
+  test('Поиск количества товаров (редких) по ключевому запросу "тату чебурашка"', async () => {
     const totalProducts = await wbapi.searchTotalProducts('тату чебурашка');
     expect(totalProducts).toBeGreaterThan(0);
   });
 
-  test('Проверка получения Query Params по ключевому слову "Платье"', async () => {
+  test('Поиск данных их фльтров по ключевому запросу "конструктор детский"', async () => {
+    const result = await wbapi.searchCustomFilters('конструктор детский', [
+      'fbrand',
+      'fsupplier',
+    ]);
+    const [brands, suppliers] = result.filters;
+    expect(brands.items.length).toBeGreaterThan(0);
+    expect(suppliers.items.length).toBeGreaterThan(0);
+  });
+
+  test('Проверка получения Query Params по ключевому запросу "Платье"', async () => {
     const metadata = await wbapi.getQueryMetadata('Платье');
     const { catalog_type, catalog_value } = metadata;
     expect(typeof metadata === 'object').toBeTruthy();
@@ -48,7 +58,7 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(pageOne.products[0].id !== pageTwo.products[0].id).toBeTruthy();
   });
 
-  test('Сбор 3 страниц товаров по ключевому слову "Платье"', async () => {
+  test('Сбор 3 страниц товаров по ключевому запросу "Платье"', async () => {
     const catalog = await wbapi.search('Платье', 3);
     expect(catalog.products.length).toBe(300);
   });
@@ -59,7 +69,7 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(pageCount).toBeGreaterThan(catalog.pages);
   });
 
-  test('Проверка метода .keyHint(query) на вывод предположений по фразу "Платье"', async () => {
+  test('Проверка метода .keyHint(query) на вывод предположений по ключевому запросу "Платье"', async () => {
     const hints = await wbapi.keyHint('Платье');
     expect(hints[0].type).toBe('suggest');
   });

@@ -126,7 +126,6 @@ class WBPrivateAPI {
     return res.data.data?.total || 0;
   }
 
-
   /**
    * It returns the data based on filters array
    * @param {string} keyword - the search query
@@ -142,7 +141,7 @@ class WBPrivateAPI {
         dest: this.destination.ids,
         regions: this.destination.regions,
         resultset: 'filters',
-        filters: filters.join(';')
+        filters: encodeURI(filters.join(';')),
       },
     });
     return res.data?.data || {};

@@ -3,7 +3,12 @@
 const Utils = require('../src/Utils');
 
 describe('Проверка утилит Card', () => {
-  test('Проверка генерации URL на фотографии карточек .imageURL()', () => {
+  test('Проверка генерации URL на логотип бренда Brand.imageURL()', () => {
+    const testurl = 'https://images.wbstatic.net/brands/small/7658.jpg';
+    const url = Utils.Brand.imageURL(7658);
+    expect(url).toContain(testurl);
+  });
+  test('Проверка генерации URL на фотографии карточек Card.imageURL()', () => {
     const testurl = 'https://basket-04.wb.ru/vol600/part60059/60059650/images/big/3.jpg';
     const url = Utils.Card.imageURL(60059650, 'BIG', 3);
     expect(url).toContain(testurl);

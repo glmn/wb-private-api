@@ -33,10 +33,15 @@ const getBasketNumber = (productId) => {
   return basket(parseInt(productId / 1e5, 10));
 };
 
+const brandImageURL = (brandId) => Constants.URLS.BRAND.IMAGE.format(brandId);
+
 const Utils = {
   Card: {
     imageURL,
     getBasketNumber,
+  },
+  Brand: {
+    imageURL: brandImageURL,
   },
 };
 

@@ -7,8 +7,8 @@ const wbapi = new WBPrivateAPI({
 });
 
 describe('Проверка класса WBCatalog', () => {
-  test('Проверка метода .page() по ключевому запросу "Платье"', async () => {
-    const catalog = await wbapi.search('Платье', 2);
+  test('Проверка метода .page() по ключевому запросу "Очки женские"', async () => {
+    const catalog = await wbapi.search('Очки женские', 2);
     expect(catalog.page(2).length).toBe(100);
   }, 30 * 1000);
 

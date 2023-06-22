@@ -114,7 +114,6 @@ class WBPrivateAPI {
       params: {
         appType: Constants.APPTYPES.DESKTOP,
         query: keyword,
-        couponsGeo: [2, 7, 3, 6, 19, 21, 8],
         curr: Constants.CURRENCIES.RUB,
         dest: this.destination.ids,
         regions: this.destination.regions,

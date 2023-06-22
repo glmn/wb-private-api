@@ -92,3 +92,10 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
     expect(list.length).toBeGreaterThan(0);
   });
 });
+
+describe('Проверка выдачи данных по продавцу', () => {
+  test('Проверка метода .getSellerInfo()', async () => {
+    const seller = await wbapi.getSellerInfo(125422333);
+    expect(seller.nmId).toBe(125422333);
+  });
+});

@@ -8,6 +8,9 @@ module.exports = {
     BRAND: {
       IMAGE: 'https://images.wbstatic.net/brands/small/{}.jpg',
     },
+    SELLER: {
+      INFO: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/sellers.json',
+    },
     PROMOS: 'https://www.wildberries.ru/webapi/settings/promo/get',
     PRODUCT: {
       CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',

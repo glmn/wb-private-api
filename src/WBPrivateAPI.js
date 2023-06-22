@@ -1,11 +1,12 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable camelcase */
 /* eslint-disable no-prototype-builtins */
-const format = require('string-format');
-const Constants = require('./Constants');
-const WBProduct = require('./WBProduct');
-const WBCatalog = require('./WBCatalog');
-const SessionBuilder = require('./SessionBuilder');
+const format = require("string-format");
+const Constants = require("./Constants");
+const WBProduct = require("./WBProduct");
+const WBCatalog = require("./WBCatalog");
+const SessionBuilder = require("./SessionBuilder");
+const { getBasketNumber } = require("./Utils").Card;
 
 format.extend(String.prototype, {});
 
@@ -31,7 +32,7 @@ class WBPrivateAPI {
     const { catalog_type, catalog_value } = await this.getQueryMetadata(
       keyword,
       0,
-      false,
+      false
     );
     const catalogConfig = { keyword, catalog_type, catalog_value };
 
@@ -49,7 +50,7 @@ class WBPrivateAPI {
       .fill(1)
       .map((x, y) => x + y);
     const parsedPages = await Promise.all(
-      threads.map((thr) => this.getCatalogPage(catalogConfig, thr)),
+      threads.map((thr) => this.getCatalogPage(catalogConfig, thr))
     );
 
     parsedPages.map((val) => {
@@ -76,8 +77,8 @@ class WBPrivateAPI {
   async getQueryMetadata(keyword, limit = 0, withProducts = false, page = 1) {
     let params = {
       query: keyword,
-      locale: 'ru',
-      resultset: 'catalog',
+      locale: "ru",
+      resultset: "catalog",
       limit,
     };
 
@@ -86,7 +87,7 @@ class WBPrivateAPI {
         ...params,
         appType: Constants.APPTYPES.DESKTOP,
         dest: this.destination.ids,
-        sort: 'popular',
+        sort: "popular",
         regions: this.destination.regions,
         page,
       };
@@ -96,8 +97,8 @@ class WBPrivateAPI {
       params,
     });
     if (
-      res.data?.metadata?.hasOwnProperty('catalog_type')
-      && res.data?.metadata?.hasOwnProperty('catalog_value')
+      res.data?.metadata?.hasOwnProperty("catalog_type") &&
+      res.data?.metadata?.hasOwnProperty("catalog_value")
     ) {
       return { ...res.data.metadata, products: res.data.data?.products };
     }
@@ -118,7 +119,7 @@ class WBPrivateAPI {
         dest: this.destination.ids,
         regions: this.destination.regions,
         locale: Constants.LOCALES.RU,
-        resultset: 'filters',
+        resultset: "filters",
       },
     });
 
@@ -139,8 +140,8 @@ class WBPrivateAPI {
         curr: Constants.CURRENCIES.RUB,
         dest: this.destination.ids,
         regions: this.destination.regions,
-        resultset: 'filters',
-        filters: filters.join(';'),
+        resultset: "filters",
+        filters: filters.join(";"),
       },
     });
     return res.data?.data || {};
@@ -162,10 +163,10 @@ class WBPrivateAPI {
           locale: Constants.LOCALES.RU,
           page,
           dest: this.destination.ids,
-          sort: 'popular',
+          sort: "popular",
           limit: Constants.PRODUCTS_PER_PAGE,
           regions: this.destination.regions,
-          resultset: 'catalog',
+          resultset: "catalog",
         },
       };
       try {
@@ -204,7 +205,7 @@ class WBPrivateAPI {
     };
     const res = await this.session.get(
       Constants.URLS.SEARCH.CAROUSEL_ADS,
-      options,
+      options
     );
     return res.data;
   }
@@ -253,7 +254,7 @@ class WBPrivateAPI {
           appType: Constants.APPTYPES.DESKTOP,
           locale: Constants.LOCALES.RU,
           dest: this.destination.ids,
-          nm: productIds.join(';'),
+          nm: productIds.join(";"),
         },
       };
       try {
@@ -283,9 +284,30 @@ class WBPrivateAPI {
    * @returns Array of found products
    */
   async getListOfProducts(productIds) {
-    const options = { params: { nm: productIds.join(';') } };
+    const options = { params: { nm: productIds.join(";") } };
     const res = await this.session.get(Constants.URLS.SEARCH.LIST, options);
     return res.data.data.products || [];
+  }
+
+  /**
+   * @returns Object with seller info
+   */
+  async getSellerInfo(sellerId) {
+    const limits = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+    const id = String(sellerId);
+
+    const basketNumber = getBasketNumber(id);
+    const vol = id.length > 5 ? id.substring(0, limits[id.length]) : 0;
+    const part = id.substring(0, limits[id.length + 2]);
+    const URL = Constants.URLS.SELLER.INFO.format(
+      basketNumber < 10 ? `0${basketNumber}` : basketNumber,
+      vol,
+      part,
+      id
+    );
+    const res = await this.session.get(URL);
+    return res.data || {};
   }
 }
 

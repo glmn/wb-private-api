@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
-const format = require('string-format');
-const Constants = require('./Constants');
-const SessionBuilder = require('./SessionBuilder');
-const WBFeedback = require('./WBFeedback');
-const WBQuestion = require('./WBQuestion');
-const { getBasketNumber } = require('./Utils').Card;
+const format = require("string-format");
+const Constants = require("./Constants");
+const SessionBuilder = require("./SessionBuilder");
+const WBFeedback = require("./WBFeedback");
+const WBQuestion = require("./WBQuestion");
+const { getBasketNumber } = require("./Utils").Card;
 
 format.extend(String.prototype, {});
 
@@ -16,7 +16,7 @@ class WBProduct {
 
   constructor(product) {
     this.session = SessionBuilder.create();
-    if (typeof product !== 'number') {
+    if (typeof product !== "number") {
       Object.assign(this, product);
     } else {
       this.id = product;
@@ -32,7 +32,9 @@ class WBProduct {
     ]);
     await instance.getQuestionsCount();
 
-    return new WBProduct(Object.assign(instance._rawResponse, { id: productId }));
+    return new WBProduct(
+      Object.assign(instance._rawResponse, { id: productId })
+    );
   }
 
   /**
@@ -51,7 +53,7 @@ class WBProduct {
   get totalStocks() {
     return this._rawResponse.details.sizes[0].stocks.reduce(
       (sum, x) => sum + x.qty,
-      0,
+      0
     );
   }
 
@@ -72,8 +74,8 @@ class WBProduct {
         basketNumber < 10 ? `0${basketNumber}` : basketNumber,
         vol,
         part,
-        sku,
-      ),
+        sku
+      )
     );
     const rawData = res.data;
     Object.assign(this._rawResponse, rawData);
@@ -95,8 +97,8 @@ class WBProduct {
         basketNumber < 10 ? `0${basketNumber}` : basketNumber,
         vol,
         part,
-        sku,
-      ),
+        sku
+      )
     );
     const rawData = res.data;
     Object.assign(this._rawResponse, {
@@ -143,15 +145,15 @@ class WBProduct {
    * @returns {object} - the product.promo object.
    */
   async getPromo() {
-    if ('id' in this._rawResponse === false) {
+    if ("id" in this._rawResponse === false) {
       await this.getProductData(this);
     }
 
-    if ('panelPromoId' in this.promo) {
+    if ("panelPromoId" in this.promo) {
       return this.promo;
     }
 
-    if ('panelPromoId' in this._rawResponse) {
+    if ("panelPromoId" in this._rawResponse) {
       this.promo = {
         active: true,
         panelPromoId: this._rawResponse.panelPromoId,
@@ -174,14 +176,11 @@ class WBProduct {
    * @returns An array of WBFeedback objects
    */
   async getFeedbacks() {
-
     const numToUint8Array = function (r) {
       const t = new Uint8Array(8);
-      for (let n = 0; n < 8; n++)
-        t[n] = r % 256,
-          r = Math.floor(r / 256);
-      return t
-    }
+      for (let n = 0; n < 8; n++) (t[n] = r % 256), (r = Math.floor(r / 256));
+      return t;
+    };
 
     const crc16Arc = function (r) {
       const t = numToUint8Array(r);
@@ -189,14 +188,14 @@ class WBProduct {
       for (let r = 0; r < t.length; r++) {
         n ^= t[r];
         for (let r = 0; r < 8; r++)
-          (1 & n) > 0 ? n = n >> 1 ^ 40961 : n >>= 1
+          (1 & n) > 0 ? (n = (n >> 1) ^ 40961) : (n >>= 1);
       }
-      return n
-    }
+      return n;
+    };
 
     let newFeedbacks = [];
 
-    const partition_id = crc16Arc(this.imt_id) % 100 >= 50 ? "2" : "1"
+    const partition_id = crc16Arc(this.imt_id) % 100 >= 50 ? "2" : "1";
     const url = Constants.URLS.PRODUCT.FEEDBACKS.format(
       partition_id,
       this.imt_id
@@ -236,21 +235,21 @@ class WBProduct {
     let newQuestions = [];
     let totalQuestions = 0;
     if (page === 0) {
-      if ('totalQuestions' in this) {
+      if ("totalQuestions" in this) {
         totalQuestions = this.totalQuestions;
       } else {
         totalQuestions = await this.getQuestionsCount();
         this.totalQuestions = totalQuestions;
       }
       const totalPages = Math.round(
-        totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5,
+        totalQuestions / Constants.QUESTIONS_PER_PAGE + 0.5
       );
 
       const threads = Array(totalPages)
         .fill(1)
         .map((x, y) => x + y);
       const parsedPages = await Promise.all(
-        threads.map((thr) => this.getQuestions(thr)),
+        threads.map((thr) => this.getQuestions(thr))
       );
       parsedPages.map((val) => newQuestions.push(...val));
     } else {
@@ -266,7 +265,7 @@ class WBProduct {
       const url = Constants.URLS.PRODUCT.QUESTIONS;
       const res = await this.session.get(url, options);
       newQuestions = res.data.questions.map(
-        (question) => new WBQuestion(question),
+        (question) => new WBQuestion(question)
       );
     }
     this.questions = newQuestions;

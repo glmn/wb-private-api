@@ -294,7 +294,7 @@ class WBPrivateAPI {
    */
   async getSupplierInfo(sellerId) {
     const res = await this.session.get(
-      Constants.URLS.SUPPLIER.INFO.format(sellerId),
+      Constants.URLS.SUPPLIER.INFO.format(sellerId)
     );
     return res.data || {};
   }

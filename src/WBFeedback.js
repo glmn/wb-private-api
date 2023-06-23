@@ -1,4 +1,4 @@
-const Constants = require('./Constants');
+const Constants = require("./Constants");
 
 class WBFeedback {
   constructor(feedback) {
@@ -13,9 +13,11 @@ class WBFeedback {
    * @param [size=min] - The size of the image you want to get.
    * @returns An array of the photos with the size specified.
    */
-  getPhotos(size = 'min') {
-    size += 'SizeUri';
-    return this.photos.map((photo) => Constants.URLS.IMAGES.FEEDBACK_BASE + photo[size]);
+  getPhotos(size = "min") {
+    size += "SizeUri";
+    return this.photos.map(
+      (photo) => Constants.URLS.IMAGES.FEEDBACK_BASE + photo[size]
+    );
   }
 }
 

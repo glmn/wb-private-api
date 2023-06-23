@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
-const format = require('string-format');
-const Constants = require('./Constants');
+const format = require("string-format");
+const Constants = require("./Constants");
 
 format.extend(String.prototype, {});
 
-const imageURL = (productId, imageType = 'SMALL', order = 1) => {
+const imageURL = (productId, imageType = "SMALL", order = 1) => {
   const vol = parseInt(productId / 100000, 10);
   const part = parseInt(productId / 1000, 10);
   const random = Date.now();
@@ -13,7 +13,13 @@ const imageURL = (productId, imageType = 'SMALL', order = 1) => {
   const basketWithZero = basket < 10 ? `0${basket}` : basket;
 
   const URL = Constants.URLS.IMAGES[imageType];
-  return `${URL.format(basketWithZero, vol, part, productId, order)}?r=${random}`;
+  return `${URL.format(
+    basketWithZero,
+    vol,
+    part,
+    productId,
+    order
+  )}?r=${random}`;
 };
 
 const getBasketNumber = (productId) => {

@@ -1,4 +1,4 @@
-const Constants = require('./Constants');
+const Constants = require("./Constants");
 
 class WBCatalog {
   /* Creating a new instance of the class WBCatalog. */
@@ -30,11 +30,11 @@ class WBCatalog {
   }
 
   /**
-    * It returns the position of the product in the products array, or -1 if the
-    * product is not in the array
-    * @param {number} productId - The SKU of the product.
-    * @returns {number} - The position of the product in the array.
-    */
+   * It returns the position of the product in the products array, or -1 if the
+   * product is not in the array
+   * @param {number} productId - The SKU of the product.
+   * @returns {number} - The position of the product in the array.
+   */
   getPosition(productId) {
     const position = this.products.findIndex((item) => item.id === productId);
     return position;

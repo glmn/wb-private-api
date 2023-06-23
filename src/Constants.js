@@ -4,40 +4,42 @@ module.exports = {
   FEEDBACKS_PER_PAGE: 20,
   QUESTIONS_PER_PAGE: 30,
   URLS: {
-    MAIN_MENU: 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json',
+    MAIN_MENU: "https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json",
     BRAND: {
-      IMAGE: 'https://images.wbstatic.net/brands/small/{}.jpg',
+      IMAGE: "https://images.wbstatic.net/brands/small/{}.jpg",
     },
     SUPPLIER: {
-      INFO: 'https://www.wildberries.ru/webapi/seller/data/short/{0}',
+      INFO: "https://www.wildberries.ru/webapi/seller/data/short/{0}",
     },
-    PROMOS: 'https://www.wildberries.ru/webapi/settings/promo/get',
+    PROMOS: "https://www.wildberries.ru/webapi/settings/promo/get",
     PRODUCT: {
-      CONTENT: 'https://wbx-content-v2.wbstatic.net/ru/{}.json',
-      CARD: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/ru/card.json',
-      SELLERS: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/sellers.json',
-      EXTRADATA: 'https://www.wildberries.ru/webapi/product/{}/data',
-      DETAILS: 'https://card.wb.ru/cards/detail',
-      FEEDBACKS: 'https://feedbacks{0}.wb.ru/feedbacks/v1/{1}',
-      QUESTIONS: 'https://questions.wildberries.ru/api/v1/questions',
-      DELIVERYDATA: 'https://card.wb.ru/cards/list',
+      CONTENT: "https://wbx-content-v2.wbstatic.net/ru/{}.json",
+      CARD: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/ru/card.json",
+      SELLERS: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/info/sellers.json",
+      EXTRADATA: "https://www.wildberries.ru/webapi/product/{}/data",
+      DETAILS: "https://card.wb.ru/cards/detail",
+      FEEDBACKS: "https://feedbacks{0}.wb.ru/feedbacks/v1/{1}",
+      QUESTIONS: "https://questions.wildberries.ru/api/v1/questions",
+      DELIVERYDATA: "https://card.wb.ru/cards/list",
     },
     SEARCH: {
-      SIMILAR_BY_NM: 'https://in-similar.wildberries.ru/',
-      TOTALPRODUCTS: 'https://search.wb.ru/exactmatch/ru/common/v4/search',
-      EXACTMATCH: 'https://search.wb.ru/exactmatch/ru/common/v4/search',
-      CATALOG: 'https://wbxcatalog-ru.wildberries.ru/{}/catalog',
-      ADS: 'https://catalog-ads.wildberries.ru/api/v5/search',
-      CAROUSEL_ADS: 'https://carousel-ads.wildberries.ru/api/v4/carousel',
-      HINT: 'https://search.wb.ru/suggests/api/v2/hint',
-      LIST: 'https://card.wb.ru/cards/list',
+      SIMILAR_BY_NM: "https://in-similar.wildberries.ru/",
+      TOTALPRODUCTS: "https://search.wb.ru/exactmatch/ru/common/v4/search",
+      EXACTMATCH: "https://search.wb.ru/exactmatch/ru/common/v4/search",
+      CATALOG: "https://wbxcatalog-ru.wildberries.ru/{}/catalog",
+      ADS: "https://catalog-ads.wildberries.ru/api/v5/search",
+      CAROUSEL_ADS: "https://carousel-ads.wildberries.ru/api/v4/carousel",
+      HINT: "https://search.wb.ru/suggests/api/v2/hint",
+      LIST: "https://card.wb.ru/cards/list",
     },
     IMAGES: {
-      TINY: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/tm/{4}.jpg', // 900x1200
-      BIG: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/big/{4}.jpg', // 900x1200
-      SMALL: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c246x328/{4}.jpg', // 900x1200
-      MEDIUM: 'https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c516x688/{4}.jpg', // 900x1200
-      FEEDBACK_BASE: 'https://feedbackphotos.wbstatic.net/',
+      TINY: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/tm/{4}.jpg", // 900x1200
+      BIG: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/big/{4}.jpg", // 900x1200
+      SMALL:
+        "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c246x328/{4}.jpg", // 900x1200
+      MEDIUM:
+        "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c516x688/{4}.jpg", // 900x1200
+      FEEDBACK_BASE: "https://feedbackphotos.wbstatic.net/",
     },
   },
   APPTYPES: {
@@ -48,7 +50,7 @@ module.exports = {
   WAREHOUSES: [
     {
       id: 119798,
-      displayName: '220вольт склад',
+      displayName: "220вольт склад",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -57,7 +59,7 @@ module.exports = {
     },
     {
       id: 124583,
-      displayName: 'FBS Европа',
+      displayName: "FBS Европа",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -66,7 +68,7 @@ module.exports = {
     },
     {
       id: 124093,
-      displayName: 'FBS Екатеринбург 48ч',
+      displayName: "FBS Екатеринбург 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -75,7 +77,7 @@ module.exports = {
     },
     {
       id: 124094,
-      displayName: 'FBS Екатеринбург 72ч',
+      displayName: "FBS Екатеринбург 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -84,7 +86,7 @@ module.exports = {
     },
     {
       id: 124095,
-      displayName: 'FBS Екатеринбург 96ч',
+      displayName: "FBS Екатеринбург 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -93,7 +95,7 @@ module.exports = {
     },
     {
       id: 123820,
-      displayName: 'FBS Казань 48ч',
+      displayName: "FBS Казань 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -102,7 +104,7 @@ module.exports = {
     },
     {
       id: 123821,
-      displayName: 'FBS Казань 72ч',
+      displayName: "FBS Казань 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -111,7 +113,7 @@ module.exports = {
     },
     {
       id: 123822,
-      displayName: 'FBS Казань 96ч',
+      displayName: "FBS Казань 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -120,7 +122,7 @@ module.exports = {
     },
     {
       id: 124584,
-      displayName: 'FBS Китай',
+      displayName: "FBS Китай",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -129,7 +131,7 @@ module.exports = {
     },
     {
       id: 124096,
-      displayName: 'FBS Краснодар 48ч',
+      displayName: "FBS Краснодар 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -138,7 +140,7 @@ module.exports = {
     },
     {
       id: 124097,
-      displayName: 'FBS Краснодар 72ч',
+      displayName: "FBS Краснодар 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -147,7 +149,7 @@ module.exports = {
     },
     {
       id: 124098,
-      displayName: 'FBS Краснодар 96ч',
+      displayName: "FBS Краснодар 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -156,7 +158,7 @@ module.exports = {
     },
     {
       id: 127445,
-      displayName: 'FBS Краснодар Магнит №1',
+      displayName: "FBS Краснодар Магнит №1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -165,7 +167,7 @@ module.exports = {
     },
     {
       id: 127447,
-      displayName: 'FBS Краснодар Магнит №2',
+      displayName: "FBS Краснодар Магнит №2",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -174,7 +176,7 @@ module.exports = {
     },
     {
       id: 132344,
-      displayName: 'FBS Краснодар Шипы и Розы',
+      displayName: "FBS Краснодар Шипы и Розы",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -183,7 +185,7 @@ module.exports = {
     },
     {
       id: 127456,
-      displayName: 'FBS Магнит №10 Гидрострой',
+      displayName: "FBS Магнит №10 Гидрострой",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -192,7 +194,7 @@ module.exports = {
     },
     {
       id: 127457,
-      displayName: 'FBS Магнит №11 Рэфил',
+      displayName: "FBS Магнит №11 Рэфил",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -201,7 +203,7 @@ module.exports = {
     },
     {
       id: 127459,
-      displayName: 'FBS Магнит №12 Красных Па',
+      displayName: "FBS Магнит №12 Красных Па",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -210,7 +212,7 @@ module.exports = {
     },
     {
       id: 127463,
-      displayName: 'FBS Магнит №13 Театральны',
+      displayName: "FBS Магнит №13 Театральны",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -219,7 +221,7 @@ module.exports = {
     },
     {
       id: 127464,
-      displayName: 'FBS Магнит №14 Леваневски',
+      displayName: "FBS Магнит №14 Леваневски",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -228,7 +230,7 @@ module.exports = {
     },
     {
       id: 127465,
-      displayName: 'FBS Магнит №15 Архат',
+      displayName: "FBS Магнит №15 Архат",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -237,7 +239,7 @@ module.exports = {
     },
     {
       id: 132150,
-      displayName: 'FBS Магнит №16 Хёрбранц',
+      displayName: "FBS Магнит №16 Хёрбранц",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -246,7 +248,7 @@ module.exports = {
     },
     {
       id: 132035,
-      displayName: 'FBS Магнит №17 Раздув',
+      displayName: "FBS Магнит №17 Раздув",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -255,7 +257,7 @@ module.exports = {
     },
     {
       id: 132036,
-      displayName: 'FBS Магнит №18 Байронизм',
+      displayName: "FBS Магнит №18 Байронизм",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -264,7 +266,7 @@ module.exports = {
     },
     {
       id: 127449,
-      displayName: 'FBS Магнит №3 Ницшеанец',
+      displayName: "FBS Магнит №3 Ницшеанец",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -273,7 +275,7 @@ module.exports = {
     },
     {
       id: 127450,
-      displayName: 'FBS Магнит №4 Домино',
+      displayName: "FBS Магнит №4 Домино",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -282,7 +284,7 @@ module.exports = {
     },
     {
       id: 127451,
-      displayName: 'FBS Магнит №5 Рубероидный',
+      displayName: "FBS Магнит №5 Рубероидный",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -291,7 +293,7 @@ module.exports = {
     },
     {
       id: 127452,
-      displayName: 'FBS Магнит №6 Зиповский',
+      displayName: "FBS Магнит №6 Зиповский",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -300,7 +302,7 @@ module.exports = {
     },
     {
       id: 127453,
-      displayName: 'FBS Магнит №7 Зеленый',
+      displayName: "FBS Магнит №7 Зеленый",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -309,7 +311,7 @@ module.exports = {
     },
     {
       id: 127454,
-      displayName: 'FBS Магнит №8 Мореттини',
+      displayName: "FBS Магнит №8 Мореттини",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -318,7 +320,7 @@ module.exports = {
     },
     {
       id: 127455,
-      displayName: 'FBS Магнит №9 Балака',
+      displayName: "FBS Магнит №9 Балака",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -327,7 +329,7 @@ module.exports = {
     },
     {
       id: 133618,
-      displayName: 'FBS Москва AMF 4',
+      displayName: "FBS Москва AMF 4",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -336,7 +338,7 @@ module.exports = {
     },
     {
       id: 132709,
-      displayName: 'FBS Москва Гребнев Илья 4',
+      displayName: "FBS Москва Гребнев Илья 4",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -345,7 +347,7 @@ module.exports = {
     },
     {
       id: 132597,
-      displayName: 'FBS Москва Джема 24ч',
+      displayName: "FBS Москва Джема 24ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -354,7 +356,7 @@ module.exports = {
     },
     {
       id: 132291,
-      displayName: 'FBS Москва Курьер 48',
+      displayName: "FBS Москва Курьер 48",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -363,7 +365,7 @@ module.exports = {
     },
     {
       id: 132994,
-      displayName: 'FBS Москва Курьер КБТ 48',
+      displayName: "FBS Москва Курьер КБТ 48",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -372,7 +374,7 @@ module.exports = {
     },
     {
       id: 132807,
-      displayName: 'FBS Москва ПроЛофт  5 дне',
+      displayName: "FBS Москва ПроЛофт  5 дне",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -381,7 +383,7 @@ module.exports = {
     },
     {
       id: 133348,
-      displayName: 'FBS Москва Русский икорны',
+      displayName: "FBS Москва Русский икорны",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -390,7 +392,7 @@ module.exports = {
     },
     {
       id: 133347,
-      displayName: 'FBS Москва Русский икорны',
+      displayName: "FBS Москва Русский икорны",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -399,7 +401,7 @@ module.exports = {
     },
     {
       id: 132321,
-      displayName: 'FBS Москва Своими силами ',
+      displayName: "FBS Москва Своими силами ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -408,7 +410,7 @@ module.exports = {
     },
     {
       id: 132318,
-      displayName: 'FBS Москва Своими силами ',
+      displayName: "FBS Москва Своими силами ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -417,7 +419,7 @@ module.exports = {
     },
     {
       id: 132320,
-      displayName: 'FBS Москва Своими силами ',
+      displayName: "FBS Москва Своими силами ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -426,7 +428,7 @@ module.exports = {
     },
     {
       id: 132012,
-      displayName: 'FBS Москва Склад Экспресс',
+      displayName: "FBS Москва Склад Экспресс",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -435,7 +437,7 @@ module.exports = {
     },
     {
       id: 131999,
-      displayName: 'FBS Москва Склад Экспресс',
+      displayName: "FBS Москва Склад Экспресс",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -444,7 +446,7 @@ module.exports = {
     },
     {
       id: 125186,
-      displayName: 'FBS Москва Фуд 12ч',
+      displayName: "FBS Москва Фуд 12ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -453,7 +455,7 @@ module.exports = {
     },
     {
       id: 126667,
-      displayName: 'FBS Москва Цветы 12ч',
+      displayName: "FBS Москва Цветы 12ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -462,7 +464,7 @@ module.exports = {
     },
     {
       id: 126680,
-      displayName: 'FBS Москва Экспресс 24/7',
+      displayName: "FBS Москва Экспресс 24/7",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -471,7 +473,7 @@ module.exports = {
     },
     {
       id: 126679,
-      displayName: 'FBS Москва Экспресс 9-18',
+      displayName: "FBS Москва Экспресс 9-18",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -480,7 +482,7 @@ module.exports = {
     },
     {
       id: 126670,
-      displayName: 'FBS Москва Экспресс-доста',
+      displayName: "FBS Москва Экспресс-доста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -489,7 +491,7 @@ module.exports = {
     },
     {
       id: 126675,
-      displayName: 'FBS Москва Экспресс-доста',
+      displayName: "FBS Москва Экспресс-доста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -498,7 +500,7 @@ module.exports = {
     },
     {
       id: 126674,
-      displayName: 'FBS Москва Экспресс-доста',
+      displayName: "FBS Москва Экспресс-доста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -507,7 +509,7 @@ module.exports = {
     },
     {
       id: 126676,
-      displayName: 'FBS Москва Экспресс-доста',
+      displayName: "FBS Москва Экспресс-доста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -516,7 +518,7 @@ module.exports = {
     },
     {
       id: 127014,
-      displayName: 'FBS Москва Экспресс-доста',
+      displayName: "FBS Москва Экспресс-доста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -525,7 +527,7 @@ module.exports = {
     },
     {
       id: 124099,
-      displayName: 'FBS Новосибирск 48ч',
+      displayName: "FBS Новосибирск 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -534,7 +536,7 @@ module.exports = {
     },
     {
       id: 124100,
-      displayName: 'FBS Новосибирск 72ч',
+      displayName: "FBS Новосибирск 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -543,7 +545,7 @@ module.exports = {
     },
     {
       id: 124101,
-      displayName: 'FBS Новосибирск 96ч',
+      displayName: "FBS Новосибирск 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -552,7 +554,7 @@ module.exports = {
     },
     {
       id: 122590,
-      displayName: 'FBS Очаково 48ч',
+      displayName: "FBS Очаково 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -561,7 +563,7 @@ module.exports = {
     },
     {
       id: 122591,
-      displayName: 'FBS Очаково 72ч',
+      displayName: "FBS Очаково 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -570,7 +572,7 @@ module.exports = {
     },
     {
       id: 122592,
-      displayName: 'FBS Очаково 96ч',
+      displayName: "FBS Очаково 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -579,7 +581,7 @@ module.exports = {
     },
     {
       id: 117480,
-      displayName: 'FBS ПВЗ Электросталь',
+      displayName: "FBS ПВЗ Электросталь",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -588,7 +590,7 @@ module.exports = {
     },
     {
       id: 123816,
-      displayName: 'FBS СПБ 48ч',
+      displayName: "FBS СПБ 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -597,7 +599,7 @@ module.exports = {
     },
     {
       id: 123817,
-      displayName: 'FBS СПБ 72ч',
+      displayName: "FBS СПБ 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -606,7 +608,7 @@ module.exports = {
     },
     {
       id: 123818,
-      displayName: 'FBS СПБ 96ч',
+      displayName: "FBS СПБ 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -615,7 +617,7 @@ module.exports = {
     },
     {
       id: 132473,
-      displayName: 'FBS Санкт-Петербург Импер',
+      displayName: "FBS Санкт-Петербург Импер",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -624,7 +626,7 @@ module.exports = {
     },
     {
       id: 132294,
-      displayName: 'FBS Санкт-Петербург Семиц',
+      displayName: "FBS Санкт-Петербург Семиц",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -633,7 +635,7 @@ module.exports = {
     },
     {
       id: 132453,
-      displayName: 'FBS Санкт-Петербург Спири',
+      displayName: "FBS Санкт-Петербург Спири",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -642,7 +644,7 @@ module.exports = {
     },
     {
       id: 132015,
-      displayName: 'FBS Санкт-Петербург Холод',
+      displayName: "FBS Санкт-Петербург Холод",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -651,7 +653,7 @@ module.exports = {
     },
     {
       id: 132060,
-      displayName: 'FBS Санкт-Петербург Экспр',
+      displayName: "FBS Санкт-Петербург Экспр",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -660,7 +662,7 @@ module.exports = {
     },
     {
       id: 132061,
-      displayName: 'FBS Санкт-Петербург Экспр',
+      displayName: "FBS Санкт-Петербург Экспр",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -669,7 +671,7 @@ module.exports = {
     },
     {
       id: 125611,
-      displayName: 'FBS Фарма',
+      displayName: "FBS Фарма",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -678,7 +680,7 @@ module.exports = {
     },
     {
       id: 127466,
-      displayName: 'FBS Холодильник КГТ',
+      displayName: "FBS Холодильник КГТ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -687,7 +689,7 @@ module.exports = {
     },
     {
       id: 119781,
-      displayName: 'JoyJoy',
+      displayName: "JoyJoy",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -696,7 +698,7 @@ module.exports = {
     },
     {
       id: 1785,
-      displayName: 'Алматы 8 мкр РЦ',
+      displayName: "Алматы 8 мкр РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -705,7 +707,7 @@ module.exports = {
     },
     {
       id: 1772,
-      displayName: 'Ангарск 272 квартал РЦ',
+      displayName: "Ангарск 272 квартал РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -714,7 +716,7 @@ module.exports = {
     },
     {
       id: 1786,
-      displayName: 'Артем Интернациональная Р',
+      displayName: "Артем Интернациональная Р",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -723,7 +725,7 @@ module.exports = {
     },
     {
       id: 6148,
-      displayName: 'Архангельск',
+      displayName: "Архангельск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -732,7 +734,7 @@ module.exports = {
     },
     {
       id: 1812,
-      displayName: 'Архангельск Революции РЦ',
+      displayName: "Архангельск Революции РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -741,7 +743,7 @@ module.exports = {
     },
     {
       id: 1724,
-      displayName: 'Астана Жумабаева РЦ',
+      displayName: "Астана Жумабаева РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -750,7 +752,7 @@ module.exports = {
     },
     {
       id: 6153,
-      displayName: 'Белгород',
+      displayName: "Белгород",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -759,7 +761,7 @@ module.exports = {
     },
     {
       id: 206236,
-      displayName: 'Белые Столбы',
+      displayName: "Белые Столбы",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -768,7 +770,7 @@ module.exports = {
     },
     {
       id: 205859,
-      displayName: 'Бишкек',
+      displayName: "Бишкек",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -777,7 +779,7 @@ module.exports = {
     },
     {
       id: 1864,
-      displayName: 'Братск Индустриальный РЦ',
+      displayName: "Братск Индустриальный РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -786,7 +788,7 @@ module.exports = {
     },
     {
       id: 6146,
-      displayName: 'Брянск',
+      displayName: "Брянск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -795,7 +797,7 @@ module.exports = {
     },
     {
       id: 1789,
-      displayName: 'Брянск Ленина РЦ',
+      displayName: "Брянск Ленина РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -804,7 +806,7 @@ module.exports = {
     },
     {
       id: 1790,
-      displayName: 'Великий Новгород Десятинн',
+      displayName: "Великий Новгород Десятинн",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -813,7 +815,7 @@ module.exports = {
     },
     {
       id: 117413,
-      displayName: 'Виртуальный склад Кари',
+      displayName: "Виртуальный склад Кари",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -822,7 +824,7 @@ module.exports = {
     },
     {
       id: 1791,
-      displayName: 'Владивосток Тухачевского',
+      displayName: "Владивосток Тухачевского",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -831,7 +833,7 @@ module.exports = {
     },
     {
       id: 115398,
-      displayName: 'Владикавказ',
+      displayName: "Владикавказ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -840,7 +842,7 @@ module.exports = {
     },
     {
       id: 1775,
-      displayName: 'Владимир Матросова РЦ',
+      displayName: "Владимир Матросова РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -849,7 +851,7 @@ module.exports = {
     },
     {
       id: 578,
-      displayName: 'Волгоград',
+      displayName: "Волгоград",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -858,7 +860,7 @@ module.exports = {
     },
     {
       id: 117498,
-      displayName: 'Воронеж',
+      displayName: "Воронеж",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -867,7 +869,7 @@ module.exports = {
     },
     {
       id: 1723,
-      displayName: 'Воронеж Фестивальный РЦ',
+      displayName: "Воронеж Фестивальный РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -876,7 +878,7 @@ module.exports = {
     },
     {
       id: 133355,
-      displayName: 'Воронеж улица Урывского 6',
+      displayName: "Воронеж улица Урывского 6",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -885,7 +887,7 @@ module.exports = {
     },
     {
       id: 210515,
-      displayName: 'Вёшки',
+      displayName: "Вёшки",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -894,7 +896,7 @@ module.exports = {
     },
     {
       id: 1769,
-      displayName: 'Гомель Шилова РЦ',
+      displayName: "Гомель Шилова РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -903,7 +905,7 @@ module.exports = {
     },
     {
       id: 208941,
-      displayName: 'Домодедово',
+      displayName: "Домодедово",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -912,7 +914,7 @@ module.exports = {
     },
     {
       id: 116433,
-      displayName: 'Домодедово',
+      displayName: "Домодедово",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -921,7 +923,7 @@ module.exports = {
     },
     {
       id: 209513,
-      displayName: 'Домодедово КБТ',
+      displayName: "Домодедово КБТ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -930,7 +932,7 @@ module.exports = {
     },
     {
       id: 1733,
-      displayName: 'Екатеринбург',
+      displayName: "Екатеринбург",
       isActive: true,
       allowKgt: false,
       isTransitActive: true,
@@ -939,7 +941,7 @@ module.exports = {
     },
     {
       id: 211644,
-      displayName: 'Екатеринбург 2 (Альпинистов)',
+      displayName: "Екатеринбург 2 (Альпинистов)",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -948,7 +950,7 @@ module.exports = {
     },
     {
       id: 1725,
-      displayName: 'Екатеринбург Горнистов РЦ',
+      displayName: "Екатеринбург Горнистов РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -957,7 +959,7 @@ module.exports = {
     },
     {
       id: 1793,
-      displayName: 'Елизово Вилюйская РЦ',
+      displayName: "Елизово Вилюйская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -966,7 +968,7 @@ module.exports = {
     },
     {
       id: 207726,
-      displayName: 'Жуковский',
+      displayName: "Жуковский",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -975,7 +977,7 @@ module.exports = {
     },
     {
       id: 1782,
-      displayName: 'Ижевск Гагарина РЦ',
+      displayName: "Ижевск Гагарина РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -984,7 +986,7 @@ module.exports = {
     },
     {
       id: 174,
-      displayName: 'Казань',
+      displayName: "Казань",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -993,7 +995,7 @@ module.exports = {
     },
     {
       id: 117986,
-      displayName: 'Казань',
+      displayName: "Казань",
       isActive: true,
       allowKgt: true,
       isTransitActive: false,
@@ -1002,7 +1004,7 @@ module.exports = {
     },
     {
       id: 204939,
-      displayName: 'Казахстан',
+      displayName: "Казахстан",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1011,7 +1013,7 @@ module.exports = {
     },
     {
       id: 206844,
-      displayName: 'Калининград',
+      displayName: "Калининград",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1020,7 +1022,7 @@ module.exports = {
     },
     {
       id: 1810,
-      displayName: 'Кандалакша Советская РЦ',
+      displayName: "Кандалакша Советская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1029,7 +1031,7 @@ module.exports = {
     },
     {
       id: 1796,
-      displayName: 'Караганда Бухар Жырау РЦ',
+      displayName: "Караганда Бухар Жырау РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1038,7 +1040,7 @@ module.exports = {
     },
     {
       id: 507,
-      displayName: 'Коледино',
+      displayName: "Коледино",
       isActive: true,
       allowKgt: true,
       isTransitActive: false,
@@ -1047,7 +1049,7 @@ module.exports = {
     },
     {
       id: 120602,
-      displayName: 'Коледино КБТ',
+      displayName: "Коледино КБТ",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -1056,7 +1058,7 @@ module.exports = {
     },
     {
       id: 3158,
-      displayName: 'Коледино склад',
+      displayName: "Коледино склад",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1065,7 +1067,7 @@ module.exports = {
     },
     {
       id: 130744,
-      displayName: 'Краснодар',
+      displayName: "Краснодар",
       isActive: true,
       allowKgt: false,
       isTransitActive: true,
@@ -1074,7 +1076,7 @@ module.exports = {
     },
     {
       id: 1716,
-      displayName: 'Краснодар Почтовая РЦ',
+      displayName: "Краснодар Почтовая РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1083,7 +1085,7 @@ module.exports = {
     },
     {
       id: 1699,
-      displayName: 'Краснодар Старый',
+      displayName: "Краснодар Старый",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1092,7 +1094,7 @@ module.exports = {
     },
     {
       id: 6145,
-      displayName: 'Красноярск',
+      displayName: "Красноярск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1101,7 +1103,7 @@ module.exports = {
     },
     {
       id: 37,
-      displayName: 'Красноярск Семафорная РЦ',
+      displayName: "Красноярск Семафорная РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1110,7 +1112,7 @@ module.exports = {
     },
     {
       id: 115577,
-      displayName: 'Крёкшино',
+      displayName: "Крёкшино",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -1119,7 +1121,7 @@ module.exports = {
     },
     {
       id: 124731,
-      displayName: 'Крёкшино КБТ',
+      displayName: "Крёкшино КБТ",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1128,7 +1130,7 @@ module.exports = {
     },
     {
       id: 6151,
-      displayName: 'Курск',
+      displayName: "Курск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1137,7 +1139,7 @@ module.exports = {
     },
     {
       id: 1797,
-      displayName: 'Кыштым Возмездия РЦ',
+      displayName: "Кыштым Возмездия РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1146,7 +1148,7 @@ module.exports = {
     },
     {
       id: 6143,
-      displayName: 'Липецк',
+      displayName: "Липецк",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1155,7 +1157,7 @@ module.exports = {
     },
     {
       id: 1798,
-      displayName: 'Магадан Советская РЦ',
+      displayName: "Магадан Советская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1164,7 +1166,7 @@ module.exports = {
     },
     {
       id: 1799,
-      displayName: 'Махачкала Акушинского РЦ',
+      displayName: "Махачкала Акушинского РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1173,7 +1175,7 @@ module.exports = {
     },
     {
       id: 572,
-      displayName: 'Минск',
+      displayName: "Минск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1182,7 +1184,7 @@ module.exports = {
     },
     {
       id: 571,
-      displayName: 'Минск Колодищи РЦ',
+      displayName: "Минск Колодищи РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1191,7 +1193,7 @@ module.exports = {
     },
     {
       id: 1800,
-      displayName: 'Мирный Комсомольская РЦ',
+      displayName: "Мирный Комсомольская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1200,7 +1202,7 @@ module.exports = {
     },
     {
       id: 1097,
-      displayName: 'Могилев',
+      displayName: "Могилев",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1209,7 +1211,7 @@ module.exports = {
     },
     {
       id: 133084,
-      displayName: 'Москва Джема 24 КГТ',
+      displayName: "Москва Джема 24 КГТ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1218,7 +1220,7 @@ module.exports = {
     },
     {
       id: 143772,
-      displayName: 'Москва Издательские решен',
+      displayName: "Москва Издательские решен",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1227,7 +1229,7 @@ module.exports = {
     },
     {
       id: 135238,
-      displayName: 'Москва Москва Своими сила',
+      displayName: "Москва Москва Своими сила",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1236,7 +1238,7 @@ module.exports = {
     },
     {
       id: 132829,
-      displayName: 'Москва ПроЛофт КГТ',
+      displayName: "Москва ПроЛофт КГТ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1245,7 +1247,7 @@ module.exports = {
     },
     {
       id: 132870,
-      displayName: 'Москва Своими силами Моск',
+      displayName: "Москва Своими силами Моск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1254,7 +1256,7 @@ module.exports = {
     },
     {
       id: 132871,
-      displayName: 'Москва Своими силами Моск',
+      displayName: "Москва Своими силами Моск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1263,7 +1265,7 @@ module.exports = {
     },
     {
       id: 132869,
-      displayName: 'Москва Своими силами Моск',
+      displayName: "Москва Своими силами Моск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1272,7 +1274,7 @@ module.exports = {
     },
     {
       id: 133917,
-      displayName: 'Москва Экомаркет 2ч',
+      displayName: "Москва Экомаркет 2ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1281,7 +1283,7 @@ module.exports = {
     },
     {
       id: 135243,
-      displayName: 'Москва Экспресс-доставка ',
+      displayName: "Москва Экспресс-доставка ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1290,7 +1292,7 @@ module.exports = {
     },
     {
       id: 1678,
-      displayName: 'Мурманск Промышленная РЦ',
+      displayName: "Мурманск Промышленная РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1299,7 +1301,7 @@ module.exports = {
     },
     {
       id: 117700,
-      displayName: 'Н.Новгород Чаадаева1',
+      displayName: "Н.Новгород Чаадаева1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1308,7 +1310,7 @@ module.exports = {
     },
     {
       id: 208277,
-      displayName: 'Невинномысск',
+      displayName: "Невинномысск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1317,7 +1319,7 @@ module.exports = {
     },
     {
       id: 1227,
-      displayName: 'Нижний Новгород',
+      displayName: "Нижний Новгород",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1326,7 +1328,7 @@ module.exports = {
     },
     {
       id: 6158,
-      displayName: 'Николо-Хованское',
+      displayName: "Николо-Хованское",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -1335,7 +1337,7 @@ module.exports = {
     },
     {
       id: 206708,
-      displayName: 'Новокузнецк',
+      displayName: "Новокузнецк",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1344,7 +1346,7 @@ module.exports = {
     },
     {
       id: 686,
-      displayName: 'Новосибирск',
+      displayName: "Новосибирск",
       isActive: true,
       allowKgt: false,
       isTransitActive: true,
@@ -1353,7 +1355,7 @@ module.exports = {
     },
     {
       id: 223,
-      displayName: 'Новосибирск Петухова РЦ',
+      displayName: "Новосибирск Петухова РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1362,7 +1364,7 @@ module.exports = {
     },
     {
       id: 118301,
-      displayName: 'Ногинск',
+      displayName: "Ногинск",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -1371,7 +1373,7 @@ module.exports = {
     },
     {
       id: 1729,
-      displayName: 'Омск 2-я Солнечная РЦ',
+      displayName: "Омск 2-я Солнечная РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1380,7 +1382,7 @@ module.exports = {
     },
     {
       id: 1686,
-      displayName: 'Орел Северная РЦ',
+      displayName: "Орел Северная РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1389,7 +1391,7 @@ module.exports = {
     },
     {
       id: 106476,
-      displayName: 'Оренбург',
+      displayName: "Оренбург",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1398,7 +1400,7 @@ module.exports = {
     },
     {
       id: 1801,
-      displayName: 'П-Камчатский Лукашевского',
+      displayName: "П-Камчатский Лукашевского",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1407,7 +1409,7 @@ module.exports = {
     },
     {
       id: 1824,
-      displayName: 'Пенза Аустрина РЦ',
+      displayName: "Пенза Аустрина РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1416,7 +1418,7 @@ module.exports = {
     },
     {
       id: 1672,
-      displayName: 'Пермь Сорокинская РЦ',
+      displayName: "Пермь Сорокинская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1425,7 +1427,7 @@ module.exports = {
     },
     {
       id: 117501,
-      displayName: 'Подольск',
+      displayName: "Подольск",
       isActive: true,
       allowKgt: true,
       isTransitActive: true,
@@ -1434,7 +1436,7 @@ module.exports = {
     },
     {
       id: 119400,
-      displayName: 'Пушкино',
+      displayName: "Пушкино",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -1443,7 +1445,7 @@ module.exports = {
     },
     {
       id: 114813,
-      displayName: 'Пятигорск',
+      displayName: "Пятигорск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1452,7 +1454,7 @@ module.exports = {
     },
     {
       id: 1814,
-      displayName: 'Пятигорск Ермолова РЦ',
+      displayName: "Пятигорск Ермолова РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1461,7 +1463,7 @@ module.exports = {
     },
     {
       id: 131,
-      displayName: 'Ростов-на-Дону',
+      displayName: "Ростов-на-Дону",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1470,7 +1472,7 @@ module.exports = {
     },
     {
       id: 1921,
-      displayName: 'С-П Черниговская РЦ',
+      displayName: "С-П Черниговская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1479,7 +1481,7 @@ module.exports = {
     },
     {
       id: 161812,
-      displayName: 'СПБ Шушары',
+      displayName: "СПБ Шушары",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1488,7 +1490,7 @@ module.exports = {
     },
     {
       id: 169872,
-      displayName: 'СЦ Астрахань',
+      displayName: "СЦ Астрахань",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1497,7 +1499,7 @@ module.exports = {
     },
     {
       id: 115649,
-      displayName: 'СЦ Балашиха',
+      displayName: "СЦ Балашиха",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1506,7 +1508,7 @@ module.exports = {
     },
     {
       id: 172430,
-      displayName: 'СЦ Барнаул',
+      displayName: "СЦ Барнаул",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1515,7 +1517,7 @@ module.exports = {
     },
     {
       id: 205228,
-      displayName: 'СЦ Белая Дача',
+      displayName: "СЦ Белая Дача",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1524,7 +1526,7 @@ module.exports = {
     },
     {
       id: 116471,
-      displayName: 'СЦ Бронницы',
+      displayName: "СЦ Бронницы",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1533,7 +1535,7 @@ module.exports = {
     },
     {
       id: 172940,
-      displayName: 'СЦ Брянск',
+      displayName: "СЦ Брянск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1542,7 +1544,7 @@ module.exports = {
     },
     {
       id: 144649,
-      displayName: 'СЦ Владимир',
+      displayName: "СЦ Владимир",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1551,7 +1553,7 @@ module.exports = {
     },
     {
       id: 117392,
-      displayName: 'СЦ Владимир old',
+      displayName: "СЦ Владимир old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1560,7 +1562,7 @@ module.exports = {
     },
     {
       id: 6144,
-      displayName: 'СЦ Волгоград',
+      displayName: "СЦ Волгоград",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1569,7 +1571,7 @@ module.exports = {
     },
     {
       id: 117059,
-      displayName: 'СЦ Гомель',
+      displayName: "СЦ Гомель",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1578,7 +1580,7 @@ module.exports = {
     },
     {
       id: 116338,
-      displayName: 'СЦ Дзержинский',
+      displayName: "СЦ Дзержинский",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1587,7 +1589,7 @@ module.exports = {
     },
     {
       id: 118400,
-      displayName: 'СЦ Екатеринбург',
+      displayName: "СЦ Екатеринбург",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1596,7 +1598,7 @@ module.exports = {
     },
     {
       id: 117423,
-      displayName: 'СЦ Екатеринбург 1',
+      displayName: "СЦ Екатеринбург 1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1605,7 +1607,7 @@ module.exports = {
     },
     {
       id: 117424,
-      displayName: 'СЦ Екатеринбург 2',
+      displayName: "СЦ Екатеринбург 2",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1614,7 +1616,7 @@ module.exports = {
     },
     {
       id: 204387,
-      displayName: 'СЦ Ереван район Эребуни',
+      displayName: "СЦ Ереван район Эребуни",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1623,7 +1625,7 @@ module.exports = {
     },
     {
       id: 203632,
-      displayName: 'СЦ Иваново',
+      displayName: "СЦ Иваново",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1632,7 +1634,7 @@ module.exports = {
     },
     {
       id: 158140,
-      displayName: 'СЦ Ижевск',
+      displayName: "СЦ Ижевск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1641,7 +1643,7 @@ module.exports = {
     },
     {
       id: 131643,
-      displayName: 'СЦ Иркутск',
+      displayName: "СЦ Иркутск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1650,7 +1652,7 @@ module.exports = {
     },
     {
       id: 6147,
-      displayName: 'СЦ Иркутск old',
+      displayName: "СЦ Иркутск old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1659,7 +1661,7 @@ module.exports = {
     },
     {
       id: 117779,
-      displayName: 'СЦ Казань',
+      displayName: "СЦ Казань",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1668,7 +1670,7 @@ module.exports = {
     },
     {
       id: 120719,
-      displayName: 'СЦ Казань 1',
+      displayName: "СЦ Казань 1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1677,7 +1679,7 @@ module.exports = {
     },
     {
       id: 117442,
-      displayName: 'СЦ Калуга',
+      displayName: "СЦ Калуга",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1686,7 +1688,7 @@ module.exports = {
     },
     {
       id: 205205,
-      displayName: 'СЦ Киров',
+      displayName: "СЦ Киров",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1695,7 +1697,7 @@ module.exports = {
     },
     {
       id: 117443,
-      displayName: 'СЦ Коледино К1',
+      displayName: "СЦ Коледино К1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1704,7 +1706,7 @@ module.exports = {
     },
     {
       id: 117445,
-      displayName: 'СЦ Коледино К2',
+      displayName: "СЦ Коледино К2",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1713,7 +1715,7 @@ module.exports = {
     },
     {
       id: 117446,
-      displayName: 'СЦ Коледино К3',
+      displayName: "СЦ Коледино К3",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1722,7 +1724,7 @@ module.exports = {
     },
     {
       id: 117447,
-      displayName: 'СЦ Коледино К4',
+      displayName: "СЦ Коледино К4",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1731,7 +1733,7 @@ module.exports = {
     },
     {
       id: 117448,
-      displayName: 'СЦ Коледино К5',
+      displayName: "СЦ Коледино К5",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1740,7 +1742,7 @@ module.exports = {
     },
     {
       id: 117449,
-      displayName: 'СЦ Коледино К6',
+      displayName: "СЦ Коледино К6",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1749,7 +1751,7 @@ module.exports = {
     },
     {
       id: 117450,
-      displayName: 'СЦ Коледино К7',
+      displayName: "СЦ Коледино К7",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1758,7 +1760,7 @@ module.exports = {
     },
     {
       id: 117451,
-      displayName: 'СЦ Коледино К8',
+      displayName: "СЦ Коледино К8",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1767,7 +1769,7 @@ module.exports = {
     },
     {
       id: 154371,
-      displayName: 'СЦ Комсомольская',
+      displayName: "СЦ Комсомольская",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1776,7 +1778,7 @@ module.exports = {
     },
     {
       id: 6159,
-      displayName: 'СЦ Красногорск',
+      displayName: "СЦ Красногорск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1785,7 +1787,7 @@ module.exports = {
     },
     {
       id: 117427,
-      displayName: 'СЦ Краснодар 1',
+      displayName: "СЦ Краснодар 1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1794,7 +1796,7 @@ module.exports = {
     },
     {
       id: 117428,
-      displayName: 'СЦ Краснодар 2',
+      displayName: "СЦ Краснодар 2",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1803,7 +1805,7 @@ module.exports = {
     },
     {
       id: 117429,
-      displayName: 'СЦ Краснодар 3',
+      displayName: "СЦ Краснодар 3",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1812,7 +1814,7 @@ module.exports = {
     },
     {
       id: 117430,
-      displayName: 'СЦ Краснодар 4',
+      displayName: "СЦ Краснодар 4",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1821,7 +1823,7 @@ module.exports = {
     },
     {
       id: 118365,
-      displayName: 'СЦ Красноярск Полиго',
+      displayName: "СЦ Красноярск Полиго",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1830,7 +1832,7 @@ module.exports = {
     },
     {
       id: 205985,
-      displayName: 'СЦ Крыловская',
+      displayName: "СЦ Крыловская",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1839,7 +1841,7 @@ module.exports = {
     },
     {
       id: 117433,
-      displayName: 'СЦ Крёкшино 1',
+      displayName: "СЦ Крёкшино 1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1848,7 +1850,7 @@ module.exports = {
     },
     {
       id: 140302,
-      displayName: 'СЦ Курск',
+      displayName: "СЦ Курск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1857,7 +1859,7 @@ module.exports = {
     },
     {
       id: 156814,
-      displayName: 'СЦ Курьяновская',
+      displayName: "СЦ Курьяновская",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1866,7 +1868,7 @@ module.exports = {
     },
     {
       id: 160030,
-      displayName: 'СЦ Липецк',
+      displayName: "СЦ Липецк",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1875,7 +1877,7 @@ module.exports = {
     },
     {
       id: 117289,
-      displayName: 'СЦ Лобня',
+      displayName: "СЦ Лобня",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1884,7 +1886,7 @@ module.exports = {
     },
     {
       id: 117393,
-      displayName: 'СЦ Минск',
+      displayName: "СЦ Минск",
       isActive: false,
       allowKgt: false,
       isTransitActive: true,
@@ -1893,7 +1895,7 @@ module.exports = {
     },
     {
       id: 121700,
-      displayName: 'СЦ Минск 2',
+      displayName: "СЦ Минск 2",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1902,7 +1904,7 @@ module.exports = {
     },
     {
       id: 115650,
-      displayName: 'СЦ Мытищи',
+      displayName: "СЦ Мытищи",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1911,7 +1913,7 @@ module.exports = {
     },
     {
       id: 204952,
-      displayName: 'СЦ Набережные Челны',
+      displayName: "СЦ Набережные Челны",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1920,7 +1922,7 @@ module.exports = {
     },
     {
       id: 118535,
-      displayName: 'СЦ Нижний Новгород',
+      displayName: "СЦ Нижний Новгород",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -1929,7 +1931,7 @@ module.exports = {
     },
     {
       id: 6140,
-      displayName: 'СЦ Нижний Новгород old',
+      displayName: "СЦ Нижний Новгород old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1938,7 +1940,7 @@ module.exports = {
     },
     {
       id: 3140,
-      displayName: 'СЦ Нижний Новгород не исп',
+      displayName: "СЦ Нижний Новгород не исп",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1947,7 +1949,7 @@ module.exports = {
     },
     {
       id: 141637,
-      displayName: 'СЦ Новокосино',
+      displayName: "СЦ Новокосино",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1956,7 +1958,7 @@ module.exports = {
     },
     {
       id: 118839,
-      displayName: 'СЦ Новосибирск',
+      displayName: "СЦ Новосибирск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1965,7 +1967,7 @@ module.exports = {
     },
     {
       id: 117419,
-      displayName: 'СЦ Новосибирск 1',
+      displayName: "СЦ Новосибирск 1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1974,7 +1976,7 @@ module.exports = {
     },
     {
       id: 118105,
-      displayName: 'СЦ Обнинск',
+      displayName: "СЦ Обнинск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1983,7 +1985,7 @@ module.exports = {
     },
     {
       id: 6152,
-      displayName: 'СЦ Омск',
+      displayName: "СЦ Омск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -1992,7 +1994,7 @@ module.exports = {
     },
     {
       id: 118026,
-      displayName: 'СЦ Омск 2-я Казахста',
+      displayName: "СЦ Омск 2-я Казахста",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2001,7 +2003,7 @@ module.exports = {
     },
     {
       id: 119408,
-      displayName: 'СЦ Очаково',
+      displayName: "СЦ Очаково",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2010,7 +2012,7 @@ module.exports = {
     },
     {
       id: 147019,
-      displayName: 'СЦ Пермь',
+      displayName: "СЦ Пермь",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2019,7 +2021,7 @@ module.exports = {
     },
     {
       id: 117432,
-      displayName: 'СЦ Подольск Б5',
+      displayName: "СЦ Подольск Б5",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2028,7 +2030,7 @@ module.exports = {
     },
     {
       id: 124716,
-      displayName: 'СЦ Подрезково',
+      displayName: "СЦ Подрезково",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2037,7 +2039,7 @@ module.exports = {
     },
     {
       id: 207743,
-      displayName: 'СЦ Пушкино',
+      displayName: "СЦ Пушкино",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2046,7 +2048,7 @@ module.exports = {
     },
     {
       id: 118019,
-      displayName: 'СЦ Ростов-на-Дону',
+      displayName: "СЦ Ростов-на-Дону",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2055,7 +2057,7 @@ module.exports = {
     },
     {
       id: 6156,
-      displayName: 'СЦ Рязань',
+      displayName: "СЦ Рязань",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2064,7 +2066,7 @@ module.exports = {
     },
     {
       id: 117414,
-      displayName: 'СЦ СПБ1',
+      displayName: "СЦ СПБ1",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2073,7 +2075,7 @@ module.exports = {
     },
     {
       id: 117230,
-      displayName: 'СЦ Самара',
+      displayName: "СЦ Самара",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2082,7 +2084,7 @@ module.exports = {
     },
     {
       id: 117734,
-      displayName: 'СЦ Санкт-Петербург Ю',
+      displayName: "СЦ Санкт-Петербург Ю",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2091,7 +2093,7 @@ module.exports = {
     },
     {
       id: 158929,
-      displayName: 'СЦ Саратов',
+      displayName: "СЦ Саратов",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2100,7 +2102,7 @@ module.exports = {
     },
     {
       id: 169537,
-      displayName: 'СЦ Серов',
+      displayName: "СЦ Серов",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2109,7 +2111,7 @@ module.exports = {
     },
     {
       id: 144154,
-      displayName: 'СЦ Симферополь',
+      displayName: "СЦ Симферополь",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2118,7 +2120,7 @@ module.exports = {
     },
     {
       id: 6149,
-      displayName: 'СЦ Симферополь old',
+      displayName: "СЦ Симферополь old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2127,7 +2129,7 @@ module.exports = {
     },
     {
       id: 117497,
-      displayName: 'СЦ Смоленск',
+      displayName: "СЦ Смоленск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2136,7 +2138,7 @@ module.exports = {
     },
     {
       id: 117462,
-      displayName: 'СЦ Солнечногорск',
+      displayName: "СЦ Солнечногорск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2145,7 +2147,7 @@ module.exports = {
     },
     {
       id: 209596,
-      displayName: 'СЦ Солнцево',
+      displayName: "СЦ Солнцево",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2154,7 +2156,7 @@ module.exports = {
     },
     {
       id: 161003,
-      displayName: 'СЦ Сургут',
+      displayName: "СЦ Сургут",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2163,7 +2165,7 @@ module.exports = {
     },
     {
       id: 117231,
-      displayName: 'СЦ Сургут',
+      displayName: "СЦ Сургут",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2172,7 +2174,7 @@ module.exports = {
     },
     {
       id: 117866,
-      displayName: 'СЦ Тамбов',
+      displayName: "СЦ Тамбов",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2181,7 +2183,7 @@ module.exports = {
     },
     {
       id: 117456,
-      displayName: 'СЦ Тверь',
+      displayName: "СЦ Тверь",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2190,7 +2192,7 @@ module.exports = {
     },
     {
       id: 204615,
-      displayName: 'СЦ Томск',
+      displayName: "СЦ Томск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2199,7 +2201,7 @@ module.exports = {
     },
     {
       id: 117401,
-      displayName: 'СЦ Тула',
+      displayName: "СЦ Тула",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2208,7 +2210,7 @@ module.exports = {
     },
     {
       id: 117819,
-      displayName: 'СЦ Тюмень',
+      displayName: "СЦ Тюмень",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2217,7 +2219,7 @@ module.exports = {
     },
     {
       id: 205104,
-      displayName: 'СЦ Ульяновск',
+      displayName: "СЦ Ульяновск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2226,7 +2228,7 @@ module.exports = {
     },
     {
       id: 149445,
-      displayName: 'СЦ Уфа',
+      displayName: "СЦ Уфа",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2235,7 +2237,7 @@ module.exports = {
     },
     {
       id: 6155,
-      displayName: 'СЦ Уфа old',
+      displayName: "СЦ Уфа old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2244,7 +2246,7 @@ module.exports = {
     },
     {
       id: 203799,
-      displayName: 'СЦ Чебоксары',
+      displayName: "СЦ Чебоксары",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2253,7 +2255,7 @@ module.exports = {
     },
     {
       id: 132508,
-      displayName: 'СЦ Челябинск',
+      displayName: "СЦ Челябинск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2262,7 +2264,7 @@ module.exports = {
     },
     {
       id: 117493,
-      displayName: 'СЦ Челябинск old',
+      displayName: "СЦ Челябинск old",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2271,7 +2273,7 @@ module.exports = {
     },
     {
       id: 117721,
-      displayName: 'СЦ Чита',
+      displayName: "СЦ Чита",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2280,7 +2282,7 @@ module.exports = {
     },
     {
       id: 207022,
-      displayName: 'СЦ Чёрная Грязь',
+      displayName: "СЦ Чёрная Грязь",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2289,7 +2291,7 @@ module.exports = {
     },
     {
       id: 121703,
-      displayName: 'СЦ Электросталь 4',
+      displayName: "СЦ Электросталь 4",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2298,7 +2300,7 @@ module.exports = {
     },
     {
       id: 158328,
-      displayName: 'СЦ Южные Ворота',
+      displayName: "СЦ Южные Ворота",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2307,7 +2309,7 @@ module.exports = {
     },
     {
       id: 6154,
-      displayName: 'СЦ Ярославль',
+      displayName: "СЦ Ярославль",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2316,7 +2318,7 @@ module.exports = {
     },
     {
       id: 502,
-      displayName: 'Самара',
+      displayName: "Самара",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2325,7 +2327,7 @@ module.exports = {
     },
     {
       id: 68,
-      displayName: 'Санкт-Петербург',
+      displayName: "Санкт-Петербург",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2334,7 +2336,7 @@ module.exports = {
     },
     {
       id: 2737,
-      displayName: 'Санкт-Петербург',
+      displayName: "Санкт-Петербург",
       isActive: true,
       allowKgt: true,
       isTransitActive: false,
@@ -2343,7 +2345,7 @@ module.exports = {
     },
     {
       id: 132043,
-      displayName: 'Санкт-Петербург КБТ',
+      displayName: "Санкт-Петербург КБТ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2352,7 +2354,7 @@ module.exports = {
     },
     {
       id: 133173,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2361,7 +2363,7 @@ module.exports = {
     },
     {
       id: 133176,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2370,7 +2372,7 @@ module.exports = {
     },
     {
       id: 133175,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2379,7 +2381,7 @@ module.exports = {
     },
     {
       id: 133174,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2388,7 +2390,7 @@ module.exports = {
     },
     {
       id: 133172,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2397,7 +2399,7 @@ module.exports = {
     },
     {
       id: 133171,
-      displayName: 'Санкт-Петербург Своими си',
+      displayName: "Санкт-Петербург Своими си",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2406,7 +2408,7 @@ module.exports = {
     },
     {
       id: 117544,
-      displayName: 'Санкт-Петербург Север',
+      displayName: "Санкт-Петербург Север",
       isActive: false,
       allowKgt: true,
       isTransitActive: false,
@@ -2415,7 +2417,7 @@ module.exports = {
     },
     {
       id: 1680,
-      displayName: 'Саратов Депутатская РЦ',
+      displayName: "Саратов Депутатская РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2424,7 +2426,7 @@ module.exports = {
     },
     {
       id: 119070,
-      displayName: 'Север-Авто-М',
+      displayName: "Север-Авто-М",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2433,7 +2435,7 @@ module.exports = {
     },
     {
       id: 6157,
-      displayName: 'Склад Варшава',
+      displayName: "Склад Варшава",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2442,7 +2444,7 @@ module.exports = {
     },
     {
       id: 118106,
-      displayName: 'Склад Диваны24',
+      displayName: "Склад Диваны24",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2451,7 +2453,7 @@ module.exports = {
     },
     {
       id: 115574,
-      displayName: 'Склад Климовск',
+      displayName: "Склад Климовск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2460,7 +2462,7 @@ module.exports = {
     },
     {
       id: 119204,
-      displayName: 'Склад Чехов',
+      displayName: "Склад Чехов",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2469,7 +2471,7 @@ module.exports = {
     },
     {
       id: 125238,
-      displayName: 'Склад пос-ка СПБ КБТ 48ч',
+      displayName: "Склад пос-ка СПБ КБТ 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2478,7 +2480,7 @@ module.exports = {
     },
     {
       id: 125239,
-      displayName: 'Склад пос-ка СПБ КБТ 72ч',
+      displayName: "Склад пос-ка СПБ КБТ 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2487,7 +2489,7 @@ module.exports = {
     },
     {
       id: 125240,
-      displayName: 'Склад пос-ка СПБ КБТ 96ч',
+      displayName: "Склад пос-ка СПБ КБТ 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2496,7 +2498,7 @@ module.exports = {
     },
     {
       id: 122316,
-      displayName: 'Склад пост Алматы 48ч',
+      displayName: "Склад пост Алматы 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2505,7 +2507,7 @@ module.exports = {
     },
     {
       id: 122491,
-      displayName: 'Склад пост Алматы 72ч',
+      displayName: "Склад пост Алматы 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2514,7 +2516,7 @@ module.exports = {
     },
     {
       id: 122492,
-      displayName: 'Склад пост Алматы 96ч',
+      displayName: "Склад пост Алматы 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2523,7 +2525,7 @@ module.exports = {
     },
     {
       id: 121631,
-      displayName: 'Склад пост Минск 48ч',
+      displayName: "Склад пост Минск 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2532,7 +2534,7 @@ module.exports = {
     },
     {
       id: 122466,
-      displayName: 'Склад пост Минск 72ч',
+      displayName: "Склад пост Минск 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2541,7 +2543,7 @@ module.exports = {
     },
     {
       id: 122467,
-      displayName: 'Склад пост Минск 96ч',
+      displayName: "Склад пост Минск 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2550,7 +2552,7 @@ module.exports = {
     },
     {
       id: 122496,
-      displayName: 'Склад пост Нурсултан 72ч',
+      displayName: "Склад пост Нурсултан 72ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2559,7 +2561,7 @@ module.exports = {
     },
     {
       id: 122498,
-      displayName: 'Склад пост Нурсултан 96ч',
+      displayName: "Склад пост Нурсултан 96ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2568,7 +2570,7 @@ module.exports = {
     },
     {
       id: 119261,
-      displayName: 'Склад поставщика',
+      displayName: "Склад поставщика",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2577,7 +2579,7 @@ module.exports = {
     },
     {
       id: 122252,
-      displayName: 'Склад поставщика 72 часа ',
+      displayName: "Склад поставщика 72 часа ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2586,7 +2588,7 @@ module.exports = {
     },
     {
       id: 122256,
-      displayName: 'Склад поставщика 96 часов',
+      displayName: "Склад поставщика 96 часов",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2595,7 +2597,7 @@ module.exports = {
     },
     {
       id: 117673,
-      displayName: 'Склад поставщика КБТ 48ч',
+      displayName: "Склад поставщика КБТ 48ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2604,7 +2606,7 @@ module.exports = {
     },
     {
       id: 122258,
-      displayName: 'Склад поставщика КБТ 72 ч',
+      displayName: "Склад поставщика КБТ 72 ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2613,7 +2615,7 @@ module.exports = {
     },
     {
       id: 122259,
-      displayName: 'Склад поставщика КБТ 96 ч',
+      displayName: "Склад поставщика КБТ 96 ч",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2622,7 +2624,7 @@ module.exports = {
     },
     {
       id: 74,
-      displayName: 'Сургут Сосновая РЦ',
+      displayName: "Сургут Сосновая РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2631,7 +2633,7 @@ module.exports = {
     },
     {
       id: 122495,
-      displayName: 'Сц Нурсултан',
+      displayName: "Сц Нурсултан",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2640,7 +2642,7 @@ module.exports = {
     },
     {
       id: 115651,
-      displayName: 'Тамбов',
+      displayName: "Тамбов",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2649,7 +2651,7 @@ module.exports = {
     },
     {
       id: 1681,
-      displayName: 'Тамбов Бастионная РЦ',
+      displayName: "Тамбов Бастионная РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2658,7 +2660,7 @@ module.exports = {
     },
     {
       id: 1774,
-      displayName: 'Тверь Коминтерна РЦ',
+      displayName: "Тверь Коминтерна РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2667,7 +2669,7 @@ module.exports = {
     },
     {
       id: 206348,
-      displayName: 'Тула',
+      displayName: "Тула",
       isActive: true,
       allowKgt: false,
       isTransitActive: true,
@@ -2676,7 +2678,7 @@ module.exports = {
     },
     {
       id: 6150,
-      displayName: 'Ульяновск',
+      displayName: "Ульяновск",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2685,7 +2687,7 @@ module.exports = {
     },
     {
       id: 1803,
-      displayName: 'Уральск Громовой РЦ',
+      displayName: "Уральск Громовой РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2694,7 +2696,7 @@ module.exports = {
     },
     {
       id: 1193,
-      displayName: 'Хабаровск',
+      displayName: "Хабаровск",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2703,7 +2705,7 @@ module.exports = {
     },
     {
       id: 119742,
-      displayName: 'Холл.ру Питер',
+      displayName: "Холл.ру Питер",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2712,7 +2714,7 @@ module.exports = {
     },
     {
       id: 1804,
-      displayName: 'Челябинск Дзержинского РЦ',
+      displayName: "Челябинск Дзержинского РЦ",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2721,7 +2723,7 @@ module.exports = {
     },
     {
       id: 206968,
-      displayName: 'Чехов, Новоселки вл 11 стр 5',
+      displayName: "Чехов, Новоселки вл 11 стр 5",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2730,7 +2732,7 @@ module.exports = {
     },
     {
       id: 210001,
-      displayName: 'Чехов, Новоселки вл 11 стр 7',
+      displayName: "Чехов, Новоселки вл 11 стр 7",
       isActive: true,
       allowKgt: false,
       isTransitActive: false,
@@ -2739,7 +2741,7 @@ module.exports = {
     },
     {
       id: 159402,
-      displayName: 'Шушары ',
+      displayName: "Шушары ",
       isActive: true,
       allowKgt: true,
       isTransitActive: false,
@@ -2748,7 +2750,7 @@ module.exports = {
     },
     {
       id: 120762,
-      displayName: 'Электросталь',
+      displayName: "Электросталь",
       isActive: true,
       allowKgt: true,
       isTransitActive: true,
@@ -2757,7 +2759,7 @@ module.exports = {
     },
     {
       id: 121709,
-      displayName: 'Электросталь КБТ',
+      displayName: "Электросталь КБТ",
       isActive: true,
       allowKgt: true,
       isTransitActive: false,
@@ -2766,7 +2768,7 @@ module.exports = {
     },
     {
       id: 93,
-      displayName: 'Южно-Сахалинск Ленина 123',
+      displayName: "Южно-Сахалинск Ленина 123",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2775,7 +2777,7 @@ module.exports = {
     },
     {
       id: 1771,
-      displayName: 'Ярославль',
+      displayName: "Ярославль",
       isActive: false,
       allowKgt: false,
       isTransitActive: false,
@@ -2793,7 +2795,8 @@ module.exports = {
     MOSCOW: {
       ids: [-1029256],
       regions: [
-        80, 38, 4, 64, 83, 33, 68, 70, 69, 30, 86, 75, 40, 1, 66, 110, 22, 31, 48, 71, 114,
+        80, 38, 4, 64, 83, 33, 68, 70, 69, 30, 86, 75, 40, 1, 66, 110, 22, 31,
+        48, 71, 114,
       ],
     },
     KAZAHSTAN: {
@@ -2830,15 +2833,15 @@ module.exports = {
     ],
   },
   LOCALES: {
-    RU: 'ru',
+    RU: "ru",
   },
   CURRENCIES: {
-    RUB: 'rub',
+    RUB: "rub",
   },
   SEX: {
-    FEMALE: 'female',
-    MALE: 'male',
+    FEMALE: "female",
+    MALE: "male",
   },
   USERAGENT:
-    'Mozilla/5.0 (compatible; wb-private-api; +https://github.com/glmn/wb-private-api)',
+    "Mozilla/5.0 (compatible; wb-private-api; +https://github.com/glmn/wb-private-api)",
 };

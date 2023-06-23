@@ -290,23 +290,12 @@ class WBPrivateAPI {
   }
 
   /**
-   * @returns Object with seller info
+   * @returns Object with supplier info
    */
-  async getSellerInfo(sellerId) {
-    const limits = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-    const id = String(sellerId);
-
-    const basketNumber = getBasketNumber(id);
-    const vol = id.length > 5 ? id.substring(0, limits[id.length]) : 0;
-    const part = id.substring(0, limits[id.length + 2]);
-    const URL = Constants.URLS.SELLER.INFO.format(
-      basketNumber < 10 ? `0${basketNumber}` : basketNumber,
-      vol,
-      part,
-      id
+  async getSupplierInfo(sellerId) {
+    const res = await this.session.get(
+      Constants.URLS.SUPPLIER.INFO.format(sellerId),
     );
-    const res = await this.session.get(URL);
     return res.data || {};
   }
 }

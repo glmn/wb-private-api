@@ -94,8 +94,8 @@ describe('Проверка поиска товаров WBPrivateAPI.search()', (
 });
 
 describe('Проверка выдачи данных по продавцу', () => {
-  test('Проверка метода .getSellerInfo()', async () => {
-    const seller = await wbapi.getSellerInfo(125422333);
-    expect(seller.nmId).toBe(125422333);
+  test('Проверка метода .getSupplierInfo()', async () => {
+    const supplier = await wbapi.getSupplierInfo(1136572);
+    expect(supplier.id).toBe(1136572);
   });
 });

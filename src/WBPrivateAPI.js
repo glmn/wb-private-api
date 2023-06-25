@@ -153,7 +153,7 @@ class WBPrivateAPI {
    * @param {number} page - page number
    * @returns {array} - An array of products
    */
-  async getCatalogPage(catalogConfig, page = 1) {
+  async getCatalogPage(catalogConfig, page = 1, retries = 0) {
     return new Promise(async (resolve) => {
       let foundProducts;
       const options = {
@@ -171,11 +171,16 @@ class WBPrivateAPI {
       };
       try {
         const url = Constants.URLS.SEARCH.EXACTMATCH;
-        const res = await this.session.get(url, options);
+        const res = await this.session.get(url, {
+          ...options,
+          "axios-retry": {
+            retries,
+          },
+        });
+
         foundProducts = res.data.data.products;
       } catch (err) {
-        console.log(err);
-        await this.getCatalogPage(catalogConfig, page);
+        throw new Error(err);
       }
       resolve(foundProducts);
     });
@@ -247,7 +252,7 @@ class WBPrivateAPI {
    * @param config - { productIds, dest }
    * @returns {object} of products with delivety times
    */
-  async getDeliveryDataByNms(productIds) {
+  async getDeliveryDataByNms(productIds, retries = 0) {
     return new Promise(async (resolve) => {
       const options = {
         params: {
@@ -259,11 +264,16 @@ class WBPrivateAPI {
       };
       try {
         const url = Constants.URLS.PRODUCT.DELIVERYDATA;
-        const res = await this.session.get(url, options);
+        const res = await this.session.get(url, {
+          ...options,
+          "axios-retry": {
+            retries,
+          },
+        });
         const foundProducts = res.data.data.products;
         resolve(foundProducts);
       } catch (err) {
-        await this.getDeliveryDataByNms(productIds);
+        throw new Error(err);
       }
     });
   }

@@ -3,6 +3,7 @@ const https = require("https");
 const http = require("http");
 const { parse, stringify } = require("qs");
 const Constants = require("./Constants");
+const { default: axiosRetry } = require("axios-retry");
 
 class SessionBuilder {
   /**
@@ -10,7 +11,7 @@ class SessionBuilder {
    * @returns An Axios instance
    */
   static create() {
-    return Axios.create({
+    const session = Axios.create({
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
       paramsSerializer: {
@@ -22,6 +23,13 @@ class SessionBuilder {
         "Content-Encoding": "Accept-Encoding: gzip, deflate, br",
       },
     });
+
+    axiosRetry(session, {
+      retries: 0,
+      retryDelay: (retries) => retries * 500,
+    });
+
+    return session;
   }
 }
 

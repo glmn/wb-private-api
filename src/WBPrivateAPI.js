@@ -23,7 +23,7 @@ class WBPrivateAPI {
    * @param {number} pageCount - Number of pages to retrieve
    * @returns {WBCatalog} WBCatalog objects with WBProducts inside it
    */
-  async search(keyword, pageCount = 0) {
+  async search(keyword, pageCount = 0, retries = 0) {
     const products = [];
 
     const totalProducts = await this.searchTotalProducts(keyword);
@@ -50,7 +50,7 @@ class WBPrivateAPI {
       .fill(1)
       .map((x, y) => x + y);
     const parsedPages = await Promise.all(
-      threads.map((thr) => this.getCatalogPage(catalogConfig, thr))
+      threads.map((thr) => this.getCatalogPage(catalogConfig, thr, retries))
     );
 
     parsedPages.map((val) => {

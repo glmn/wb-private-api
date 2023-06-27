@@ -62,6 +62,10 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
     const catalog = await wbapi.search("Платье", 3);
     expect(catalog.products.length).toBe(300);
   });
+  test('Проверка совместимости с axios-retry', async () => {
+    const catalog = await wbapi.search("Платье", 1, 3);
+    expect(catalog.products.length).toBe(100);
+  });
 
   test("Проверка аргумента pageCount на понижение кол-ва страниц, если их меньше чем запрошено", async () => {
     const pageCount = 100;

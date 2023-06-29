@@ -52,7 +52,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
     expect(catalog_value).toBe("subject=69;70;2613;2905;4000;4855;4857");
   });
 
-  test("Проверка метода getQueryMetadata на запросых разных страниц", async () => {
+  test("Проверка метода getQueryMetadata на запросы разных страниц", async () => {
     const pageOne = await wbapi.getQueryMetadata("Платье", 3, true, 1);
     const pageTwo = await wbapi.getQueryMetadata("Платье", 3, true, 2);
     expect(pageOne.products[0].id !== pageTwo.products[0].id).toBeTruthy();
@@ -62,9 +62,24 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
     const catalog = await wbapi.search("Платье", 3);
     expect(catalog.products.length).toBe(300);
   });
-  test('Проверка совместимости с axios-retry', async () => {
+
+  test("Проверка совместимости с axios-retry", async () => {
     const catalog = await wbapi.search("Платье", 1, 3);
     expect(catalog.products.length).toBe(100);
+  });
+
+  test("Проверка метода .getQueryMetadata на прохождение HTTP 429 ошибки", async () => {
+    const catalogs = await Promise.all([
+      wbapi.getQueryMetadata("платье", 100, true, 1, 3),
+      wbapi.getQueryMetadata("платье", 100, true, 2, 3),
+      wbapi.getQueryMetadata("платье", 100, true, 3, 3),
+    ]);
+    
+    expect(
+      catalogs.reduce((acc, current) => {
+        return acc += current.products.length;
+      }, 0)
+    ).toBe(300);
   });
 
   test("Проверка аргумента pageCount на понижение кол-ва страниц, если их меньше чем запрошено", async () => {

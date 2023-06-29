@@ -32,7 +32,9 @@ class WBPrivateAPI {
     const { catalog_type, catalog_value } = await this.getQueryMetadata(
       keyword,
       0,
-      false
+      false,
+      1,
+      retries
     );
     const catalogConfig = { keyword, catalog_type, catalog_value };
 
@@ -74,7 +76,13 @@ class WBPrivateAPI {
    * @param {string} keyword - The keyword you want to search for.
    * @returns {array} - An array of shardKey, preset and preset value
    */
-  async getQueryMetadata(keyword, limit = 0, withProducts = false, page = 1) {
+  async getQueryMetadata(
+    keyword,
+    limit = 0,
+    withProducts = false,
+    page = 1,
+    retries = 0
+  ) {
     let params = {
       query: keyword,
       locale: "ru",
@@ -84,7 +92,10 @@ class WBPrivateAPI {
 
     if (withProducts) {
       params = {
-        ...params,
+        query: keyword,
+        locale: "ru",
+        resultset: "catalog",
+        limit,
         appType: Constants.APPTYPES.DESKTOP,
         dest: this.destination.ids,
         sort: "popular",
@@ -95,7 +106,11 @@ class WBPrivateAPI {
 
     const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
       params,
+      "axios-retry": {
+        retries,
+      },
     });
+
     if (
       res.data?.metadata?.hasOwnProperty("catalog_type") &&
       res.data?.metadata?.hasOwnProperty("catalog_value")

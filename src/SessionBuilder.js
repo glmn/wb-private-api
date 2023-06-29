@@ -26,7 +26,6 @@ class SessionBuilder {
 
     axiosRetry(session, {
       retries: 0,
-      retryDelay: (retries) => retries * 500,
     });
 
     return session;

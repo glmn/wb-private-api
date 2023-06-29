@@ -74,7 +74,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
       wbapi.getQueryMetadata("платье", 100, true, 2, 3),
       wbapi.getQueryMetadata("платье", 100, true, 3, 3),
     ]);
-    
+
     expect(
       catalogs.reduce((acc, current) => {
         return acc += current.products.length;

@@ -108,6 +108,9 @@ class WBPrivateAPI {
       params,
       "axios-retry": {
         retries,
+        retryCondition: (error) => {
+          return error.response.status === 429 || error.response.status > 500;
+        },
       },
     });
 
@@ -190,6 +193,11 @@ class WBPrivateAPI {
           ...options,
           "axios-retry": {
             retries,
+            retryCondition: (error) => {
+              return (
+                error.response.status === 429 || error.response.status > 500
+              );
+            },
           },
         });
 

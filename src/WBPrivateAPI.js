@@ -120,6 +120,18 @@ class WBPrivateAPI {
     ) {
       return { ...res.data.metadata, products: res.data.data?.products };
     }
+
+    if (
+      res.data?.hasOwnProperty("shardKey") &&
+      res.data?.hasOwnProperty("query")
+    ) {
+      return {
+        catalog_type: res.data.shardKey,
+        catalog_value: res.data.query,
+        products: [],
+      };
+    }
+
     return { catalog_type: null, catalog_value: null, products: [] };
   }
 

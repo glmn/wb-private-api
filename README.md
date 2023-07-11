@@ -10,7 +10,7 @@ NodeJS модуль. Работает через приватное API Wildberr
 
 После установки рекомендую протестировать работоспособность
 
-![image](https://user-images.githubusercontent.com/1326151/198322503-f16c2051-5bf0-4887-bc9f-2bd28c368282.png)
+![image](https://github.com/glmn/wb-private-api/assets/1326151/e1d04808-1ba3-40cf-96bf-c6c5868ad4b8)
 
 Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues
 

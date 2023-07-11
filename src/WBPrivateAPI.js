@@ -6,7 +6,6 @@ const Constants = require("./Constants");
 const WBProduct = require("./WBProduct");
 const WBCatalog = require("./WBCatalog");
 const SessionBuilder = require("./SessionBuilder");
-const { getBasketNumber } = require("./Utils").Card;
 
 format.extend(String.prototype, {});
 
@@ -23,7 +22,7 @@ class WBPrivateAPI {
    * @param {number} pageCount - Number of pages to retrieve
    * @returns {WBCatalog} WBCatalog objects with WBProducts inside it
    */
-  async search(keyword, pageCount = 0, retries = 0) {
+  async search(keyword, pageCount = 0, retries = 0, filters = []) {
     const products = [];
 
     const totalProducts = await this.searchTotalProducts(keyword);
@@ -48,11 +47,12 @@ class WBPrivateAPI {
         totalPages = pageCount;
       }
     }
+
     const threads = Array(totalPages)
       .fill(1)
       .map((x, y) => x + y);
     const parsedPages = await Promise.all(
-      threads.map((thr) => this.getCatalogPage(catalogConfig, thr, retries))
+      threads.map((thr) => this.getCatalogPage(catalogConfig, thr, retries, filters))
     );
 
     parsedPages.map((val) => {
@@ -112,6 +112,7 @@ class WBPrivateAPI {
           return error.response.status === 429 || error.response.status >= 500;
         },
       },
+      
     });
 
     if (
@@ -183,7 +184,7 @@ class WBPrivateAPI {
    * @param {number} page - page number
    * @returns {array} - An array of products
    */
-  async getCatalogPage(catalogConfig, page = 1, retries = 0) {
+  async getCatalogPage(catalogConfig, page = 1, retries = 0, filters = []) {
     return new Promise(async (resolve) => {
       let foundProducts;
       const options = {
@@ -199,6 +200,9 @@ class WBPrivateAPI {
           resultset: "catalog",
         },
       };
+      for (let filter of filters) {
+        options.params[filter['type']] = filter['value']
+      }
       try {
         const url = Constants.URLS.SEARCH.EXACTMATCH;
         const res = await this.session.get(url, {

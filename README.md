@@ -12,82 +12,86 @@ NodeJS модуль. Работает через приватное API Wildberr
 
 ![image](https://user-images.githubusercontent.com/1326151/198322503-f16c2051-5bf0-4887-bc9f-2bd28c368282.png)
 
-
 Если все результаты положительные, значит библиотека полностью работоспособна и сервера WB отвечают верно. В случае, если каки-либо тесты отрицательные, прошу создать обращение https://github.com/glmn/wb-private-api/issues
 
 ## Пример работы
 
 ### Вывод данных о первом товаре из поисковой выдачи по ключевому слову
-```js
-import { WBPrivateAPI, Constants } from 'wb-private-api'
 
-const keyword = 'HotWheels'
+```js
+import { WBPrivateAPI, Constants } from "wb-private-api";
+
+const keyword = "HotWheels";
 
 /*
-* Select destination and init WBPrivateAPI with it
-* You can find more destionations in Constants.DESTINATIONS
-*/
-const destination = Constants.DESTINATIONS.MOSCOW
-const wbapi = new WBPrivateAPI({destination})
+ * Select destination and init WBPrivateAPI with it
+ * You can find more destionations in Constants.DESTINATIONS
+ */
+const destination = Constants.DESTINATIONS.MOSCOW;
+const wbapi = new WBPrivateAPI({ destination });
 
 const initiate = async () => {
-    /*
-    * Search and Grab first 2 pages
-    * with specified keyword
-    */
-    const catalog = await wbapi.search(keyword, 2)
-    const product = catalog.products[0]
+  /*
+   * Search and Grab first 2 pages
+   * with specified keyword
+   */
+  const catalog = await wbapi.search(keyword, 2);
+  const product = catalog.products[0];
 
-    /*
-    * Returning all Stocks with Warehouses Ids
-    * Then you can compare these Ids
-    * using Constants.WAREHOUSES
-    */
-    const stocks = await product.getStocks()
+  /*
+   * Returning all Stocks with Warehouses Ids
+   * Then you can compare these Ids
+   * using Constants.WAREHOUSES
+   */
+  const stocks = await product.getStocks();
 
-    /* No comments here :P */
-    const feedbacks = await product.getFeedbacks()
-    const questions = await product.getQuestions()
-}
+  /* No comments here :P */
+  const feedbacks = await product.getFeedbacks();
+  const questions = await product.getQuestions();
+};
 
-initiate()
+initiate();
 ```
 
 ### Вывод рекламодателей из поисковой выдачи по ключевому слову
-```js
-import { WBPrivateAPI, Constants } from 'wb-private-api'
 
-const keyword = 'Менструальные чаши'
+```js
+import { WBPrivateAPI, Constants } from "wb-private-api";
+
+const keyword = "Менструальные чаши";
 
 /*
-* Select destination and init WBPrivateAPI with it
-* You can find more destionations in Constants.DESTINATIONS
-*/
-const destination = Constants.DESTINATIONS.MOSCOW
-const wbapi = new WBPrivateAPI({destination})
+ * Select destination and init WBPrivateAPI with it
+ * You can find more destionations in Constants.DESTINATIONS
+ */
+const destination = Constants.DESTINATIONS.MOSCOW;
+const wbapi = new WBPrivateAPI({ destination });
 
 const initiate = async () => {
-    /*
-    * Search ads in search results
-    * with specified keyword
-    */
-    const {pages, prioritySubjects, adverts} = await wbapi.getSearchAds(keyword)
+  /*
+   * Search ads in search results
+   * with specified keyword
+   */
+  const { pages, prioritySubjects, adverts } = await wbapi.getSearchAds(
+    keyword
+  );
 
-    // Ads positions on each page
-    console.log(pages)
+  // Ads positions on each page
+  console.log(pages);
 
-    // Subjects ordered by priority
-    console.log(prioritySubjects)
+  // Subjects ordered by priority
+  console.log(prioritySubjects);
 
-    // Adverts including CPM
-    console.log(adverts)
-}
+  // Adverts including CPM
+  console.log(adverts);
+};
 
-initiate()
+initiate();
 ```
 
 ## `WBPrivateAPI` методы
-`.search(keyword, pageCount, retries)` - Поиск всех товаров по Ключевому слову `keyword`. `pageCount` отвечает за кол-во необходимых страниц для прохода. Если `pageCount = 0`, то будет взяты все страницы или `100`, если их больше. `retries` отвечает за количество попыток выполнить запрос, если в ответ был получен статус 5хх или были неполадки с сетью. Метод возвращает объект `WBCatalog`
+
+`.search(keyword, pageCount, retries = 0, filters = [])` - Поиск всех товаров по Ключевому слову `keyword`. `pageCount` отвечает за кол-во необходимых страниц для прохода. Если `pageCount = 0`, то будет взяты все страницы или `100`, если их больше. `retries` отвечает за количество попыток выполнить запрос, если в ответ был получен статус 5хх или 429. `filters` это массив с объектами вида `[{type: 'fbrand' value: 11399 }]`, необходим для фильтрации поисковой выдачи по брендам, поставщикам, цене и т.д. Метод возвращает объект `WBCatalog`
 
 `.getSearchAds(keyword)` - Поиск рекламодателей (в разделе Поиск) по Ключевому слову
 
@@ -102,16 +106,18 @@ initiate()
 `.getListOfProducts(productIds)` - Возвращает массив найденных артикулов на WB с деталями (Не оборачивается в WBProduct)
 
 ## `WBCatalog` методы
+
 `.page(number)` - Возвращает массив товаров с заданной страницы (массив состоит из объектов `WBProduct`)
 
 `.getPosition(productId)` - Возвращает номер позиции по заданному SKU. Если такого SKU в выдаче нет, то вернёт `-1`
 
 ## `WBProduct` методы
+
 `.create(id)` - Статичный метод. Использовать в виде `WBProduct.create(id)`. Где `id` = `Артикул товара`. Метод асинхронный, поэтому перед вызовом используйте `await`. Вернет объект `WBProduct`
 
 `.totalStocks` - Вернёт сумму остатков товара со всех складов (!) предварительно вызвать `.getStocks()`)
 
-`.getStocks()` - Присвоет (и вернет) свойству `stocks`  массив с данными об остатках на складе
+`.getStocks()` - Присвоет (и вернет) свойству `stocks` массив с данными об остатках на складе
 
 `.getPromo()` - Присвоет (и вернет) свойству `promo` объект с данными об участии в промо-акции
 
@@ -123,4 +129,4 @@ initiate()
 
 `.getPhotos(size='min')` - Вернет ссылки на все фотографии в текущем отзыве. `size` по умолчанию = `min`. Заменить на `full` если необходим большой размер
 
-[![Verified on Openbase](https://badges.openbase.com/js/verified/wb-private-api.svg?token=yS0bpJQgFYOsdNzGVKyXsudiHKfqZve3FHuweIWRjnM=)](https://openbase.com/js/wb-private-api?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
+[![Verified on Openbase](https://badges.openbase.com/js/verified/wb-private-api.svg?token=yS0bpJQgFYOsdNzGVKyXsudiHKfqZve3FHuweIWRjnM=)](https://openbase.com/js/wb-private-api?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)

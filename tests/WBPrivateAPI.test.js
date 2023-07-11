@@ -63,6 +63,37 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
     expect(catalog.products.length).toBe(300);
   });
 
+  test('Проверка фильтрации товаров по бренду и ключевому запросу "торшер"', async () => {
+    const filters = [{ type: "fbrand", value: 11399 }];
+    const catalog = await wbapi.search("торшер", 1, 0, filters);
+    expect(catalog.products.length).toBeGreaterThan(0);
+    expect(
+      catalog.products.every((p) => p.brandId === filters[0].value)
+    ).toBeTruthy();
+  });
+
+  test('Проверка фильтрации товаров по поставщику и ключевому запросу "торшер"', async () => {
+    const filters = [{ type: "fsupplier", value: 1180616 }];
+    const catalog = await wbapi.search("торшер", 1, 0, filters);
+    expect(catalog.products.length).toBeGreaterThan(0);
+    expect(
+      catalog.products.every((p) => p.supplierId === filters[0].value)
+    ).toBeTruthy();
+  });
+
+  test('Проверка фильтрации товаров по бренду и по поставщику с ключевым запросом "торшер"', async () => {
+    const filters = [
+      { type: "fbrand", value: 11399 },
+      { type: "fsupplier", value: 1180616 },
+    ];
+    const catalog = await wbapi.search("торшер", 1, 0, filters);
+    expect(catalog.products.length).toBeGreaterThan(0);
+    expect(
+      catalog.products.every((p) => p.brandId === filters[0].value) &&
+      catalog.products.every((p) => p.supplierId === filters[1].value)
+    ).toBeTruthy();
+  });
+
   test("Проверка совместимости с axios-retry", async () => {
     const catalog = await wbapi.search("Платье", 1, 3);
     expect(catalog.products.length).toBe(100);
@@ -77,7 +108,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
 
     expect(
       catalogs.reduce((acc, current) => {
-        return acc += current.products.length;
+        return (acc += current.products.length);
       }, 0)
     ).toBe(300);
   });

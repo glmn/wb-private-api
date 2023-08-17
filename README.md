@@ -1,10 +1,17 @@
-<p align="center"><h3>🍒 wb-private-api</h3></p>
+
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/glmn/wb-private-api) ![GitHub last commit](https://img.shields.io/github/last-commit/glmn/wb-private-api) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/glmn/wb-private-api) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/glmn/wb-private-api/Node.js%20CI)
 
 ![npm](https://nodei.co/npm/wb-private-api.png)
 
 NodeJS модуль. Работает через приватное API Wildberries
+
+<p align="center"><h3>🍒 wb-private-api</h3></p>
+
+> <p>Разработано при спонсировании:</p>
+> <p><img src="https://github.com/glmn/glmn/assets/1326151/549b8bed-60c3-4f6e-8f5a-8592c63467b6" height="35"></p>
+> <p><img src="https://github.com/glmn/glmn/assets/1326151/5f38f86c-7014-4e73-8fa1-c6657a902826" height="11"> <b>Нейромаркет</b> - Глубокий Анализ товаров на Wildberries.<br/>
+> Выдача доступов к закрытому бета-тестированию -> <b><a href="https://t.me/+tN3mdbvUP1RkNDgy" target="_blank">Телеграм канал</a></b></p>
 
 Установка: `npm i wb-private-api`
 

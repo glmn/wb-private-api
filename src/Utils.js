@@ -36,7 +36,8 @@ const getBasketNumber = (productId) => {
     if (t >= 1314 && t <= 1601) return 10;
     if (t >= 1602 && t <= 1655) return 11;
     if (t >= 1656 && t <= 1919) return 12;
-    return 13;
+    if (t >= 1920 && t <= 2045) return 13;
+    return 14;
   };
   return basket(parseInt(productId / 1e5, 10));
 };

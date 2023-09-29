@@ -52,7 +52,9 @@ class WBPrivateAPI {
       .fill(1)
       .map((x, y) => x + y);
     const parsedPages = await Promise.all(
-      threads.map((thr) => this.getCatalogPage(catalogConfig, thr, retries, filters))
+      threads.map((thr) =>
+        this.getCatalogPage(catalogConfig, thr, retries, filters)
+      )
     );
 
     parsedPages.map((val) => {
@@ -86,8 +88,10 @@ class WBPrivateAPI {
     let params = {
       query: keyword,
       locale: "ru",
+      appType: Constants.APPTYPES.DESKTOP,
+      dest: this.destination.ids[0],
       resultset: "catalog",
-      limit,
+      limit: 1,
     };
 
     if (withProducts) {
@@ -97,7 +101,7 @@ class WBPrivateAPI {
         resultset: "catalog",
         limit,
         appType: Constants.APPTYPES.DESKTOP,
-        dest: this.destination.ids,
+        dest: this.destination.ids[0],
         sort: "popular",
         regions: this.destination.regions,
         page,
@@ -112,7 +116,6 @@ class WBPrivateAPI {
           return error.response.status === 429 || error.response.status >= 500;
         },
       },
-      
     });
 
     if (
@@ -147,7 +150,7 @@ class WBPrivateAPI {
         appType: Constants.APPTYPES.DESKTOP,
         query: keyword,
         curr: Constants.CURRENCIES.RUB,
-        dest: this.destination.ids,
+        dest: this.destination.ids[0],
         regions: this.destination.regions,
         locale: Constants.LOCALES.RU,
         resultset: "filters",
@@ -201,7 +204,7 @@ class WBPrivateAPI {
         },
       };
       for (let filter of filters) {
-        options.params[filter['type']] = filter['value']
+        options.params[filter["type"]] = filter["value"];
       }
       try {
         const url = Constants.URLS.SEARCH.EXACTMATCH;
@@ -333,7 +336,13 @@ class WBPrivateAPI {
    * @returns Array of found products
    */
   async getListOfProducts(productIds) {
-    const options = { params: { nm: productIds.join(";") } };
+    const options = {
+      params: {
+        nm: productIds.join(";"),
+        appType: Constants.APPTYPES.DESKTOP,
+        dest: this.destination.ids[0],
+      },
+    };
     const res = await this.session.get(Constants.URLS.SEARCH.LIST, options);
     return res.data.data.products || [];
   }

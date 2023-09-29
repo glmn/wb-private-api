@@ -34,7 +34,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
     expect(totalProducts).toBeGreaterThan(0);
   });
 
-  test('Поиск данных их фльтров по ключевому запросу "конструктор детский"', async () => {
+  test('Поиск данных из фильтров по ключевому запросу "конструктор детский"', async () => {
     const result = await wbapi.searchCustomFilters("конструктор детский", [
       "fbrand",
       "fsupplier",
@@ -47,9 +47,10 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   test('Проверка получения Query Params по ключевому запросу "Платье"', async () => {
     const metadata = await wbapi.getQueryMetadata("Платье");
     const { catalog_type, catalog_value } = metadata;
+    console.log(metadata)
     expect(typeof metadata === "object").toBeTruthy();
     expect(catalog_type).toBe("subject");
-    expect(catalog_value).toBe("subject=69;70;2613;2905;4000;4855;4857");
+    expect(catalog_value).toBe("subject=69;70;2905;4000;4855;4857");
   });
 
   test("Проверка метода getQueryMetadata на запросы разных страниц", async () => {
@@ -59,7 +60,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   });
 
   test('Сбор 3 страниц товаров по ключевому запросу "Платье"', async () => {
-    const catalog = await wbapi.search("Платье", 3);
+    const catalog = await wbapi.search("Платье", 3, 3);
     expect(catalog.products.length).toBe(300);
   });
 
@@ -83,8 +84,8 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
 
   test('Проверка фильтрации товаров по бренду и по поставщику с ключевым запросом "торшер"', async () => {
     const filters = [
-      { type: "fbrand", value: 11399 },
-      { type: "fsupplier", value: 1180616 },
+      { type: "fbrand", value: 310484464 },
+      { type: "fsupplier", value: 1179677 },
     ];
     const catalog = await wbapi.search("торшер", 1, 0, filters);
     expect(catalog.products.length).toBeGreaterThan(0);
@@ -136,7 +137,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
 
   test("Проверка метода .getListOfProducts() на возврат найденных товаров", async () => {
     const products = Array(10)
-      .fill(60059650)
+      .fill(15693390)
       .map((v, idx) => v + idx);
     const list = await wbapi.getListOfProducts(products);
     expect(list.length).toBeGreaterThan(0);

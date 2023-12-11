@@ -47,10 +47,9 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   test('Проверка получения Query Params по ключевому запросу "Платье"', async () => {
     const metadata = await wbapi.getQueryMetadata("Платье");
     const { catalog_type, catalog_value } = metadata;
-    console.log(metadata)
     expect(typeof metadata === "object").toBeTruthy();
-    expect(catalog_type).toBe("subject");
-    expect(catalog_value).toBe("subject=69;70;2905;4000;4855;4857");
+    expect(catalog_type).toBe("preset");
+    expect(catalog_value).toBe("preset=500060403");
   });
 
   test("Проверка метода getQueryMetadata на запросы разных страниц", async () => {

@@ -10,8 +10,7 @@ NodeJS модуль. Работает через приватное API Wildberr
 
 > <p>Разработано при спонсировании:</p>
 > <p><img src="https://github.com/glmn/glmn/assets/1326151/549b8bed-60c3-4f6e-8f5a-8592c63467b6" height="35"></p>
-> <p><img src="https://github.com/glmn/glmn/assets/1326151/5f38f86c-7014-4e73-8fa1-c6657a902826" height="11"> <b>Нейромаркет</b> - Глубокий Анализ товаров на Wildberries.<br/>
-> Выдача доступов к закрытому бета-тестированию -> <b><a href="https://t.me/+tN3mdbvUP1RkNDgy" target="_blank">Телеграм канал</a></b></p>
+> <p><img src="https://github.com/glmn/glmn/assets/1326151/5f38f86c-7014-4e73-8fa1-c6657a902826" height="12"> <b><a href="https://neuromarket.online/?utm_source=github&utm_medium=wb-private-api&utm_content=description">Нейромаркет</a></b> - Глубокий Анализ товаров на Wildberries.</p>
 
 Установка: `npm i wb-private-api`
 
@@ -135,5 +134,3 @@ initiate();
 ## `WBFeedback` методы
 
 `.getPhotos(size='min')` - Вернет ссылки на все фотографии в текущем отзыве. `size` по умолчанию = `min`. Заменить на `full` если необходим большой размер
-
-[![Verified on Openbase](https://badges.openbase.com/js/verified/wb-private-api.svg?token=yS0bpJQgFYOsdNzGVKyXsudiHKfqZve3FHuweIWRjnM=)](https://openbase.com/js/wb-private-api?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)

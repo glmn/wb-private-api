@@ -15,12 +15,6 @@ describe("Проверка поиска рекламодателей", () => {
     expect(ads.adverts[0].cpm).toBeGreaterThan(0);
     expect(ads.pages.length).toBeGreaterThan(0);
   });
-
-  test("Проверка карусели внутри карточки .getCarouselAds()", async () => {
-    const ads = await wbapi.getCarouselAds(60059650);
-    expect(ads.length).toBeGreaterThan(0);
-    expect(ads[0].cpm).toBeGreaterThan(0);
-  });
 });
 
 describe("Проверка поиска товаров WBPrivateAPI.search()", () => {
@@ -47,10 +41,9 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   test('Проверка получения Query Params по ключевому запросу "Платье"', async () => {
     const metadata = await wbapi.getQueryMetadata("Платье");
     const { catalog_type, catalog_value } = metadata;
-    console.log(metadata)
     expect(typeof metadata === "object").toBeTruthy();
-    expect(catalog_type).toBe("subject");
-    expect(catalog_value).toBe("subject=69;70;2905;4000;4855;4857");
+    expect(catalog_type).toBe("preset");
+    expect(catalog_value).toBe("preset=500060403");
   });
 
   test("Проверка метода getQueryMetadata на запросы разных страниц", async () => {

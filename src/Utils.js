@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 const format = require("string-format");
 const Constants = require("./Constants");
+const moment = require("moment")
 
 format.extend(String.prototype, {});
 
@@ -44,6 +45,17 @@ const getBasketNumber = (productId) => {
 
 const brandImageURL = (brandId) => Constants.URLS.BRAND.IMAGE.format(brandId);
 
+const genNewUserID = function () {
+  var t = Math.floor((new Date).getTime() / 1e3)
+      , e = Math.floor(Math.random() * Math.pow(2, 30)).toString() + t.toString()
+      , n = new Date;
+  return e
+};
+
+const getQueryIdForSearch = function () {
+  return `qid${genNewUserID()}${moment(new Date).format("yyyyMMDDHHmmss")}`
+};
+
 const Utils = {
   Card: {
     imageURL,
@@ -52,6 +64,9 @@ const Utils = {
   Brand: {
     imageURL: brandImageURL,
   },
+  Search: {
+    getQueryIdForSearch
+  }
 };
 
 module.exports = Utils;

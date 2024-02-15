@@ -4,6 +4,7 @@
 const format = require("string-format");
 const Constants = require("./Constants");
 const WBProduct = require("./WBProduct");
+const Utils = require("./Utils");
 const WBCatalog = require("./WBCatalog");
 const SessionBuilder = require("./SessionBuilder");
 
@@ -83,33 +84,31 @@ class WBPrivateAPI {
     limit = 0,
     withProducts = false,
     page = 1,
-    retries = 0
+    retries = 0,
+    suppressSpellcheck = true
   ) {
     let params = {
-      query: keyword,
-      locale: "ru",
       appType: Constants.APPTYPES.DESKTOP,
+      curr: "rub",
       dest: this.destination.ids[0],
+      query: keyword,
       resultset: "catalog",
-      limit: 1,
+      sort: "popular",
+      spp: 30,
+      suppressSpellcheck,
     };
-
-    if (withProducts) {
-      params = {
-        query: keyword,
-        locale: "ru",
-        resultset: "catalog",
-        limit,
-        appType: Constants.APPTYPES.DESKTOP,
-        dest: this.destination.ids[0],
-        sort: "popular",
-        regions: this.destination.regions,
-        page,
-      };
+    if (page !== 1) {
+      params.page = page;
+    }
+    if (limit !== 100) {
+      params.limit = limit;
     }
 
     const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
       params,
+      headers: {
+        "x-queryid": Utils.Search.getQueryIdForSearch(),
+      },
       "axios-retry": {
         retries,
         retryCondition: (error) => {
@@ -155,6 +154,9 @@ class WBPrivateAPI {
         locale: Constants.LOCALES.RU,
         resultset: "filters",
       },
+      headers: {
+        "x-queryid": Utils.Search.getQueryIdForSearch(),
+      },
     });
 
     return res.data.data?.total || 0;
@@ -170,12 +172,14 @@ class WBPrivateAPI {
     const res = await this.session.get(Constants.URLS.SEARCH.EXACTMATCH, {
       params: {
         appType: Constants.APPTYPES.DESKTOP,
-        query: keyword,
         curr: Constants.CURRENCIES.RUB,
         dest: this.destination.ids,
-        regions: this.destination.regions,
+        query: keyword,
         resultset: "filters",
         filters: filters.join(";"),
+      },
+      headers: {
+        "x-queryid": Utils.Search.getQueryIdForSearch(),
       },
     });
     return res.data?.data || {};
@@ -192,34 +196,37 @@ class WBPrivateAPI {
       let foundProducts;
       const options = {
         params: {
-          query: catalogConfig.keyword,
           appType: Constants.APPTYPES.DESKTOP,
-          locale: Constants.LOCALES.RU,
-          page,
-          dest: this.destination.ids,
-          sort: "popular",
-          limit: Constants.PRODUCTS_PER_PAGE,
-          regions: this.destination.regions,
+          curr: "rub",
+          dest: this.destination.ids[0],
+          query: catalogConfig.keyword.toLowerCase(),
           resultset: "catalog",
+          sort: "popular",
+          spp: 30,
+          suppressSpellcheck: false
+        },
+        headers: {
+          "x-queryid": Utils.Search.getQueryIdForSearch(),
+          referrer:
+            "https://www.wildberries.ru/catalog/0/search.aspx?page=2&sort=popular&search=" +
+            encodeURI(catalogConfig.keyword.toLowerCase()),
         },
       };
+      if (page !== 1) {
+        options.params.page = page;
+      }
       for (let filter of filters) {
         options.params[filter["type"]] = filter["value"];
       }
       try {
         const url = Constants.URLS.SEARCH.EXACTMATCH;
-        const res = await this.session.get(url, {
-          ...options,
-          "axios-retry": {
-            retries,
-            retryCondition: (error) => {
-              return (
-                error.response.status === 429 || error.response.status >= 500
-              );
-            },
-          },
-        });
-
+        const res = await this.session.get(url, options);
+        if (res.status === 429 || res.status === 500) {
+          throw new Error("BAD STATUS");
+        }
+        if (res.data?.metadata?.catalog_value === "preset=11111111") {
+          throw new Error("BAD CATALOG VALUE - 11111111");
+        }
         foundProducts = res.data.data.products;
       } catch (err) {
         throw new Error(err);

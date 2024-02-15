@@ -33,12 +33,12 @@ module.exports = {
       LIST: "https://card.wb.ru/cards/list",
     },
     IMAGES: {
-      TINY: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/tm/{4}.jpg", // 900x1200
-      BIG: "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/big/{4}.jpg", // 900x1200
+      TINY: "https://basket-{0}.wbbasket.ru/vol{1}/part{2}/{3}/images/tm/{4}.jpg", // 900x1200
+      BIG: "https://basket-{0}.wbbasket.ru/vol{1}/part{2}/{3}/images/big/{4}.jpg", // 900x1200
       SMALL:
-        "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c246x328/{4}.jpg", // 900x1200
+        "https://basket-{0}.wbbasket.ru/vol{1}/part{2}/{3}/images/c246x328/{4}.jpg", // 900x1200
       MEDIUM:
-        "https://basket-{0}.wb.ru/vol{1}/part{2}/{3}/images/c516x688/{4}.jpg", // 900x1200
+        "https://basket-{0}.wbbasket.ru/vol{1}/part{2}/{3}/images/c516x688/{4}.jpg", // 900x1200
       FEEDBACK_BASE: "https://feedbackphotos.wbstatic.net/",
     },
   },

@@ -10,8 +10,8 @@ describe("Проверка утилит Card", () => {
   });
   test("Проверка генерации URL на фотографии карточек Card.imageURL()", () => {
     const testurl =
-      "https://basket-04.wb.ru/vol600/part60059/60059650/images/big/3.jpg";
-    const url = Utils.Card.imageURL(60059650, "BIG", 3);
+      "https://basket-12.wbbasket.ru/vol1778/part177899/177899980/images/big/3.jpg";
+    const url = Utils.Card.imageURL(177899980, "BIG", 3);
     expect(url).toContain(testurl);
   });
   test("Проверка метода getBasketNumber() генерации Basket номера по Артикулу товара", () => {

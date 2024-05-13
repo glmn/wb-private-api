@@ -19,7 +19,9 @@ const BASKETS = [
   [1602, 1655],
   [1656, 1919],
   [1920, 2045],
-  [2046, 2189]
+  [2046, 2189],
+  [2091, 2405],
+  [2406, 2621]
 ];
 
 const imageURL = (productId, imageType = "SMALL", order = 1) => {

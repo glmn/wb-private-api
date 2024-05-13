@@ -27,6 +27,7 @@ class WBPrivateAPI {
     const products = [];
 
     const totalProducts = await this.searchTotalProducts(keyword);
+    console.log("totalProducts", totalProducts)
     if (totalProducts === 0) return [];
 
     const { catalog_type, catalog_value } = await this.getQueryMetadata(

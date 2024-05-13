@@ -53,7 +53,7 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   });
 
   test('Сбор 3 страниц товаров по ключевому запросу "Платье"', async () => {
-    const catalog = await wbapi.search("Платье", 3, 3);
+    const catalog = await wbapi.search("платье", 3, 3);
     expect(catalog.products.length).toBe(300);
   });
 
@@ -67,8 +67,8 @@ describe("Проверка поиска товаров WBPrivateAPI.search()", (
   });
 
   test('Проверка фильтрации товаров по поставщику и ключевому запросу "торшер"', async () => {
-    const filters = [{ type: "fsupplier", value: 1180616 }];
-    const catalog = await wbapi.search("торшер", 1, 0, filters);
+    const filters = [{ type: "fsupplier", value: 36934 }];
+    const catalog = await wbapi.search("резинки зеленые для волос из ткани", 1, 0, filters);
     expect(catalog.products.length).toBeGreaterThan(0);
     expect(
       catalog.products.every((p) => p.supplierId === filters[0].value)
